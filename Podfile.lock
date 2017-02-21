@@ -1,0 +1,41 @@
+PODS:
+  - AMapFoundation (1.3.0)
+  - AMapLocation (2.1.1):
+    - AMapFoundation (~> 1.2)
+  - HHXXScrollViewDecorate (0.1.0)
+  - LBBlurredImage (0.2.2)
+  - Masonry (1.0.2)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - AMapLocation (~> 2.1.0)
+  - HHXXScrollViewDecorate (from `git@git.coding.net:940215/HHXXScrollViewDecorate.git`)
+  - LBBlurredImage (= 0.2.2)
+  - Masonry (~> 1.0.0)
+  - SDWebImage (~> 3.8.0)
+  - YYModel (~> 1.0.4)
+
+EXTERNAL SOURCES:
+  HHXXScrollViewDecorate:
+    :git: git@git.coding.net:940215/HHXXScrollViewDecorate.git
+
+CHECKOUT OPTIONS:
+  HHXXScrollViewDecorate:
+    :commit: 9d3deb9b242aafe1e42d3401dcc2340a1a836de6
+    :git: git@git.coding.net:940215/HHXXScrollViewDecorate.git
+
+SPEC CHECKSUMS:
+  AMapFoundation: 95799945466ccabfe1d3d5d9c1d524501c327b90
+  AMapLocation: dd203f76b034ef5cb546600f4e1ffad2a3a14072
+  HHXXScrollViewDecorate: e5b77a31ed7fb38d29fce21004477cc38aa9db98
+  LBBlurredImage: 700634c17922bc2d22343118e7deb6a3ca12db43
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: db57f54007f6acd27ab6100a4123c68911f8e536
+
+COCOAPODS: 1.0.1
