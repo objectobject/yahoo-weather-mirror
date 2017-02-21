@@ -15,6 +15,10 @@
 		3A6CE1911E5B1952008059AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A6CE18F1E5B1952008059AC /* LaunchScreen.storyboard */; };
 		3A6CE19C1E5B1952008059AC /* yahoo_weather_mirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE19B1E5B1952008059AC /* yahoo_weather_mirrorTests.m */; };
 		3A6CE1A71E5B1952008059AC /* yahoo_weather_mirrorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE1A61E5B1952008059AC /* yahoo_weather_mirrorUITests.m */; };
+		3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */; };
+		3AFEF04B1E5C1D7C007CC568 /* AppDelegate+NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF04A1E5C1D7C007CC568 /* AppDelegate+NotificationService.m */; };
+		3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */; };
+		3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */; };
 		5C7F11186A4E5F5703684C10 /* libPods-yahoo-weather-mirror.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C76A801FFE5F4B70324FB2BE /* libPods-yahoo-weather-mirror.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +57,14 @@
 		3A6CE1A21E5B1952008059AC /* yahoo-weather-mirrorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "yahoo-weather-mirrorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6CE1A61E5B1952008059AC /* yahoo_weather_mirrorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yahoo_weather_mirrorUITests.m; sourceTree = "<group>"; };
 		3A6CE1A81E5B1952008059AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNotificationService.h; path = Services/HHXXNotificationService.h; sourceTree = "<group>"; };
+		3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNotificationService.m; path = Services/HHXXNotificationService.m; sourceTree = "<group>"; };
+		3AFEF0491E5C1D7C007CC568 /* AppDelegate+NotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+NotificationService.h"; path = "Services/AppDelegate+NotificationService.h"; sourceTree = "<group>"; };
+		3AFEF04A1E5C1D7C007CC568 /* AppDelegate+NotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+NotificationService.m"; path = "Services/AppDelegate+NotificationService.m"; sourceTree = "<group>"; };
+		3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXAMapService.h; path = Services/HHXXAMapService.h; sourceTree = "<group>"; };
+		3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXAMapService.m; path = Services/HHXXAMapService.m; sourceTree = "<group>"; };
+		3AFEF0561E5C291A007CC568 /* HHXXServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXServiceManager.h; path = Services/HHXXServiceManager.h; sourceTree = "<group>"; };
+		3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXServiceManager.m; path = Services/HHXXServiceManager.m; sourceTree = "<group>"; };
 		999093E0B8A5E5F11FDEF2BF /* Pods-yahoo-weather-mirror.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yahoo-weather-mirror.release.xcconfig"; path = "Pods/Target Support Files/Pods-yahoo-weather-mirror/Pods-yahoo-weather-mirror.release.xcconfig"; sourceTree = "<group>"; };
 		C76A801FFE5F4B70324FB2BE /* libPods-yahoo-weather-mirror.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-yahoo-weather-mirror.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +120,13 @@
 		3A6CE1801E5B1952008059AC /* yahoo-weather-mirror */ = {
 			isa = PBXGroup;
 			children = (
+				3AFEF0551E5C26FA007CC568 /* Tools */,
+				3AFEF0541E5C2609007CC568 /* Vendors */,
+				3AFEF0531E5C253A007CC568 /* Doc */,
+				3AFEF0521E5C2476007CC568 /* Res */,
+				3AFEF0501E5C227A007CC568 /* Modules */,
+				3AFEF04F1E5C2272007CC568 /* Models */,
+				3AFEF0481E5C1CEB007CC568 /* Services */,
 				3A6CE1841E5B1952008059AC /* AppDelegate.h */,
 				3A6CE1851E5B1952008059AC /* AppDelegate.m */,
 				3A6CE1871E5B1952008059AC /* ViewController.h */,
@@ -145,6 +164,63 @@
 				3A6CE1A81E5B1952008059AC /* Info.plist */,
 			);
 			path = "yahoo-weather-mirrorUITests";
+			sourceTree = "<group>";
+		};
+		3AFEF0481E5C1CEB007CC568 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */,
+				3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */,
+				3AFEF0491E5C1D7C007CC568 /* AppDelegate+NotificationService.h */,
+				3AFEF04A1E5C1D7C007CC568 /* AppDelegate+NotificationService.m */,
+				3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */,
+				3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */,
+				3AFEF0561E5C291A007CC568 /* HHXXServiceManager.h */,
+				3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		3AFEF04F1E5C2272007CC568 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3AFEF0501E5C227A007CC568 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		3AFEF0521E5C2476007CC568 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Res;
+			sourceTree = "<group>";
+		};
+		3AFEF0531E5C253A007CC568 /* Doc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Doc;
+			sourceTree = "<group>";
+		};
+		3AFEF0541E5C2609007CC568 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Vendors;
+			sourceTree = "<group>";
+		};
+		3AFEF0551E5C26FA007CC568 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 		7B6C0E6ABF079E13A36B3B06 /* Frameworks */ = {
@@ -348,9 +424,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */,
 				3A6CE1891E5B1952008059AC /* ViewController.m in Sources */,
 				3A6CE1861E5B1952008059AC /* AppDelegate.m in Sources */,
 				3A6CE1831E5B1952008059AC /* main.m in Sources */,
+				3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */,
+				3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */,
+				3AFEF04B1E5C1D7C007CC568 /* AppDelegate+NotificationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

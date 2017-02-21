@@ -7,16 +7,47 @@
 //
 
 #import "AppDelegate.h"
+#import "HHXXNotificationService.h"
+#import "HHXXServiceManager.h"
+#import "HHXXNotificationService.h"
+#import "HHXXAMapService.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) HHXXServiceManager* serverManager;
 @end
 
 @implementation AppDelegate
 
 
+#pragma mark - setter and getter
+
+- (HHXXServiceManager*)serverManager
+{
+    if (!_serverManager)
+    {
+        _serverManager = [HHXXServiceManager sharedServiceManager];
+        
+        //TODO: 这里添加各种功能服务
+        [_serverManager registerService:[HHXXNotificationService sharedNotificationService]];
+        [_serverManager registerService:[HHXXAMapService sharedAMapService]];
+    }
+    
+    return _serverManager;
+}
+
+#pragma mark - application life cycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    for (id<UIApplicationDelegate> service in self.serverManager.allServices) {
+        
+        // 暂时对于服务的返回值不处理
+        if ([service respondsToSelector:@selector(application:didFinishLaunchingWithOptions:)]) {
+            [service application:application didFinishLaunchingWithOptions:launchOptions];
+        }
+    }
+    
     return YES;
 }
 
