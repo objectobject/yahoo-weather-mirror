@@ -11,6 +11,8 @@
 #import "HHXXServiceManager.h"
 #import "HHXXNotificationService.h"
 #import "HHXXAMapService.h"
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 @interface AppDelegate ()
 @property (nonatomic, strong) HHXXServiceManager* serverManager;
@@ -35,10 +37,10 @@
     return _serverManager;
 }
 
+
 #pragma mark - application life cycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     
     for (id<UIApplicationDelegate> service in self.serverManager.allServices) {
         

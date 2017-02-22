@@ -7,17 +7,18 @@
 //
 
 #import "HHXXNotificationService.h"
+#import "HHXXServiceManager.h"
 
 @implementation HHXXNotificationService
 
+HHXX_AUTO_REGISTER_SERVICE(HHXXNotificationService)
 
 + (instancetype)sharedNotificationService
 {
     
-    static HHXXNotificationService* service;
+    static HHXXNotificationService* service = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
         service = [[HHXXNotificationService alloc] init];
     });
     

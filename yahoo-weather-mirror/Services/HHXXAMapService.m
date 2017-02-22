@@ -7,12 +7,15 @@
 //
 
 #import "HHXXAMapService.h"
+#import "HHXXServiceManager.h"
 
 @implementation HHXXAMapService
 
+HHXX_AUTO_REGISTER_SERVICE(HHXXAMapService)
+
 + (instancetype)sharedAMapService
 {
-    static HHXXAMapService* service;
+    static HHXXAMapService* service = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -21,11 +24,5 @@
     
     
     return service;
-}
-
-
-- (NSString*)serverName
-{
-    return @"AMap";
 }
 @end

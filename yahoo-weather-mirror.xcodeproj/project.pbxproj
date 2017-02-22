@@ -16,9 +16,10 @@
 		3A6CE19C1E5B1952008059AC /* yahoo_weather_mirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE19B1E5B1952008059AC /* yahoo_weather_mirrorTests.m */; };
 		3A6CE1A71E5B1952008059AC /* yahoo_weather_mirrorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE1A61E5B1952008059AC /* yahoo_weather_mirrorUITests.m */; };
 		3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */; };
-		3AFEF04B1E5C1D7C007CC568 /* AppDelegate+NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF04A1E5C1D7C007CC568 /* AppDelegate+NotificationService.m */; };
 		3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */; };
 		3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */; };
+		3AFEF05B1E5C57CE007CC568 /* HHXXSOADelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF05A1E5C57CE007CC568 /* HHXXSOADelegate.m */; };
+		3AFEF0641E5D9808007CC568 /* HHXXBaseUIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0631E5D9808007CC568 /* HHXXBaseUIService.m */; };
 		5C7F11186A4E5F5703684C10 /* libPods-yahoo-weather-mirror.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C76A801FFE5F4B70324FB2BE /* libPods-yahoo-weather-mirror.a */; };
 /* End PBXBuildFile section */
 
@@ -59,12 +60,14 @@
 		3A6CE1A81E5B1952008059AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNotificationService.h; path = Services/HHXXNotificationService.h; sourceTree = "<group>"; };
 		3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNotificationService.m; path = Services/HHXXNotificationService.m; sourceTree = "<group>"; };
-		3AFEF0491E5C1D7C007CC568 /* AppDelegate+NotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+NotificationService.h"; path = "Services/AppDelegate+NotificationService.h"; sourceTree = "<group>"; };
-		3AFEF04A1E5C1D7C007CC568 /* AppDelegate+NotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+NotificationService.m"; path = "Services/AppDelegate+NotificationService.m"; sourceTree = "<group>"; };
 		3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXAMapService.h; path = Services/HHXXAMapService.h; sourceTree = "<group>"; };
 		3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXAMapService.m; path = Services/HHXXAMapService.m; sourceTree = "<group>"; };
 		3AFEF0561E5C291A007CC568 /* HHXXServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXServiceManager.h; path = Services/HHXXServiceManager.h; sourceTree = "<group>"; };
 		3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXServiceManager.m; path = Services/HHXXServiceManager.m; sourceTree = "<group>"; };
+		3AFEF0591E5C57CE007CC568 /* HHXXSOADelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXSOADelegate.h; path = Services/HHXXSOADelegate.h; sourceTree = "<group>"; };
+		3AFEF05A1E5C57CE007CC568 /* HHXXSOADelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXSOADelegate.m; path = Services/HHXXSOADelegate.m; sourceTree = "<group>"; };
+		3AFEF0621E5D9808007CC568 /* HHXXBaseUIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXBaseUIService.h; path = Services/HHXXBaseUIService.h; sourceTree = "<group>"; };
+		3AFEF0631E5D9808007CC568 /* HHXXBaseUIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXBaseUIService.m; path = Services/HHXXBaseUIService.m; sourceTree = "<group>"; };
 		999093E0B8A5E5F11FDEF2BF /* Pods-yahoo-weather-mirror.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yahoo-weather-mirror.release.xcconfig"; path = "Pods/Target Support Files/Pods-yahoo-weather-mirror/Pods-yahoo-weather-mirror.release.xcconfig"; sourceTree = "<group>"; };
 		C76A801FFE5F4B70324FB2BE /* libPods-yahoo-weather-mirror.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-yahoo-weather-mirror.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -171,12 +174,14 @@
 			children = (
 				3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */,
 				3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */,
-				3AFEF0491E5C1D7C007CC568 /* AppDelegate+NotificationService.h */,
-				3AFEF04A1E5C1D7C007CC568 /* AppDelegate+NotificationService.m */,
 				3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */,
 				3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */,
 				3AFEF0561E5C291A007CC568 /* HHXXServiceManager.h */,
 				3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */,
+				3AFEF0591E5C57CE007CC568 /* HHXXSOADelegate.h */,
+				3AFEF05A1E5C57CE007CC568 /* HHXXSOADelegate.m */,
+				3AFEF0621E5D9808007CC568 /* HHXXBaseUIService.h */,
+				3AFEF0631E5D9808007CC568 /* HHXXBaseUIService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -426,11 +431,12 @@
 			files = (
 				3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */,
 				3A6CE1891E5B1952008059AC /* ViewController.m in Sources */,
+				3AFEF05B1E5C57CE007CC568 /* HHXXSOADelegate.m in Sources */,
+				3AFEF0641E5D9808007CC568 /* HHXXBaseUIService.m in Sources */,
 				3A6CE1861E5B1952008059AC /* AppDelegate.m in Sources */,
 				3A6CE1831E5B1952008059AC /* main.m in Sources */,
 				3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */,
 				3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */,
-				3AFEF04B1E5C1D7C007CC568 /* AppDelegate+NotificationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

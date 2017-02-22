@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "HHXXServiceManager.h"
 
-@interface HHXXNotificationService: NSObject<UIApplicationDelegate>
+@interface HHXXNotificationService: NSObject<HHXXSOAServiceDelegate>
 
 
 + (instancetype)sharedNotificationService;

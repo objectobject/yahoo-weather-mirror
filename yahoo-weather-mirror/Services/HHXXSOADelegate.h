@@ -1,5 +1,5 @@
 //
-//  HHXXAMapService.h
+//  HHXXSOADelegate.h
 //  yahoo-weather-mirror
 //
 //  Created by as4 on 17/2/21.
@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "HHXXServiceManager.h"
 
-@interface HHXXAMapService : NSObject<HHXXSOAServiceDelegate>
-
-
-+ (instancetype)sharedAMapService;
+@interface HHXXSOADelegate : UIResponder<UIApplicationDelegate>
+@property (nonatomic, strong) UIWindow* window;
 @end
