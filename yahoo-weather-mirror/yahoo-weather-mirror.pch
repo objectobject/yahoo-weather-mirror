@@ -1,0 +1,28 @@
+//
+//  yahoo-weather-mirror.pch
+//  yahoo-weather-mirror
+//
+//  Created by as4 on 17/3/7.
+//  Copyright © 2017年 hhxx. All rights reserved.
+//
+
+#ifndef yahoo_weather_mirror_pch
+#define yahoo_weather_mirror_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+
+#endif /* yahoo_weather_mirror_pch */
+
+
+#ifndef __OBJC__
+
+//#import <UIKit/UIKit.h>
+//#import <Foundation/Foundation.h>
+//$(SRCROOT)/yahoo-weather-mirror/yahoo-weather-mirror.pch
+
+#import "Macro.h"
+#endif
+
