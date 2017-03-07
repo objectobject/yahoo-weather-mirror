@@ -119,21 +119,49 @@
 #pragma mark - interactive
 - (void)updateInteractiveTransition:(CGFloat)percentComplete
 {
-    
+    self.containerView.layer.timeOffset = percentComplete;
 }
 
 - (void)pauseInteractiveTransition
 {
-    
+    NSLog(@"%@", _cmd);
 }
+
 
 - (void)cancelInteractiveTransition
 {
+    CADisplayLink* displaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(_hhxxCancelAnimation:)];
     
+    [displaylink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 }
+
+
+- (void)_hhxxCancelAnimation:(CADisplayLink*)displayLink
+{
+    NSTimeInterval timeOffset = self.containerView.layer.timeOffset;
+    timeOffset -= displayLink.duration;
+    
+    if (timeOffset > 0)
+    {
+        self.containerView.layer.timeOffset = timeOffset;
+    }
+    else
+    {
+        
+        [displayLink invalidate];
+        self.containerView.layer.timeOffset = 0.0;
+        self.containerView.layer.speed = 1.0;
+    }
+}
+
 
 - (void)finishInteractiveTransition
 {
-    
+    NSTimeInterval pauseTimeOffset = self.containerView.layer.timeOffset;
+    self.containerView.layer.speed = 1.0f;
+    self.containerView.layer.beginTime = 0.0;
+    self.containerView.layer.timeOffset = 0.0;
+    NSTimeInterval timeSincePause = [self.containerView.layer convertTime:CACurrentMediaTime() fromLayer:nil] - pauseTimeOffset;
+    self.containerView.layer.beginTime = timeSincePause;
 }
 @end

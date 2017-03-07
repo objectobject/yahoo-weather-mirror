@@ -7,14 +7,17 @@
 //
 
 #import "HHXXViewControllerContainer.h"
-#import "HHXXViewControllerTransitioningAnimator.h"
 #import "HHXXViewControllerTransitioningContext.h"
 #import <Masonry.h>
+#import "HHXXDefaultTransitioningAnimator.h"
+#import "UIPanGestureRecognizer+Addition.h"
+#import "NSObject+Enumerate.h"
 
 const NSTimeInterval kHHXXDefaultTransitionDuring = 1.0f;
 const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 
-@interface HHXXViewControllerContainer()<UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning>
+
+@interface HHXXViewControllerContainer()<UIViewControllerTransitioningDelegate>
 @property (nonatomic, copy, readwrite) NSMutableArray<UIViewController*>* children;
 @property (nonatomic, strong) UIViewController* selectedViewController;
 @property (nonatomic, assign) NSUInteger selectedIndex;
@@ -28,6 +31,15 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 // 布局约束
 @property (nonatomic, strong) NSLayoutConstraint* topConstraintForDecorateView;
 @property (nonatomic, strong) NSLayoutConstraint* widthConstraintForDecorateView;
+
+
+// 交互式转场
+@property (nonatomic, strong) id animator;
+@property (nonatomic, assign) HHXXDirection directionForAnimation;
+@property (nonatomic, assign) CGFloat xDistance;
+
+@property (nonatomic, strong) UIPanGestureRecognizer* panGestureRecognizer;
+@property (nonatomic, strong) UISwipeGestureRecognizer* leftSwipeGestureRecognizer, *rightSwipeGestureRecognizer;
 @end
 
 @implementation HHXXViewControllerContainer
@@ -88,13 +100,6 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 {
     return [self initWithViewControllers:nil];
 }
-
-
-- (void)test:(id)sender
-{
-    self.selectedViewController = [self.children objectAtIndex:(self.selectedIndex + 1) % [self.children count]];
-}
-
 
 - (instancetype)initWithViewControllers:(NSMutableArray<UIViewController*>*)viewControllers
 {
@@ -207,14 +212,19 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     }
     
     
-    id<UIViewControllerAnimatedTransitioning> animator = nil;
-    if ([self.hhxxTransitioningDelegate respondsToSelector:@selector(hhxxContainerViewController:fromViewController:toViewController:)]) {
-        animator = [self.hhxxTransitioningDelegate hhxxContainerViewController:self fromViewController:fromViewController toViewController:toViewController];
+
+    self.animator = [HHXXDefaultTransitioningAnimator new];
+    if (!self.withInteractive && [self.hhxxTransitioningDelegate respondsToSelector:@selector(hhxxContainerViewController:fromViewController:toViewController:)]) {
+        self.animator = [self.hhxxTransitioningDelegate hhxxContainerViewController:self fromViewController:fromViewController toViewController:toViewController];
     }
-    animator = animator? animator: [HHXXViewControllerTransitioningAnimator new];
+    
+    // 交互式转场
+    if (self.withInteractive && [self.hhxxTransitioningDelegate respondsToSelector:@selector(hhxxInteractiveContainerViewController:fromViewController:toViewController:)]) {
+        self.animator = [self.hhxxTransitioningDelegate hhxxInteractiveContainerViewController:self fromViewController:fromViewController toViewController:toViewController];
+    }
     
     id<UIViewControllerContextTransitioning> transitioningContext = ({
-        HHXXViewControllerTransitioningContext* context = [[HHXXViewControllerTransitioningContext alloc] initWithFromViewController:fromViewController toViewController:toViewController slideDirection:ToLeft];
+        HHXXViewControllerTransitioningContext* context = [[HHXXViewControllerTransitioningContext alloc] initWithFromViewController:fromViewController toViewController:toViewController slideDirection:self.directionForAnimation];
         context.isInteractive = NO;
         context.completeBlock = ^(BOOL didComplete){
             [self.view addSubview:toViewController.view];
@@ -223,26 +233,62 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
             [fromViewController.view removeFromSuperview];
             [fromViewController didMoveToParentViewController:nil];
             
-            if ([animator respondsToSelector:@selector(animationEnded:)]) {
-                [animator animationEnded:didComplete];
+
+            if ([self.animator respondsToSelector:@selector(animationEnded:)]) {
+                [self.animator animationEnded:didComplete];
             }
-            
             //            NSLog(@"After = %ld\r\n", [self.view.subviews count]);
+            
+            self.withInteractive = NO;
         };
         context;
     });
     
-    [animator animateTransition:transitioningContext];
+
+    if(self.withInteractive)
+    {
+        [self.animator startInteractiveTransition:transitioningContext];
+    }
+    else
+    {
+        [self.animator animateTransition:transitioningContext];
+    }
 }
+
+
+
 
 - (void)_hhxxInitView
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"这是测试" style:UIBarButtonItemStyleDone target:self action:@selector(test:)];
+    self.navigationItem.rightBarButtonItems = @[
+                                                ({
+                                                    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"Right" style:UIBarButtonItemStyleDone target:self action:@selector(_switcher:)];
+                                                    item.tag = 1;
+                                                    item;
+                                                }),
+                                                
+                                                ({
+                                                    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"Left" style:UIBarButtonItemStyleDone target:self action:@selector(_switcher:)];
+                                                    item.tag = -1;
+                                                    item;
+                                                })
+                                                ];
+    
     [self.rootView addSubview:self.decorateView];
+    
+    [self.rootView addGestureRecognizer:self.panGestureRecognizer];
+//    [self.rootView addGestureRecognizer:self.leftSwipeGestureRecognizer];
+//    [self.rootView addGestureRecognizer:self.rightSwipeGestureRecognizer];
+//    [self.panGestureRecognizer requireGestureRecognizerToFail:self.leftSwipeGestureRecognizer];
+//    [self.panGestureRecognizer requireGestureRecognizerToFail:self.rightSwipeGestureRecognizer];
+    
+
     if (!self.selectedViewController) {
         return;
     }
     
+
+
     // 主控制器布局
     [self addChildViewController:self.selectedViewController];
     [self.rootView insertSubview:self.selectedViewController.view belowSubview:self.decorateView];
@@ -257,7 +303,159 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
         self.transitioningDelegate = self;
     }
 }
+
+
+
+- (void)_switcher:(id)sender
+{
+    UIBarButtonItem* item = (UIBarButtonItem*)sender;
+    
+    NSInteger index = self.selectedIndex;
+    
+    
+    index = item.tag > 0? index - 1: index + 1;
+    if (index <= 0) {
+        index = 0;
+    }
+    if (index >= [self.children count]) {
+        index -= 1;
+    }
+    self.directionForAnimation = item.tag > 0 ? ToRight: ToLeft;
+    self.selectedViewController = [self.children objectAtIndex:index % [self.children count]];
+}
+
+
+- (void)_hhxxPanGesture:(UIPanGestureRecognizer*)gestureRecognizer
+{
+//    HHXXDirection direction = [gestureRecognizer hhxxSwipeDirectionInView:self.view withoutVertical:YES];
+//    if(direction != NoDirection)
+//    {
+//        NSInteger index = self.selectedIndex;
+//        switch (direction)
+//        {
+//            case ToLeft:
+//            {
+//                index += 1;
+//                NSLog(@"toleft");
+//                self.directionForAnimation = ToLeft;
+//            }
+//                break;
+//                
+//            case ToRight:
+//            {
+//                index -= 1;
+//                NSLog(@"toRight");
+//                self.directionForAnimation = ToRight;
+//            }
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//        if (index <= 0) {
+//            index = 0;
+//        }
+//        if (index >= [self.children count]) {
+//            index -= 1;
+//        }
+//        self.selectedViewController = [self.children objectAtIndex:index % [self.children count]];
+//    }
+//    else
+//    {
+    NSInteger selectedIndex = [self.children indexOfObject:self.selectedViewController];
+    NSLog(@"value = %02f", [gestureRecognizer translationInView:self.view].x);
+    
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            self.withInteractive = true;
+            self.view.layer.speed = 0;
+            HHXXDirection panDirection = [gestureRecognizer hhxxPanDirectionInView:self.view withoutVertical:YES];
+            if (panDirection == ToRight) {
+                selectedIndex += 1;
+            }
+            if (panDirection == ToLeft) {
+                selectedIndex -= 1;
+            }
+            if (selectedIndex <= 0) {
+                selectedIndex = 0;
+            }
+            if (selectedIndex >= [self.children count]) {
+                selectedIndex -= 1;
+            }
+            self.selectedViewController = [self.children objectAtIndex:selectedIndex];
+        }
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+        {
+            CGFloat percentValue = fabs([gestureRecognizer translationInView:self.view].x) / self.view.bounds.size.width;
+            [self.animator updateInteractiveTransition:percentValue];
+        }
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+        UIGestureRecognizerStateRecognized:
+        {
+            if (fabs([gestureRecognizer translationInView:self.view].x) - self.view.bounds.size.width * 0.5 > 0)
+            {
+                [self.animator finishInteractiveTransition];
+            }
+            else
+            {
+                [self.animator cancelInteractiveTransition];
+            }
+        }
+            break;
+            
+        case UIGestureRecognizerStateCancelled:
+        UIGestureRecognizerStateFailed:
+        {
+            [self.animator cancelInteractiveTransition];
+        }
+            break;
+            
+        case UIGestureRecognizerStatePossible:
+            break;
+            
+        default:
+            self.xDistance = 0;
+            break;
+    }
+//    }
+}
+
 #pragma mark - setter and getter
+- (UIPanGestureRecognizer*)panGestureRecognizer
+{
+    if (!_panGestureRecognizer) {
+        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(_hhxxPanGesture:)];
+    }
+    
+    return _panGestureRecognizer;
+}
+
+- (UISwipeGestureRecognizer*)leftSwipeGestureRecognizer
+{
+    if (!_leftSwipeGestureRecognizer) {
+        _leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeGesture:)];
+        [_leftSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
+    }
+    
+    return _leftSwipeGestureRecognizer;
+}
+
+- (UISwipeGestureRecognizer *)rightSwipeGestureRecognizer
+{
+    if (!_rightSwipeGestureRecognizer) {
+        _rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeGesture:)];
+        [_rightSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+    }
+    
+    return _rightSwipeGestureRecognizer;
+}
+
+
 - (UIView*)rootView
 {
     if (!_rootView) {

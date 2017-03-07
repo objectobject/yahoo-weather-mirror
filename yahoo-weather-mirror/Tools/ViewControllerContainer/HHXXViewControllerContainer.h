@@ -15,6 +15,8 @@
 @property (nonatomic, copy, readonly) NSMutableArray<UIViewController*>* children;
 @property (nonatomic, copy) id<HHXXTransitioningDelegate> hhxxTransitioningDelegate;
 
+@property (nonatomic, assign) BOOL withInteractive;
+
 - (instancetype)initWithViewControllers:(NSMutableArray<UIViewController*>*)viewControllers;
 
 - (void)insertViewController:(UIViewController*)viewController atIndex:(NSUInteger)index;
@@ -31,5 +33,7 @@
 
 @optional
 // TODO:后面需要添加交互相关的协议
+
+- (id <UIViewControllerInteractiveTransitioning>)hhxxInteractiveContainerViewController:(HHXXViewControllerContainer*)containerViewController fromViewController:(UIViewController*)fromViewController toViewController:(UIViewController*)toViewController;
 @end
 
