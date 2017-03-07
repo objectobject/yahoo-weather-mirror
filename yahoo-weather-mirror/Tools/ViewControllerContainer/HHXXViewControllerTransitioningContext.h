@@ -8,18 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "NSObject+Enumerate.h"
 
 typedef void (^HHXXViewControllerTranstitionCompleteBlock)(BOOL);
 
-
-// 手指滑动和动画效果方向相反
-typedef NS_ENUM(NSUInteger, HHXXDirection)
-{
-    ToLeft = 0,
-    ToRight,
-    ToTop,
-    ToBottom
-};
 
 @interface HHXXViewControllerTransitioningContext : NSObject<UIViewControllerContextTransitioning>
 

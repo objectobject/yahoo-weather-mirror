@@ -16,15 +16,16 @@
 		3A6CE19C1E5B1952008059AC /* yahoo_weather_mirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE19B1E5B1952008059AC /* yahoo_weather_mirrorTests.m */; };
 		3A6CE1A71E5B1952008059AC /* yahoo_weather_mirrorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE1A61E5B1952008059AC /* yahoo_weather_mirrorUITests.m */; };
 		3A81976B1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A81976A1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m */; };
-		3A81976E1E6C0ED600A75C10 /* HHXXViewControllerTransitioningAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A81976D1E6C0ED600A75C10 /* HHXXViewControllerTransitioningAnimator.m */; };
-		3A8197711E6C69FE00A75C10 /* HHXXViewControllerContainer+HHXXNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8197701E6C69FE00A75C10 /* HHXXViewControllerContainer+HHXXNavigation.m */; };
+		3AE357951E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */; };
+		3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357971E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m */; };
+		3AE357A51E6EE399002D4221 /* NSObject+Enumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357A41E6EE399002D4221 /* NSObject+Enumerate.m */; };
 		3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */; };
 		3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */; };
 		3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */; };
 		3AFEF05B1E5C57CE007CC568 /* HHXXSOADelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF05A1E5C57CE007CC568 /* HHXXSOADelegate.m */; };
 		3AFEF0641E5D9808007CC568 /* HHXXBaseUIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0631E5D9808007CC568 /* HHXXBaseUIService.m */; };
 		3AFEF0AA1E5EAE2D007CC568 /* HHXXViewControllerContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0A91E5EAE2D007CC568 /* HHXXViewControllerContainer.m */; };
-		3AFEF0AF1E5EEF36007CC568 /* UIColor+HHXXProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0AE1E5EEF36007CC568 /* UIColor+HHXXProvider.m */; };
+		3AFEF0AF1E5EEF36007CC568 /* UIColor+Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0AE1E5EEF36007CC568 /* UIColor+Provider.m */; };
 		3AFEF0B71E5F476B007CC568 /* WeatherInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0B61E5F476B007CC568 /* WeatherInformationViewController.m */; };
 		3AFEF0BB1E5F52E8007CC568 /* HHXXUIKitMacro.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0B91E5F52E8007CC568 /* HHXXUIKitMacro.c */; };
 		5C7F11186A4E5F5703684C10 /* libPods-yahoo-weather-mirror.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C76A801FFE5F4B70324FB2BE /* libPods-yahoo-weather-mirror.a */; };
@@ -67,10 +68,14 @@
 		3A6CE1A81E5B1952008059AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A8197691E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXViewControllerTransitioningContext.h; path = Tools/ViewControllerContainer/HHXXViewControllerTransitioningContext.h; sourceTree = "<group>"; };
 		3A81976A1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXViewControllerTransitioningContext.m; path = Tools/ViewControllerContainer/HHXXViewControllerTransitioningContext.m; sourceTree = "<group>"; };
-		3A81976C1E6C0ED600A75C10 /* HHXXViewControllerTransitioningAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXViewControllerTransitioningAnimator.h; path = Tools/ViewControllerContainer/HHXXViewControllerTransitioningAnimator.h; sourceTree = "<group>"; };
-		3A81976D1E6C0ED600A75C10 /* HHXXViewControllerTransitioningAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXViewControllerTransitioningAnimator.m; path = Tools/ViewControllerContainer/HHXXViewControllerTransitioningAnimator.m; sourceTree = "<group>"; };
-		3A81976F1E6C69FE00A75C10 /* HHXXViewControllerContainer+HHXXNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HHXXViewControllerContainer+HHXXNavigation.h"; path = "Tools/ViewControllerContainer/HHXXViewControllerContainer+HHXXNavigation.h"; sourceTree = "<group>"; };
-		3A8197701E6C69FE00A75C10 /* HHXXViewControllerContainer+HHXXNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HHXXViewControllerContainer+HHXXNavigation.m"; path = "Tools/ViewControllerContainer/HHXXViewControllerContainer+HHXXNavigation.m"; sourceTree = "<group>"; };
+		3AE357931E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXDefaultTransitioningAnimator.h; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.h; sourceTree = "<group>"; };
+		3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXDefaultTransitioningAnimator.m; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.m; sourceTree = "<group>"; };
+		3AE357961E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIPanGestureRecognizer+Addition.h"; path = "Category/UIPanGestureRecognizer+Addition.h"; sourceTree = "<group>"; };
+		3AE357971E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIPanGestureRecognizer+Addition.m"; path = "Category/UIPanGestureRecognizer+Addition.m"; sourceTree = "<group>"; };
+		3AE357991E6ED14B002D4221 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Macro.h; path = Macro/Macro.h; sourceTree = "<group>"; };
+		3AE3579A1E6ED1E6002D4221 /* yahoo-weather-mirror.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yahoo-weather-mirror.pch"; sourceTree = "<group>"; };
+		3AE357A31E6EE399002D4221 /* NSObject+Enumerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Enumerate.h"; path = "Macro/NSObject+Enumerate.h"; sourceTree = "<group>"; };
+		3AE357A41E6EE399002D4221 /* NSObject+Enumerate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Enumerate.m"; path = "Macro/NSObject+Enumerate.m"; sourceTree = "<group>"; };
 		3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNotificationService.h; path = Services/HHXXNotificationService.h; sourceTree = "<group>"; };
 		3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNotificationService.m; path = Services/HHXXNotificationService.m; sourceTree = "<group>"; };
 		3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXAMapService.h; path = Services/HHXXAMapService.h; sourceTree = "<group>"; };
@@ -83,8 +88,8 @@
 		3AFEF0631E5D9808007CC568 /* HHXXBaseUIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXBaseUIService.m; path = Services/HHXXBaseUIService.m; sourceTree = "<group>"; };
 		3AFEF0A81E5EAE2D007CC568 /* HHXXViewControllerContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXViewControllerContainer.h; path = Tools/ViewControllerContainer/HHXXViewControllerContainer.h; sourceTree = "<group>"; };
 		3AFEF0A91E5EAE2D007CC568 /* HHXXViewControllerContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXViewControllerContainer.m; path = Tools/ViewControllerContainer/HHXXViewControllerContainer.m; sourceTree = "<group>"; };
-		3AFEF0AD1E5EEF36007CC568 /* UIColor+HHXXProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HHXXProvider.h"; path = "Category/UIColor+HHXXProvider.h"; sourceTree = "<group>"; };
-		3AFEF0AE1E5EEF36007CC568 /* UIColor+HHXXProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HHXXProvider.m"; path = "Category/UIColor+HHXXProvider.m"; sourceTree = "<group>"; };
+		3AFEF0AD1E5EEF36007CC568 /* UIColor+Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Provider.h"; path = "Category/UIColor+Provider.h"; sourceTree = "<group>"; };
+		3AFEF0AE1E5EEF36007CC568 /* UIColor+Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Provider.m"; path = "Category/UIColor+Provider.m"; sourceTree = "<group>"; };
 		3AFEF0B51E5F476B007CC568 /* WeatherInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherInformationViewController.h; path = Modules/WeatherInformationViewController.h; sourceTree = "<group>"; };
 		3AFEF0B61E5F476B007CC568 /* WeatherInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherInformationViewController.m; path = Modules/WeatherInformationViewController.m; sourceTree = "<group>"; };
 		3AFEF0B91E5F52E8007CC568 /* HHXXUIKitMacro.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = HHXXUIKitMacro.c; path = Macro/HHXXUIKitMacro.c; sourceTree = "<group>"; };
@@ -168,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				3A6CE1821E5B1952008059AC /* main.m */,
+				3AE3579A1E6ED1E6002D4221 /* yahoo-weather-mirror.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -261,10 +267,8 @@
 				3AFEF0A91E5EAE2D007CC568 /* HHXXViewControllerContainer.m */,
 				3A8197691E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.h */,
 				3A81976A1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m */,
-				3A81976C1E6C0ED600A75C10 /* HHXXViewControllerTransitioningAnimator.h */,
-				3A81976D1E6C0ED600A75C10 /* HHXXViewControllerTransitioningAnimator.m */,
-				3A81976F1E6C69FE00A75C10 /* HHXXViewControllerContainer+HHXXNavigation.h */,
-				3A8197701E6C69FE00A75C10 /* HHXXViewControllerContainer+HHXXNavigation.m */,
+				3AE357931E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.h */,
+				3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */,
 			);
 			name = ViewComtrollerContainer;
 			sourceTree = "<group>";
@@ -272,8 +276,10 @@
 		3AFEF0AB1E5EEE6A007CC568 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				3AFEF0AD1E5EEF36007CC568 /* UIColor+HHXXProvider.h */,
-				3AFEF0AE1E5EEF36007CC568 /* UIColor+HHXXProvider.m */,
+				3AFEF0AD1E5EEF36007CC568 /* UIColor+Provider.h */,
+				3AFEF0AE1E5EEF36007CC568 /* UIColor+Provider.m */,
+				3AE357961E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.h */,
+				3AE357971E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -299,6 +305,9 @@
 			children = (
 				3AFEF0B91E5F52E8007CC568 /* HHXXUIKitMacro.c */,
 				3AFEF0BA1E5F52E8007CC568 /* HHXXUIKitMacro.h */,
+				3AE357991E6ED14B002D4221 /* Macro.h */,
+				3AE357A31E6EE399002D4221 /* NSObject+Enumerate.h */,
+				3AE357A41E6EE399002D4221 /* NSObject+Enumerate.m */,
 			);
 			name = Macro;
 			sourceTree = "<group>";
@@ -390,6 +399,7 @@
 				TargetAttributes = {
 					3A6CE17D1E5B1951008059AC = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = AF64J776V4;
 						ProvisioningStyle = Automatic;
 					};
 					3A6CE1961E5B1952008059AC = {
@@ -505,19 +515,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */,
-				3A81976E1E6C0ED600A75C10 /* HHXXViewControllerTransitioningAnimator.m in Sources */,
+				3AE357951E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m in Sources */,
 				3A6CE1891E5B1952008059AC /* ViewController.m in Sources */,
 				3AFEF05B1E5C57CE007CC568 /* HHXXSOADelegate.m in Sources */,
+				3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */,
 				3AFEF0B71E5F476B007CC568 /* WeatherInformationViewController.m in Sources */,
 				3AFEF0641E5D9808007CC568 /* HHXXBaseUIService.m in Sources */,
 				3A81976B1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m in Sources */,
+				3AE357A51E6EE399002D4221 /* NSObject+Enumerate.m in Sources */,
 				3A6CE1861E5B1952008059AC /* AppDelegate.m in Sources */,
 				3A6CE1831E5B1952008059AC /* main.m in Sources */,
 				3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */,
 				3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */,
 				3AFEF0BB1E5F52E8007CC568 /* HHXXUIKitMacro.c in Sources */,
-				3AFEF0AF1E5EEF36007CC568 /* UIColor+HHXXProvider.m in Sources */,
-				3A8197711E6C69FE00A75C10 /* HHXXViewControllerContainer+HHXXNavigation.m in Sources */,
+				3AFEF0AF1E5EEF36007CC568 /* UIColor+Provider.m in Sources */,
 				3AFEF0AA1E5EAE2D007CC568 /* HHXXViewControllerContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,6 +614,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -648,6 +660,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -666,6 +679,7 @@
 			baseConfigurationReference = 0FCFB1CF6A839261FCC5F207 /* Pods-yahoo-weather-mirror.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AF64J776V4;
 				INFOPLIST_FILE = "yahoo-weather-mirror/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hhxx.ios.ttxx.yahoo-weather-mirror";
@@ -678,6 +692,7 @@
 			baseConfigurationReference = 999093E0B8A5E5F11FDEF2BF /* Pods-yahoo-weather-mirror.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AF64J776V4;
 				INFOPLIST_FILE = "yahoo-weather-mirror/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hhxx.ios.ttxx.yahoo-weather-mirror";

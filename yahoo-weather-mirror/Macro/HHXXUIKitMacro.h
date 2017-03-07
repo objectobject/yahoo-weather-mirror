@@ -18,7 +18,5 @@
 #define HHXX_MAIN_SCREEN \
 [UIScreen mainScreen].bounds
 
-#include <stdio.h>
-
 
 #endif /* HHXXUIKitMacro_h */
