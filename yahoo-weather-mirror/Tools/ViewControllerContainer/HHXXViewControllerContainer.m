@@ -101,6 +101,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     return [self initWithViewControllers:nil];
 }
 
+
 - (instancetype)initWithViewControllers:(NSMutableArray<UIViewController*>*)viewControllers
 {
     self = [super init];
@@ -187,7 +188,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 #pragma mark - private method
 - (void)_updateUI
 {
-    
+    self.title = [NSString stringWithFormat:@"Title_%ld", self.selectedIndex];
 }
 
 
@@ -240,11 +241,11 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
             //            NSLog(@"After = %ld\r\n", [self.view.subviews count]);
             
             self.withInteractive = NO;
+            NSLog(@"bool == %d", didComplete);
         };
         context;
     });
     
-
     if(self.withInteractive)
     {
         [self.animator startInteractiveTransition:transitioningContext];
@@ -282,13 +283,10 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 //    [self.panGestureRecognizer requireGestureRecognizerToFail:self.leftSwipeGestureRecognizer];
 //    [self.panGestureRecognizer requireGestureRecognizerToFail:self.rightSwipeGestureRecognizer];
     
-
     if (!self.selectedViewController) {
         return;
     }
     
-
-
     // 主控制器布局
     [self addChildViewController:self.selectedViewController];
     [self.rootView insertSubview:self.selectedViewController.view belowSubview:self.decorateView];
@@ -303,6 +301,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
         self.transitioningDelegate = self;
     }
 }
+
 
 
 

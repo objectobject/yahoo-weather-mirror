@@ -124,9 +124,7 @@
 
 - (void)pauseInteractiveTransition
 {
-    NSLog(@"%@", _cmd);
 }
-
 
 - (void)cancelInteractiveTransition
 {
@@ -147,7 +145,6 @@
     }
     else
     {
-        
         [displayLink invalidate];
         self.containerView.layer.timeOffset = 0.0;
         self.containerView.layer.speed = 1.0;

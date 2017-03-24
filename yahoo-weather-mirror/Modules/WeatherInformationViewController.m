@@ -9,6 +9,7 @@
 #import "WeatherInformationViewController.h"
 #import <Masonry.h>
 #import "HHXXUIKitMacro.h"
+#import "YahooWeatherInformationView.h"
 
 const NSUInteger kHHXXNumberOfTab = 3;
 

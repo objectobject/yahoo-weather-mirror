@@ -19,4 +19,7 @@
 [UIScreen mainScreen].bounds
 
 
+#define FONT_COLOR \
+[UIColor whiteColor]
+
 #endif /* HHXXUIKitMacro_h */
