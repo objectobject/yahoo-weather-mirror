@@ -15,6 +15,7 @@
 @interface HHXXViewControllerContainer : UIViewController
 @property (nonatomic, copy, readonly) NSMutableArray<UIViewController*>* children;
 @property (nonatomic, copy) id<HHXXTransitioningDelegate> hhxxTransitioningDelegate;
+
 @property (nonatomic, assign) BOOL withInteractive;
 
 - (instancetype)initWithViewControllers:(NSMutableArray<UIViewController*>*)viewControllers;

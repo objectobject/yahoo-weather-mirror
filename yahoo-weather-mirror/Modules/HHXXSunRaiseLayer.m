@@ -141,6 +141,7 @@
     CGFloat cosValue = (xValue - centerPoint.x) / _radius;
     CGFloat sinValue = sqrt(1 - pow(cosValue, 2));
     CGFloat newYValue = centerPoint.y + _radius * sinValue;
+    CGFloat endAngle = (xValue > centerPoint.x)? M_PI - asin(sinValue): asin(sinValue);
     if (self.sunImage)
     {
         CGContextDrawImage(ctx, CGRectMake(xValue - 4, - newYValue + 2 * centerPoint.y - 4, 12, 12), self.sunImage.CGImage);
@@ -148,7 +149,7 @@
         CGContextSetLineWidth(ctx, 1.0f);
         CGContextSetFillColorWithColor(ctx, [UIColor orangeColor].CGColor);
         CGContextMoveToPoint(ctx, _startPoint.x, _startPoint.y + 2);
-        CGContextAddArc(ctx, centerPoint.x, centerPoint.y, _radius - 4, M_PI, M_PI + asin(sinValue), NO);
+        CGContextAddArc(ctx, centerPoint.x, centerPoint.y, _radius - 3, M_PI, M_PI + endAngle, NO);
         CGContextAddLineToPoint(ctx, xValue, centerPoint.y + 2);
         CGContextFillPath(ctx);
     }

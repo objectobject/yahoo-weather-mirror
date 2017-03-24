@@ -61,24 +61,6 @@ const NSUInteger hightNumber = 14;
     return YES;
 }
 
-
-- (void)updateConstraints
-{
-    if (!self.layoutConstraintsIsCreated) {
-        [self hhxx_createLayoutConstraints];
-    }
-    [super updateConstraints];
-}
-
-
-- (void)hhxx_createLayoutConstraintsIfNeed
-{
-    if (!self.layoutConstraintsIsCreated) {
-        [self hhxx_createLayoutConstraints];
-        self.layoutConstraintsIsCreated = NO;
-    }
-}
-
 //- (UIEdgeInsets)alignmentRectInsets
 //{
 //    return UIEdgeInsetsMake(-8, -8, -8, -8);
@@ -192,7 +174,7 @@ const NSUInteger hightNumber = 14;
         preView = obj;
     }];
     
-    // 转化开光
+    // 转化开关
     [self.lessDay mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.switchArea).insets(UIEdgeInsetsMake(0, kHHXX2DivPadding, 0, kHHXX2DivPadding));
         make.height.equalTo(@24);
@@ -344,15 +326,6 @@ const NSUInteger hightNumber = 14;
     self.moreDay.selected = !self.moreDay.selected;
     
     self.expand = !self.expand;
-    
-//    id view = self.weekArea.arrangedSubviews.lastObject;
-//    
-//    [UIView animateWithDuration:0.25 animations:^{
-//        
-//        [self.weekArea removeArrangedSubview:view];
-//        [self.weekArea layoutIfNeeded];
-//        [self.weekArea setNeedsLayout];
-//    }];
 }
 
 #pragma mark - getter and setter
@@ -540,7 +513,7 @@ const NSUInteger hightNumber = 14;
         [(UITableView*)self.superview.superview beginUpdates];
         
         _expand = expand;
-//        self.layoutConstraintsIsCreated = NO;
+        self.layoutConstraintsIsCreated = NO;
         [self setNeedsUpdateConstraints];
         [self updateConstraintsIfNeeded];
         

@@ -246,6 +246,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
         context;
     });
     
+
     if(self.withInteractive)
     {
         [self.animator startInteractiveTransition:transitioningContext];
@@ -301,8 +302,6 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
         self.transitioningDelegate = self;
     }
 }
-
-
 
 
 - (void)_switcher:(id)sender

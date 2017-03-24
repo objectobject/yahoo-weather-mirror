@@ -77,12 +77,6 @@ const CGFloat kHHXX2DivPadding = kHHXXVPadding / 2.0f;
     }
 }
 
-
-- (void)hhxx_createLayoutConstraints
-{
-    
-}
-
 //- (void)setFrame:(CGRect)frame
 //{
 //    if (!self.layoutConstraintsIsCreated) {
