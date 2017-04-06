@@ -16,6 +16,13 @@
 		3A6CE19C1E5B1952008059AC /* yahoo_weather_mirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE19B1E5B1952008059AC /* yahoo_weather_mirrorTests.m */; };
 		3A6CE1A71E5B1952008059AC /* yahoo_weather_mirrorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE1A61E5B1952008059AC /* yahoo_weather_mirrorUITests.m */; };
 		3A81976B1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A81976A1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m */; };
+		3ACBCA481E9538E300640B0C /* HHXXNetworkingProxyUseAF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA471E9538E300640B0C /* HHXXNetworkingProxyUseAF.m */; };
+		3ACBCA4B1E962F2700640B0C /* HHXXNetworkingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA4A1E962F2700640B0C /* HHXXNetworkingService.m */; };
+		3ACBCA4E1E96352800640B0C /* HHXXNetworkingServiceForBingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA4D1E96352800640B0C /* HHXXNetworkingServiceForBingImage.m */; };
+		3ACBCA521E96356500640B0C /* HHXXNetworkingServiceForWeatherInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA511E96356500640B0C /* HHXXNetworkingServiceForWeatherInformation.m */; };
+		3ACBCA551E96358000640B0C /* HHXXNetworkingServiceForCityInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA541E96358000640B0C /* HHXXNetworkingServiceForCityInformation.m */; };
+		3ACBCA581E96557400640B0C /* HHXXNetworkingResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA571E96557400640B0C /* HHXXNetworkingResponse.m */; };
+		3ACBCA5B1E967F6E00640B0C /* HHXXYQLApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA5A1E967F6E00640B0C /* HHXXYQLApiManager.m */; };
 		3AE357951E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */; };
 		3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357971E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m */; };
 		3AE357A51E6EE399002D4221 /* NSObject+Enumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357A41E6EE399002D4221 /* NSObject+Enumerate.m */; };
@@ -42,6 +49,8 @@
 		3AEBF4751E83C9B800AB9548 /* UIImage+Processing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBF4741E83C9B800AB9548 /* UIImage+Processing.m */; };
 		3AEBF4781E83CB2100AB9548 /* HHXXWindmillView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBF4771E83CB2100AB9548 /* HHXXWindmillView.m */; };
 		3AEBF47B1E84ABBB00AB9548 /* HHXXSunRaiseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBF47A1E84ABBB00AB9548 /* HHXXSunRaiseLayer.m */; };
+		3AEBF47F1E8BFEE200AB9548 /* HHXXAbstractApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBF47E1E8BFEE200AB9548 /* HHXXAbstractApiManager.m */; };
+		3AEBF4821E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBF4811E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.m */; };
 		3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */; };
 		3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */; };
 		3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */; };
@@ -91,6 +100,21 @@
 		3A6CE1A81E5B1952008059AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A8197691E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXViewControllerTransitioningContext.h; path = Tools/ViewControllerContainer/HHXXViewControllerTransitioningContext.h; sourceTree = "<group>"; };
 		3A81976A1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXViewControllerTransitioningContext.m; path = Tools/ViewControllerContainer/HHXXViewControllerTransitioningContext.m; sourceTree = "<group>"; };
+		3ACBCA421E93DD2A00640B0C /* HHXXNetworkingHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HHXXNetworkingHead.h; path = Networking/HHXXNetworkingHead.h; sourceTree = "<group>"; };
+		3ACBCA461E9538E300640B0C /* HHXXNetworkingProxyUseAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNetworkingProxyUseAF.h; path = Networking/HHXXNetworkingProxyUseAF.h; sourceTree = "<group>"; };
+		3ACBCA471E9538E300640B0C /* HHXXNetworkingProxyUseAF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNetworkingProxyUseAF.m; path = Networking/HHXXNetworkingProxyUseAF.m; sourceTree = "<group>"; };
+		3ACBCA491E962F2700640B0C /* HHXXNetworkingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNetworkingService.h; path = Networking/HHXXNetworkingService.h; sourceTree = "<group>"; };
+		3ACBCA4A1E962F2700640B0C /* HHXXNetworkingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNetworkingService.m; path = Networking/HHXXNetworkingService.m; sourceTree = "<group>"; };
+		3ACBCA4C1E96352800640B0C /* HHXXNetworkingServiceForBingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNetworkingServiceForBingImage.h; path = ApiService/HHXXNetworkingServiceForBingImage.h; sourceTree = "<group>"; };
+		3ACBCA4D1E96352800640B0C /* HHXXNetworkingServiceForBingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNetworkingServiceForBingImage.m; path = ApiService/HHXXNetworkingServiceForBingImage.m; sourceTree = "<group>"; };
+		3ACBCA501E96356500640B0C /* HHXXNetworkingServiceForWeatherInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNetworkingServiceForWeatherInformation.h; path = ApiService/HHXXNetworkingServiceForWeatherInformation.h; sourceTree = "<group>"; };
+		3ACBCA511E96356500640B0C /* HHXXNetworkingServiceForWeatherInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNetworkingServiceForWeatherInformation.m; path = ApiService/HHXXNetworkingServiceForWeatherInformation.m; sourceTree = "<group>"; };
+		3ACBCA531E96358000640B0C /* HHXXNetworkingServiceForCityInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNetworkingServiceForCityInformation.h; path = ApiService/HHXXNetworkingServiceForCityInformation.h; sourceTree = "<group>"; };
+		3ACBCA541E96358000640B0C /* HHXXNetworkingServiceForCityInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNetworkingServiceForCityInformation.m; path = ApiService/HHXXNetworkingServiceForCityInformation.m; sourceTree = "<group>"; };
+		3ACBCA561E96557400640B0C /* HHXXNetworkingResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNetworkingResponse.h; path = Networking/HHXXNetworkingResponse.h; sourceTree = "<group>"; };
+		3ACBCA571E96557400640B0C /* HHXXNetworkingResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNetworkingResponse.m; path = Networking/HHXXNetworkingResponse.m; sourceTree = "<group>"; };
+		3ACBCA591E967F6E00640B0C /* HHXXYQLApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXYQLApiManager.h; path = ApiManager/HHXXYQLApiManager.h; sourceTree = "<group>"; };
+		3ACBCA5A1E967F6E00640B0C /* HHXXYQLApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXYQLApiManager.m; path = ApiManager/HHXXYQLApiManager.m; sourceTree = "<group>"; };
 		3AE357931E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXDefaultTransitioningAnimator.h; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.h; sourceTree = "<group>"; };
 		3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXDefaultTransitioningAnimator.m; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.m; sourceTree = "<group>"; };
 		3AE357961E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIPanGestureRecognizer+Addition.h"; path = "Category/UIPanGestureRecognizer+Addition.h"; sourceTree = "<group>"; };
@@ -99,7 +123,6 @@
 		3AE3579A1E6ED1E6002D4221 /* yahoo-weather-mirror.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yahoo-weather-mirror.pch"; sourceTree = "<group>"; };
 		3AE357A31E6EE399002D4221 /* NSObject+Enumerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Enumerate.h"; path = "Macro/NSObject+Enumerate.h"; sourceTree = "<group>"; };
 		3AE357A41E6EE399002D4221 /* NSObject+Enumerate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Enumerate.m"; path = "Macro/NSObject+Enumerate.m"; sourceTree = "<group>"; };
-
 		3AE357A61E6F90F0002D4221 /* SliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SliderViewController.h; path = Modules/SliderViewController.h; sourceTree = "<group>"; };
 		3AE357A71E6F90F0002D4221 /* SliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SliderViewController.m; path = Modules/SliderViewController.m; sourceTree = "<group>"; };
 		3AE357A91E6F93E3002D4221 /* YahooWeatherInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YahooWeatherInformationViewController.h; path = Modules/YahooWeatherInformationViewController.h; sourceTree = "<group>"; };
@@ -146,6 +169,10 @@
 		3AEBF4771E83CB2100AB9548 /* HHXXWindmillView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXWindmillView.m; path = Modules/HHXXWindmillView.m; sourceTree = "<group>"; };
 		3AEBF4791E84ABBB00AB9548 /* HHXXSunRaiseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXSunRaiseLayer.h; path = Modules/HHXXSunRaiseLayer.h; sourceTree = "<group>"; };
 		3AEBF47A1E84ABBB00AB9548 /* HHXXSunRaiseLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXSunRaiseLayer.m; path = Modules/HHXXSunRaiseLayer.m; sourceTree = "<group>"; };
+		3AEBF47D1E8BFEE200AB9548 /* HHXXAbstractApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXAbstractApiManager.h; path = Networking/HHXXAbstractApiManager.h; sourceTree = "<group>"; };
+		3AEBF47E1E8BFEE200AB9548 /* HHXXAbstractApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXAbstractApiManager.m; path = Networking/HHXXAbstractApiManager.m; sourceTree = "<group>"; };
+		3AEBF4801E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNetworkingStateMonitorService.h; path = Services/HHXXNetworkingStateMonitorService.h; sourceTree = "<group>"; };
+		3AEBF4811E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNetworkingStateMonitorService.m; path = Services/HHXXNetworkingStateMonitorService.m; sourceTree = "<group>"; };
 		3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNotificationService.h; path = Services/HHXXNotificationService.h; sourceTree = "<group>"; };
 		3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNotificationService.m; path = Services/HHXXNotificationService.m; sourceTree = "<group>"; };
 		3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXAMapService.h; path = Services/HHXXAMapService.h; sourceTree = "<group>"; };
@@ -266,6 +293,28 @@
 			path = "yahoo-weather-mirrorUITests";
 			sourceTree = "<group>";
 		};
+		3ACBCA4F1E96353600640B0C /* ApiService */ = {
+			isa = PBXGroup;
+			children = (
+				3ACBCA4C1E96352800640B0C /* HHXXNetworkingServiceForBingImage.h */,
+				3ACBCA4D1E96352800640B0C /* HHXXNetworkingServiceForBingImage.m */,
+				3ACBCA501E96356500640B0C /* HHXXNetworkingServiceForWeatherInformation.h */,
+				3ACBCA511E96356500640B0C /* HHXXNetworkingServiceForWeatherInformation.m */,
+				3ACBCA531E96358000640B0C /* HHXXNetworkingServiceForCityInformation.h */,
+				3ACBCA541E96358000640B0C /* HHXXNetworkingServiceForCityInformation.m */,
+			);
+			name = ApiService;
+			sourceTree = "<group>";
+		};
+		3ACBCA5C1E967F7900640B0C /* ApiManager */ = {
+			isa = PBXGroup;
+			children = (
+				3ACBCA591E967F6E00640B0C /* HHXXYQLApiManager.h */,
+				3ACBCA5A1E967F6E00640B0C /* HHXXYQLApiManager.m */,
+			);
+			name = ApiManager;
+			sourceTree = "<group>";
+		};
 		3AE357B21E7004B0002D4221 /* AutoLayoutView */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,9 +330,27 @@
 			name = AutoLayoutView;
 			sourceTree = "<group>";
 		};
+		3AEBF47C1E8BFE9A00AB9548 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				3AEBF47D1E8BFEE200AB9548 /* HHXXAbstractApiManager.h */,
+				3AEBF47E1E8BFEE200AB9548 /* HHXXAbstractApiManager.m */,
+				3ACBCA421E93DD2A00640B0C /* HHXXNetworkingHead.h */,
+				3ACBCA461E9538E300640B0C /* HHXXNetworkingProxyUseAF.h */,
+				3ACBCA471E9538E300640B0C /* HHXXNetworkingProxyUseAF.m */,
+				3ACBCA491E962F2700640B0C /* HHXXNetworkingService.h */,
+				3ACBCA4A1E962F2700640B0C /* HHXXNetworkingService.m */,
+				3ACBCA561E96557400640B0C /* HHXXNetworkingResponse.h */,
+				3ACBCA571E96557400640B0C /* HHXXNetworkingResponse.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
 		3AFEF0481E5C1CEB007CC568 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3ACBCA5C1E967F7900640B0C /* ApiManager */,
+				3ACBCA4F1E96353600640B0C /* ApiService */,
 				3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */,
 				3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */,
 				3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */,
@@ -294,6 +361,8 @@
 				3AFEF05A1E5C57CE007CC568 /* HHXXSOADelegate.m */,
 				3AFEF0621E5D9808007CC568 /* HHXXBaseUIService.h */,
 				3AFEF0631E5D9808007CC568 /* HHXXBaseUIService.m */,
+				3AEBF4801E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.h */,
+				3AEBF4811E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -344,6 +413,7 @@
 		3AFEF0551E5C26FA007CC568 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				3AEBF47C1E8BFE9A00AB9548 /* Networking */,
 				3AE357B21E7004B0002D4221 /* AutoLayoutView */,
 				3AFEF0B81E5F51A3007CC568 /* Macro */,
 				3AFEF0AB1E5EEE6A007CC568 /* Category */,
@@ -647,6 +717,7 @@
 				3AE357D31E72343C002D4221 /* UIView+AutoLayout.m in Sources */,
 				3AE357CA1E70342F002D4221 /* HHXXAutoLayoutTableViewCell.m in Sources */,
 				3AFEF05B1E5C57CE007CC568 /* HHXXSOADelegate.m in Sources */,
+				3ACBCA551E96358000640B0C /* HHXXNetworkingServiceForCityInformation.m in Sources */,
 				3AE357D91E73088F002D4221 /* UITableViewCell+EnableDrag.m in Sources */,
 				3AE357B11E7004A3002D4221 /* HHXXAutoLayoutView.m in Sources */,
 				3AE357B81E7031ED002D4221 /* TableViewCellForDetail.m in Sources */,
@@ -658,13 +729,20 @@
 				3A81976B1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m in Sources */,
 				3AEBF4751E83C9B800AB9548 /* UIImage+Processing.m in Sources */,
 				3AE357A51E6EE399002D4221 /* NSObject+Enumerate.m in Sources */,
+				3AEBF47F1E8BFEE200AB9548 /* HHXXAbstractApiManager.m in Sources */,
+				3ACBCA4B1E962F2700640B0C /* HHXXNetworkingService.m in Sources */,
 				3A6CE1861E5B1952008059AC /* AppDelegate.m in Sources */,
 				3AEBF47B1E84ABBB00AB9548 /* HHXXSunRaiseLayer.m in Sources */,
+				3ACBCA5B1E967F6E00640B0C /* HHXXYQLApiManager.m in Sources */,
+				3ACBCA581E96557400640B0C /* HHXXNetworkingResponse.m in Sources */,
 				3AE357AB1E6F93E3002D4221 /* YahooWeatherInformationViewController.m in Sources */,
 				3A6CE1831E5B1952008059AC /* main.m in Sources */,
 				3AE357BE1E703217002D4221 /* TableViewCellForRainFall.m in Sources */,
 				3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */,
 				3AE357C71E703263002D4221 /* TableViewCellForWeekDaily.m in Sources */,
+				3ACBCA4E1E96352800640B0C /* HHXXNetworkingServiceForBingImage.m in Sources */,
+				3ACBCA521E96356500640B0C /* HHXXNetworkingServiceForWeatherInformation.m in Sources */,
+				3AEBF4821E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.m in Sources */,
 				3AEBF4781E83CB2100AB9548 /* HHXXWindmillView.m in Sources */,
 				3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */,
 				3AE357BB1E703202002D4221 /* TableViewCellForMap.m in Sources */,
@@ -672,6 +750,7 @@
 				3AFEF0BB1E5F52E8007CC568 /* HHXXUIKitMacro.c in Sources */,
 				3AE357B51E7031A8002D4221 /* TableViewCellForAd.m in Sources */,
 				3AFEF0AF1E5EEF36007CC568 /* UIColor+Provider.m in Sources */,
+				3ACBCA481E9538E300640B0C /* HHXXNetworkingProxyUseAF.m in Sources */,
 				3AEBF4661E822EAE00AB9548 /* HHXXCity.m in Sources */,
 				3AEBF46C1E822F6000AB9548 /* HHXXCityManager.m in Sources */,
 				3AE357D01E7131F2002D4221 /* HHXXAutoLayoutDynamicView.m in Sources */,

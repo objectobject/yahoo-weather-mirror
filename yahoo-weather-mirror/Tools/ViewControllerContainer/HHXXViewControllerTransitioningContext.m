@@ -41,11 +41,11 @@
         self.containerView = fromViewController.view.superview;
         self.animatedDirection = slideDirection;
         
-        CGFloat travelDistance = (self.animatedDirection ==  ToRight? self.containerView.bounds.size.width : -self.containerView.bounds.size.width);
-        
-        self.appearToRect = self.disappearFromRect = self.containerView.bounds;
-        self.appearFromRect = CGRectOffset(self.containerView.bounds, -travelDistance, 0);
-        self.disappearToRect = CGRectOffset(self.containerView.bounds, travelDistance, 0);
+//        CGFloat travelDistance = (self.animatedDirection ==  ToRight? -self.containerView.bounds.size.width : self.containerView.bounds.size.width);
+//        
+//        self.appearToRect = self.disappearFromRect = self.containerView.bounds;
+//        self.appearFromRect = CGRectOffset(self.containerView.bounds, -travelDistance, 0);
+//        self.disappearToRect = CGRectOffset(self.containerView.bounds, travelDistance, 0);
     }
     
     return self;
@@ -66,16 +66,18 @@
 
 - (CGRect)initialFrameForViewController:(UIViewController *)vc
 {
-    if (vc == [self viewControllerForKey:UITransitionContextFromViewControllerKey])
-    {
-        return self.appearFromRect;
-    }
-    return self.disappearFromRect;
+//    if (vc == [self viewControllerForKey:UITransitionContextFromViewControllerKey])
+//    {
+//        return self.appearFromRect;
+//    }
+//    return self.disappearFromRect;
+    return self.containerView.bounds;
 }
 
 
 - (CGRect)finalFrameForViewController:(UIViewController *)vc
 {
+    return self.containerView.bounds;
     if (vc == [self viewControllerForKey:UITransitionContextToViewControllerKey])
     {
         return self.appearToRect;

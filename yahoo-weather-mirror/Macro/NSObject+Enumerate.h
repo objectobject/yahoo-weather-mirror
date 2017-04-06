@@ -66,6 +66,15 @@ typedef NS_OPTIONS(NSInteger, HHXXBorderStyle) {
     HHXXBorderStyleAll = HHXXBorderStyleTop | HHXXBorderStyleBottom | HHXXBorderStyleLeft | HHXXBorderStyleRight
 };
 
+
+typedef NS_ENUM(NSInteger, HHXXViewControllerContainerActionType)
+{
+    HHXXViewControllerContainerActionAddVC = 2,
+    HHXXViewControllerContainerActionRemoveVC = -2,
+    HHXXViewControllerContainerActionToLeft = -1,
+    HHXXViewControllerContainerActionToRight = 1
+};
+
 @interface NSObject (Enumerate)
 
 @end

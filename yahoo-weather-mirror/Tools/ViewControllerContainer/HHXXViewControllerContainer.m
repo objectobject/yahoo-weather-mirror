@@ -12,6 +12,7 @@
 #import "HHXXDefaultTransitioningAnimator.h"
 #import "UIPanGestureRecognizer+Addition.h"
 #import "NSObject+Enumerate.h"
+#import "YahooWeatherInformationViewController.h"
 
 const NSTimeInterval kHHXXDefaultTransitionDuring = 1.0f;
 const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
@@ -21,7 +22,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 @property (nonatomic, copy, readwrite) NSMutableArray<UIViewController*>* children;
 @property (nonatomic, strong) UIViewController* selectedViewController;
 @property (nonatomic, assign) NSUInteger selectedIndex;
-@property (nonatomic, assign) NSUInteger preSelectedIndex;
+@property (nonatomic, strong) UIViewController* preSelectedViewController;
 
 // 装饰视图
 @property (nonatomic, strong) NSArray<UIButton*>* switchButtons;
@@ -85,14 +86,16 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     [super viewDidLayoutSubviews];
     
     // Layout decorateView  (使用VFL正确的居中方法!!!)
-    NSNumber* height = @(kHHXXDefaultSwitcherButtonWidth);
-    self.widthConstraintForDecorateView = [NSLayoutConstraint constraintWithItem:self.decorateView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0 constant:kHHXXDefaultSwitcherButtonWidth * [self.children count]];
-    [self.rootView addConstraint:self.widthConstraintForDecorateView];
-    [self.rootView addConstraint:[NSLayoutConstraint constraintWithItem:self.decorateView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.rootView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+//    NSNumber* height = @(kHHXXDefaultSwitcherButtonWidth);
+//    self.widthConstraintForDecorateView = [NSLayoutConstraint constraintWithItem:self.decorateView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0 constant:kHHXXDefaultSwitcherButtonWidth * [self.children count]];
+//    [self.rootView addConstraint:self.widthConstraintForDecorateView];
+//    [self.rootView addConstraint:[NSLayoutConstraint constraintWithItem:self.decorateView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.rootView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+
     
-    [self.rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_decorateView(==height)]" options:0 metrics:NSDictionaryOfVariableBindings(height) views:NSDictionaryOfVariableBindings(_decorateView)]];
-    self.topConstraintForDecorateView = [NSLayoutConstraint constraintWithItem:self.decorateView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.rootView attribute:NSLayoutAttributeTop multiplier:1.0 constant:22 + [self.topLayoutGuide length]];
-    [self.rootView addConstraint:self.topConstraintForDecorateView];
+    // TODO:暂时不考虑装饰视图
+//    [self.rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_decorateView(==height)]" options:0 metrics:NSDictionaryOfVariableBindings(height) views:NSDictionaryOfVariableBindings(_decorateView)]];
+//    self.topConstraintForDecorateView = [NSLayoutConstraint constraintWithItem:self.decorateView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.rootView attribute:NSLayoutAttributeTop multiplier:1.0 constant:22 + [self.topLayoutGuide length]];
+//    [self.rootView addConstraint:self.topConstraintForDecorateView];
 }
 
 
@@ -111,7 +114,6 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
         self.children = [NSMutableArray arrayWithArray:[viewControllers copy]];
         self.selectedViewController = [_children objectAtIndex:0];
         self.selectedIndex = 0;
-        self.preSelectedIndex = 0;
     }
     
     return self;
@@ -138,6 +140,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 
 - (void)setSelectedViewController:(UIViewController *)selectedViewController
 {
+    _preSelectedViewController = _selectedViewController;
     [self _transitionToViewController:selectedViewController];
     _selectedViewController = selectedViewController;
     [self _updateUI];
@@ -153,7 +156,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     if (!_children) {
         _children = [[NSMutableArray alloc] initWithCapacity:1];
     }
-    return [_children copy];
+    return [_children mutableCopy];
 }
 
 
@@ -180,6 +183,14 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     [self.children insertObject:viewController atIndex:index];
 }
 
+- (void)hhxxAddViewController:(UIViewController*)viewController
+{
+    if (self.children) {
+        [self.children insertObject:viewController atIndex:[self.children count]];
+        self.selectedViewController = viewController;
+    }
+}
+
 - (void)containerSwitchViewController:(UIViewController *)vc1 viewController2:(UIViewController *)vc2
 {
 }
@@ -195,7 +206,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 - (void)_transitionToViewController:(UIViewController*)toViewController
 {
     //    NSLog(@"BEFORE = %ld\r\n", [self.view.subviews count]);
-    UIViewController* fromViewController = self.selectedViewController;
+    UIViewController* fromViewController = self.preSelectedViewController;
     if (![self isViewLoaded] || toViewController == nil || fromViewController == toViewController) {
         return;
     }
@@ -232,7 +243,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
             [toViewController didMoveToParentViewController:self];
             
             [fromViewController.view removeFromSuperview];
-            [fromViewController didMoveToParentViewController:nil];
+            [fromViewController removeFromParentViewController];
             
 
             if ([self.animator respondsToSelector:@selector(animationEnded:)]) {
@@ -265,13 +276,23 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     self.navigationItem.rightBarButtonItems = @[
                                                 ({
                                                     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"Right" style:UIBarButtonItemStyleDone target:self action:@selector(_switcher:)];
-                                                    item.tag = 1;
+                                                    item.tag = HHXXViewControllerContainerActionToRight;
                                                     item;
                                                 }),
                                                 
                                                 ({
                                                     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"Left" style:UIBarButtonItemStyleDone target:self action:@selector(_switcher:)];
-                                                    item.tag = -1;
+                                                    item.tag = HHXXViewControllerContainerActionToLeft;
+                                                    item;
+                                                }),
+                                                ({
+                                                    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleDone target:self action:@selector(_switcher:)];
+                                                    item.tag = HHXXViewControllerContainerActionAddVC;
+                                                    item;
+                                                }),
+                                                ({
+                                                    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"Remove" style:UIBarButtonItemStyleDone target:self action:@selector(_switcher:)];
+                                                    item.tag = HHXXViewControllerContainerActionRemoveVC;
                                                     item;
                                                 })
                                                 ];
@@ -311,7 +332,28 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     NSInteger index = self.selectedIndex;
     
     
-    index = item.tag > 0? index - 1: index + 1;
+    switch (item.tag) {
+        case HHXXViewControllerContainerActionToLeft:
+            index -= 1;
+            break;
+            
+        case HHXXViewControllerContainerActionToRight:
+            index += 1;
+            break;
+            
+        case HHXXViewControllerContainerActionAddVC:
+        {
+            [self hhxxAddViewController:[YahooWeatherInformationViewController new]];
+        }
+            break;
+            
+        case HHXXViewControllerContainerActionRemoveVC:
+            break;
+            
+        default:
+            break;
+    }
+    
     if (index <= 0) {
         index = 0;
     }
@@ -469,8 +511,12 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 {
     if (!_decorateView) {
         _decorateView = [UIView new];
-        [_decorateView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        _decorateView.backgroundColor = [UIColor greenColor];
+        
+        //TODO暂时不考虑这个装饰视图
+        _decorateView.backgroundColor = [UIColor clearColor];
+        _decorateView.hidden = YES;
+//        [_decorateView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//        _decorateView.backgroundColor = [UIColor greenColor];
     }
     
     return _decorateView;

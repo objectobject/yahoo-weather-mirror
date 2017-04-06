@@ -18,28 +18,63 @@
 #import "TableViewCellForRainFall.h"
 #import "TableViewCellForWeekDaily.h"
 #import "UITableViewCell+EnableDrag.h"
+#import <UIImageView+LBBlurredImage.h>
+#import "HHXXYQLApiManager.h"
 
 
 const NSUInteger numberOfWeatherInformation = 7;
 
-@interface YahooWeatherInformationViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface YahooWeatherInformationViewController ()<UITableViewDelegate, UITableViewDataSource, HHXXNetworkingDelegate, HHXXNetworkingDataSource>
 @property (nonatomic, strong) UITableView* mainView;
 @property (nonatomic, strong) UIImageView* backgroundView;
-@property (nonatomic, strong) UIView* maskView;
+@property (nonatomic, strong) UIImageView* maskView;
 
 @property (nonatomic, strong) NSMutableArray<Class>* cellTypes;
+
+
+@property (nonatomic, strong) HHXXYQLApiManager* yqlApi;
+@property (nonatomic, strong) NSString* queryKw;
 @end
 
 @implementation YahooWeatherInformationViewController
 
+- (void)hhxxBackgroundImage
+{
+    __block UIImage* bg = nil;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSDateFormatter* dateFormater = [[NSDateFormatter alloc] init];
+        [dateFormater setDateFormat:@"yy-MM-dd"];
+        NSString* dateString = [dateFormater stringFromDate:[NSDate date]];
+        
+        
+//        NSURL* bingURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://s.tu.ihuan.me/bgc/%@.png", dateString]];
+        NSURL* bingURL = [NSURL URLWithString:[NSString stringWithFormat:@"www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"]];
+        
+        NSError* downloadError = nil;
+        NSData* imageData = [NSData dataWithContentsOfURL:bingURL options:NSDataReadingMappedIfSafe error:&downloadError];
+        
+        if (!downloadError) {
+            bg = [UIImage imageWithData:[NSData dataWithContentsOfURL:bingURL]];
+        }
+        
+        NSLog(@"%@", bingURL);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bg) {
+                [self.backgroundView setImage:bg];
+                [self.maskView setImageToBlur:bg blurRadius:10 completionBlock:nil];
+            }
+        });
+    });
+}
 
-- (UIView*)maskView
+
+- (UIImageView*)maskView
 {
     if (!_maskView) {
-        _maskView = [UIView new];
-        _maskView.backgroundColor = [UIColor grayColor];
-        _maskView.alpha = 0.9f;
-        
+        _maskView = [UIImageView new];
+        [_maskView setContentMode:UIViewContentModeScaleAspectFill];
+        _maskView.alpha = 0.75f;
+        [_maskView setImageToBlur:[UIImage imageNamed:@"adContent"] blurRadius:10.0 completionBlock:nil];
     }
     
     return _maskView;
@@ -119,8 +154,6 @@ const NSUInteger numberOfWeatherInformation = 7;
         [self.cellTypes exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
     };
     
-    
-    
     return cell;
 }
 
@@ -133,9 +166,15 @@ const NSUInteger numberOfWeatherInformation = 7;
 - (void)_hhxxInitChildView
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    //防止上面出现空白UISCrollView
+//    [self.view addSubview:[UIView new]];
+    self.view.backgroundColor = [UIColor clearColor];
+    
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.maskView];
     [self.view addSubview:self.mainView];
+    
     
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -143,9 +182,15 @@ const NSUInteger numberOfWeatherInformation = 7;
     [self.backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    
     [self.mainView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    
+    self.view.layer.borderColor = [UIColor blackColor].CGColor;
+    self.view.layer.borderWidth = 2.0f;
+    
+    [self hhxxBackgroundImage];
 }
 
 
@@ -154,6 +199,12 @@ const NSUInteger numberOfWeatherInformation = 7;
     // Do any additional setup after loading the view.
     
     [self _hhxxInitChildView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.yqlApi hhxxFetchData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -171,4 +222,47 @@ const NSUInteger numberOfWeatherInformation = 7;
 }
 */
 
+
+#pragma mark - about fetch data from networking
+- (HHXXYQLApiManager *)yqlApi
+{
+    if (!_yqlApi) {
+        _yqlApi = [[HHXXYQLApiManager alloc] init];
+        _yqlApi.dataSource = self;
+        _yqlApi.delegate = self;
+    }
+    
+    return _yqlApi;
+}
+
+- (NSDictionary *)hhxxRequestParamsForApi:(HHXXAbstractApiManager *)mgr
+{
+    return @{
+             @"q": [HHXXYQLApiManager hhxxGetWeatherForecastByWoeid:@"2502265"],
+             @"format": @"json",
+             @"u":@"c",
+             };
+}
+
+- (void)hhxxCallApiFailed:(HHXXAbstractApiManager *)mgr
+{
+    id requestData = [mgr hhxxFetchDataWithFiltrator:nil];
+    NSError* error;
+    id result = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableLeaves error:&error];
+    if(!error)
+    {
+        NSLog(@"返回结果数据%@", result);
+    }
+}
+
+- (void)hhxxCallApiSuccess:(HHXXAbstractApiManager *)mgr
+{
+    id requestData = [mgr hhxxFetchDataWithFiltrator:nil];
+    NSError* error;
+    id result = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableLeaves error:&error];
+    if(!error)
+    {
+        NSLog(@"返回结果数据%@", result);
+    }
+}
 @end

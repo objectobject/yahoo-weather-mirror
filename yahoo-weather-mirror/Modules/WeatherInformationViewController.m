@@ -26,6 +26,7 @@ const NSUInteger kHHXXNumberOfTab = 3;
 
 
 #pragma mark - setter and getter
+
 - (UIView*)containerView
 {
     if (!_containerView) {

@@ -165,7 +165,7 @@ const NSString* kHHXXDashedLayer = @"kHHXXDashedLayer";
         path;
     }).CGPath;
     calayer.lineWidth = 4.0;
-    calayer.name = kHHXXDashedLayer;
+    calayer.name = (NSString*)kHHXXDashedLayer;
     [_levelView.layer addSublayer:calayer];
 }
 

@@ -44,7 +44,7 @@
     if (service && ![_services.allKeys containsObject:[service hhxxServiceName]]) {
         _services[[service hhxxServiceName]] = service;
     }else{
-        NSLog(@"register service failed.\r\n serverName:%@\r\n\r\n", [service respondsToSelector:@selector(serverName)]?[service performSelector:@selector(hhxxServiceName)]: [service class]);
+        NSLog(@"register service failed.\r\n serverName:%@\r\n\r\n", [service respondsToSelector:@selector(hhxxServiceName)]?[service performSelector:@selector(hhxxServiceName)]: [service class]);
     }
 }
 
