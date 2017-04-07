@@ -237,6 +237,7 @@ const NSUInteger hightNumber = 14;
 - (void)commonInit
 {
     [super commonInit];
+    self.canDrag = NO;
     [@[self.headArea, self.borderView, self.dailyArea, self.weekArea, self.switchArea] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.contentViewInstead addSubview:obj];
     }];

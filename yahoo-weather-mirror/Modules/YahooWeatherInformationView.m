@@ -10,6 +10,7 @@
 #import <Masonry.h>
 #import "HHXXUIKitMacro.h"
 #import "UIView+Border.h"
+#import "YahooWeatherItemKey.h"
 
 @interface YahooWeatherInformationView()
 
@@ -45,6 +46,13 @@
     [self.lowTempInfo setText:@"8º"];
     [self.tempInfo setText:@"88º"];
 #endif
+    
+    [self.weatherIcon setImage:[UIImage imageNamed:model[kHHXXYahooWeatherItemKey_HeadImage]]];
+    [self.wetherInfo setText:model[kHHXXYahooWeatherItemKey_HeadText]];
+    [self.highTempInfo setText:model[kHHXXYahooWeatherItemKey_HeadTopTemp]];
+    [self.lowTempInfo setText:model[kHHXXYahooWeatherItemKey_HeadLowTemp]];
+    [self.tempInfo setText:model[kHHXXYahooWeatherItemKey_HeadTemp]];
+    
     NSMutableAttributedString* copyrightString = [[NSMutableAttributedString alloc] initWithString:@"© 由 Bing 提供, "];
     [copyrightString appendAttributedString:[NSAttributedString attributedStringWithAttachment:({
         NSTextAttachment* logo = [[NSTextAttachment alloc] init];
@@ -106,7 +114,6 @@
     }];
     [self.wetherInfo mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self.rowOne).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        make.width.mas_equalTo(iconHeight);
         make.left.equalTo(self.weatherIcon.mas_right).mas_offset(hPadding);
         make.right.equalTo(self.rowOne).priorityLow();
     }];

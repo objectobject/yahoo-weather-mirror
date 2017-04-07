@@ -10,6 +10,7 @@
 #import <Masonry.h>
 #import "HHXXUIKitMacro.h"
 #import "HHXXWindmillView.h"
+#import "YahooWeatherItemKey.h"
 
 
 const NSString* kHHXXDashedLayer = @"kHHXXDashedLayer";
@@ -127,19 +128,26 @@ const NSString* kHHXXDashedLayer = @"kHHXXDashedLayer";
     [self.largeWinmill hhxxTick];
     [self.cellTitle setText:@"风速和气压"];
     
-    NSString* windetailText = [NSString stringWithFormat:@"风速\r\n%.01f公里/小时 东南", 11.33];
-    NSString* airdatailText = [NSString stringWithFormat:@"气压\r\n%.01f毫巴", 1010.9];
-    [self.windDetail setAttributedText:({
-        NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:windetailText];
-        [attributeString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[windetailText rangeOfString:[NSString stringWithFormat:@"%.01f", 11.33]]];
-        attributeString;
-    })];
+    NSString* windetailText = [NSString stringWithFormat:@"风速\r\n%@ %@", model[kHHXXYahooWeatherItemKey_WindSpeed], model[kHHXXYahooWeatherItemKey_WindDirection]];
+    NSString* airdatailText = [NSString stringWithFormat:@"气压\r\n%@", model[kHHXXYahooWeatherItemKey_PressureValue]];
     
-    [self.airDetail setAttributedText:({
-        NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:airdatailText];
-        [attributeString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[windetailText rangeOfString:[NSString stringWithFormat:@"%.01f", 1010.9]]];
-        attributeString;
-    })];
+    if(model[kHHXXYahooWeatherItemKey_WindSpeed])
+    {
+        [self.windDetail setAttributedText:({
+            NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:windetailText];
+            [attributeString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[windetailText rangeOfString:model[kHHXXYahooWeatherItemKey_WindSpeed]]];
+            attributeString;
+        })];
+    }
+    
+    if(model[kHHXXYahooWeatherItemKey_PressureValue])
+    {
+        [self.airDetail setAttributedText:({
+            NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:airdatailText];
+            [attributeString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[airdatailText rangeOfString:model[kHHXXYahooWeatherItemKey_PressureValue]]];
+            attributeString;
+        })];
+    }
 }
 
 

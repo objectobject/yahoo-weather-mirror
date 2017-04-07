@@ -11,6 +11,7 @@
 #import "HHXXUIKitMacro.h"
 #import "UIView+Border.h"
 #import "NSAttributedString+Attachment.h"
+#import "YahooWeatherItemKey.h"
 
 
 @interface TableViewCellForRainFall()
@@ -133,33 +134,38 @@
 {
     [self.cellTitle setText:@"降雨量"];
     
+    NSArray<NSString*> *keysForTimes = @[kHHXXYahooWeatherItemKey_RainFallTitle0, kHHXXYahooWeatherItemKey_RainFallTitle1, kHHXXYahooWeatherItemKey_RainFallTitle2, kHHXXYahooWeatherItemKey_RainFallTitle3];
+    NSArray<NSString*> *keysForValues = @[kHHXXYahooWeatherItemKey_RainFallValue0, kHHXXYahooWeatherItemKey_RainFallValue1, kHHXXYahooWeatherItemKey_RainFallValue2, kHHXXYahooWeatherItemKey_RainFallValue3];
     
     [self.rainFallDetail enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setAttributedText:[self _hhxxCreateRainFallAttributeString:@"上午" rainFallValue:99]];
+        NSString* title = [keysForTimes objectAtIndex:idx];
+        NSString* value = [keysForValues objectAtIndex:idx];
+        
+        [obj setAttributedText:[self _hhxxCreateRainFallAttributeString:model[title] rainFallValue:model[value] rainFallString:[NSString stringWithFormat:@"rain_ico_%@", model[value]]]];
     }];
 }
 
 
-- (NSAttributedString*)_hhxxCreateRainFallAttributeString:(NSString*)time rainFallValue:(CGFloat)rainFallValue
+- (NSAttributedString*)_hhxxCreateRainFallAttributeString:(NSString*)time rainFallValue:(id)rainFallValue rainFallString:(NSString*)rainFallString
 {
-    NSMutableAttributedString* rainFallString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\r\n", time]];
+    NSMutableAttributedString* tempRainFallString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\r\n", time]];
     
-    [rainFallString appendAttributedString:[NSAttributedString clearAttributeStringWithTransparenceImageName:@"translucent" size:CGSizeMake(8, 8)]];
-    [rainFallString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\r\n"]];
+    [tempRainFallString appendAttributedString:[NSAttributedString clearAttributeStringWithTransparenceImageName:@"translucent" size:CGSizeMake(8, 8)]];
+    [tempRainFallString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\r\n"]];
     
-    [rainFallString appendAttributedString:[NSAttributedString attributedStringWithAttachment:({
+    [tempRainFallString appendAttributedString:[NSAttributedString attributedStringWithAttachment:({
         NSTextAttachment* attachment = [NSTextAttachment new];
-        attachment.image = [UIImage imageNamed:@"rain_ico_0"];
+        attachment.image = [UIImage imageNamed:rainFallString];
         attachment.bounds = CGRectMake(0, 0, 18, 23.5);// 1.3的倍率
         attachment;
     })]];
     
-    [rainFallString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\r\n"]];
-    [rainFallString appendAttributedString:[NSAttributedString clearAttributeStringWithTransparenceImageName:@"translucent" size:CGSizeMake(8, 8)]];
+    [tempRainFallString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\r\n"]];
+    [tempRainFallString appendAttributedString:[NSAttributedString clearAttributeStringWithTransparenceImageName:@"translucent" size:CGSizeMake(8, 8)]];
     
-    [rainFallString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\r\n10%"]];
-    [rainFallString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, time.length)];
-    return [rainFallString copy];
+    [tempRainFallString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\r\n%@%%", rainFallValue]]];
+    [tempRainFallString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, time.length)];
+    return [tempRainFallString copy];
 }
 
 /**

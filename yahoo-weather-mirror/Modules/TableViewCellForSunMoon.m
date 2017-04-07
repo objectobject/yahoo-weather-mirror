@@ -10,6 +10,7 @@
 #import <Masonry.h>
 #import "HHXXUIKitMacro.h"
 #import "HHXXSunRaiseLayer.h"
+#import "YahooWeatherItemKey.h"
 
 
 @interface TableViewCellForSunMoon()
@@ -88,8 +89,8 @@
 {
     [self.cellTitle setText:@"日落"];
     
-    self.sunSet.sunsetTime = @"日落时间";
-    self.sunSet.sunraiseTime = @"日出时间";
+    self.sunSet.sunsetTime = model[kHHXXYahooWeatherItemKey_SunSetTime];
+    self.sunSet.sunraiseTime = model[kHHXXYahooWeatherItemKey_SunRaiseTime];
     self.sunSet.sunsetRateValue = arc4random() % 10 / 10.0f;
     
     [self.moonDescribe setText:@"现在是满月时间!"];

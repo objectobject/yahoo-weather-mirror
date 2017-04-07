@@ -13,6 +13,7 @@
 #import "HHXXAutoLayoutDynamicView.h"
 #import "UIView+Border.h"
 #import "UITableViewCell+EnableDrag.h"
+#import "YahooWeatherItemKey.h"
 
 @interface TableViewCellForDetail()
 @property (nonatomic, strong) UIView* headArea;
@@ -62,7 +63,7 @@
 - (void)hhxx_createLayoutConstraints
 {
     CGFloat iconHeight = 32.0f;
-    CGFloat bodyAreaHeight = 192;
+//    CGFloat bodyAreaHeight = 192;
     
     
     [self.headArea mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,14 +122,21 @@
 }
 
 
+- (NSArray<NSString*>*)titles
+{
+    return @[@"体感温度", @"湿度", @"能见度", @"紫外线"];
+}
 
 - (void)configureWithModel:(id)model
 {
     [self.cellTitle setText:@"详细信息"];
-    [self.detailWeatherIcon setImage:[UIImage imageNamed:@"23"]];
+    [self.detailWeatherIcon setImage:[UIImage imageNamed:model[kHHXXYahooWeatherItemKey_HeadImage]]];
+    NSArray<NSString*>* values = @[@"暂时没值", model? model[kHHXXYahooWeatherItemKey_DetailHumidity]: @"暂时没值", model? model[kHHXXYahooWeatherItemKey_DetailVisibility]: @"暂时没值", @"暂时没值"];
     
     [self.detailViews enumerateObjectsUsingBlock:^(HHXXAutoLayoutDynamicView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.modelBlock = ^(NSArray* children){
+            [(UILabel*)children[0] setText:[[self titles] objectAtIndex:idx]];
+            [(UILabel*)children[1] setText:[values objectAtIndex:idx]];
         };
         [obj configureWithModel];
     }];
@@ -303,6 +311,7 @@
             
             [_detailView decorateChildWithBlock:^(NSArray *child) {
                 [(UILabel*)child[0] setFont:[UIFont systemFontOfSize:12]];
+                [(UILabel*)child[1] setFont:[UIFont systemFontOfSize:14]];
                 [(UILabel*)child[1] setTextAlignment:NSTextAlignmentRight];
             }];
             [_detailViews addObject:_detailView];

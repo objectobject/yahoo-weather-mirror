@@ -23,6 +23,18 @@
 		3ACBCA551E96358000640B0C /* HHXXNetworkingServiceForCityInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA541E96358000640B0C /* HHXXNetworkingServiceForCityInformation.m */; };
 		3ACBCA581E96557400640B0C /* HHXXNetworkingResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA571E96557400640B0C /* HHXXNetworkingResponse.m */; };
 		3ACBCA5B1E967F6E00640B0C /* HHXXYQLApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA5A1E967F6E00640B0C /* HHXXYQLApiManager.m */; };
+		3ACBCA5F1E97074800640B0C /* HHXXBingImageApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA5E1E97074800640B0C /* HHXXBingImageApiManager.m */; };
+		3ACBCA751E971B9E00640B0C /* ModelAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA621E971B9E00640B0C /* ModelAd.m */; };
+		3ACBCA761E971B9E00640B0C /* ModelAstronomy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA641E971B9E00640B0C /* ModelAstronomy.m */; };
+		3ACBCA771E971B9E00640B0C /* ModelAtmosphere.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA661E971B9E00640B0C /* ModelAtmosphere.m */; };
+		3ACBCA781E971B9E00640B0C /* ModelCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA681E971B9E00640B0C /* ModelCity.m */; };
+		3ACBCA791E971B9E00640B0C /* ModelYahooWeatherItemTypeInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA6A1E971B9E00640B0C /* ModelYahooWeatherItemTypeInformation.m */; };
+		3ACBCA7A1E971B9E00640B0C /* ModelLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA6C1E971B9E00640B0C /* ModelLocation.m */; };
+		3ACBCA7B1E971B9E00640B0C /* ModelUnits.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA6E1E971B9E00640B0C /* ModelUnits.m */; };
+		3ACBCA7C1E971B9E00640B0C /* ModelWeatherForecast.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA701E971B9E00640B0C /* ModelWeatherForecast.m */; };
+		3ACBCA7D1E971B9E00640B0C /* ModelWeatherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA721E971B9E00640B0C /* ModelWeatherItem.m */; };
+		3ACBCA7E1E971B9E00640B0C /* ModelWind.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA741E971B9E00640B0C /* ModelWind.m */; };
+		3ACBCA831E9793F300640B0C /* YahooWeatherItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA821E9793F300640B0C /* YahooWeatherItemKey.m */; };
 		3AE357951E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */; };
 		3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357971E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m */; };
 		3AE357A51E6EE399002D4221 /* NSObject+Enumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357A41E6EE399002D4221 /* NSObject+Enumerate.m */; };
@@ -115,6 +127,31 @@
 		3ACBCA571E96557400640B0C /* HHXXNetworkingResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNetworkingResponse.m; path = Networking/HHXXNetworkingResponse.m; sourceTree = "<group>"; };
 		3ACBCA591E967F6E00640B0C /* HHXXYQLApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXYQLApiManager.h; path = ApiManager/HHXXYQLApiManager.h; sourceTree = "<group>"; };
 		3ACBCA5A1E967F6E00640B0C /* HHXXYQLApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXYQLApiManager.m; path = ApiManager/HHXXYQLApiManager.m; sourceTree = "<group>"; };
+		3ACBCA5D1E97074800640B0C /* HHXXBingImageApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXBingImageApiManager.h; path = ApiManager/HHXXBingImageApiManager.h; sourceTree = "<group>"; };
+		3ACBCA5E1E97074800640B0C /* HHXXBingImageApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXBingImageApiManager.m; path = ApiManager/HHXXBingImageApiManager.m; sourceTree = "<group>"; };
+		3ACBCA611E971B9E00640B0C /* ModelAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelAd.h; path = Models/ModelAd.h; sourceTree = "<group>"; };
+		3ACBCA621E971B9E00640B0C /* ModelAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelAd.m; path = Models/ModelAd.m; sourceTree = "<group>"; };
+		3ACBCA631E971B9E00640B0C /* ModelAstronomy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelAstronomy.h; path = Models/ModelAstronomy.h; sourceTree = "<group>"; };
+		3ACBCA641E971B9E00640B0C /* ModelAstronomy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelAstronomy.m; path = Models/ModelAstronomy.m; sourceTree = "<group>"; };
+		3ACBCA651E971B9E00640B0C /* ModelAtmosphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelAtmosphere.h; path = Models/ModelAtmosphere.h; sourceTree = "<group>"; };
+		3ACBCA661E971B9E00640B0C /* ModelAtmosphere.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelAtmosphere.m; path = Models/ModelAtmosphere.m; sourceTree = "<group>"; };
+		3ACBCA671E971B9E00640B0C /* ModelCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelCity.h; path = Models/ModelCity.h; sourceTree = "<group>"; };
+		3ACBCA681E971B9E00640B0C /* ModelCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelCity.m; path = Models/ModelCity.m; sourceTree = "<group>"; };
+		3ACBCA691E971B9E00640B0C /* ModelYahooWeatherItemTypeInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelYahooWeatherItemTypeInformation.h; path = Models/ModelYahooWeatherItemTypeInformation.h; sourceTree = "<group>"; };
+		3ACBCA6A1E971B9E00640B0C /* ModelYahooWeatherItemTypeInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelYahooWeatherItemTypeInformation.m; path = Models/ModelYahooWeatherItemTypeInformation.m; sourceTree = "<group>"; };
+		3ACBCA6B1E971B9E00640B0C /* ModelLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelLocation.h; path = Models/ModelLocation.h; sourceTree = "<group>"; };
+		3ACBCA6C1E971B9E00640B0C /* ModelLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelLocation.m; path = Models/ModelLocation.m; sourceTree = "<group>"; };
+		3ACBCA6D1E971B9E00640B0C /* ModelUnits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelUnits.h; path = Models/ModelUnits.h; sourceTree = "<group>"; };
+		3ACBCA6E1E971B9E00640B0C /* ModelUnits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelUnits.m; path = Models/ModelUnits.m; sourceTree = "<group>"; };
+		3ACBCA6F1E971B9E00640B0C /* ModelWeatherForecast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelWeatherForecast.h; path = Models/ModelWeatherForecast.h; sourceTree = "<group>"; };
+		3ACBCA701E971B9E00640B0C /* ModelWeatherForecast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelWeatherForecast.m; path = Models/ModelWeatherForecast.m; sourceTree = "<group>"; };
+		3ACBCA711E971B9E00640B0C /* ModelWeatherItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelWeatherItem.h; path = Models/ModelWeatherItem.h; sourceTree = "<group>"; };
+		3ACBCA721E971B9E00640B0C /* ModelWeatherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelWeatherItem.m; path = Models/ModelWeatherItem.m; sourceTree = "<group>"; };
+		3ACBCA731E971B9E00640B0C /* ModelWind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelWind.h; path = Models/ModelWind.h; sourceTree = "<group>"; };
+		3ACBCA741E971B9E00640B0C /* ModelWind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelWind.m; path = Models/ModelWind.m; sourceTree = "<group>"; };
+		3ACBCA7F1E9734A600640B0C /* YahooWeatherForecastModelHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YahooWeatherForecastModelHead.h; path = Models/YahooWeatherForecastModelHead.h; sourceTree = "<group>"; };
+		3ACBCA811E9793F300640B0C /* YahooWeatherItemKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YahooWeatherItemKey.h; path = Models/YahooWeatherItemKey.h; sourceTree = "<group>"; };
+		3ACBCA821E9793F300640B0C /* YahooWeatherItemKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YahooWeatherItemKey.m; path = Models/YahooWeatherItemKey.m; sourceTree = "<group>"; };
 		3AE357931E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXDefaultTransitioningAnimator.h; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.h; sourceTree = "<group>"; };
 		3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXDefaultTransitioningAnimator.m; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.m; sourceTree = "<group>"; };
 		3AE357961E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIPanGestureRecognizer+Addition.h"; path = "Category/UIPanGestureRecognizer+Addition.h"; sourceTree = "<group>"; };
@@ -311,8 +348,40 @@
 			children = (
 				3ACBCA591E967F6E00640B0C /* HHXXYQLApiManager.h */,
 				3ACBCA5A1E967F6E00640B0C /* HHXXYQLApiManager.m */,
+				3ACBCA5D1E97074800640B0C /* HHXXBingImageApiManager.h */,
+				3ACBCA5E1E97074800640B0C /* HHXXBingImageApiManager.m */,
 			);
 			name = ApiManager;
+			sourceTree = "<group>";
+		};
+		3ACBCA601E971B5000640B0C /* YahooWeatherForecast */ = {
+			isa = PBXGroup;
+			children = (
+				3ACBCA611E971B9E00640B0C /* ModelAd.h */,
+				3ACBCA621E971B9E00640B0C /* ModelAd.m */,
+				3ACBCA631E971B9E00640B0C /* ModelAstronomy.h */,
+				3ACBCA641E971B9E00640B0C /* ModelAstronomy.m */,
+				3ACBCA651E971B9E00640B0C /* ModelAtmosphere.h */,
+				3ACBCA661E971B9E00640B0C /* ModelAtmosphere.m */,
+				3ACBCA671E971B9E00640B0C /* ModelCity.h */,
+				3ACBCA681E971B9E00640B0C /* ModelCity.m */,
+				3ACBCA691E971B9E00640B0C /* ModelYahooWeatherItemTypeInformation.h */,
+				3ACBCA6A1E971B9E00640B0C /* ModelYahooWeatherItemTypeInformation.m */,
+				3ACBCA6B1E971B9E00640B0C /* ModelLocation.h */,
+				3ACBCA6C1E971B9E00640B0C /* ModelLocation.m */,
+				3ACBCA6D1E971B9E00640B0C /* ModelUnits.h */,
+				3ACBCA6E1E971B9E00640B0C /* ModelUnits.m */,
+				3ACBCA6F1E971B9E00640B0C /* ModelWeatherForecast.h */,
+				3ACBCA701E971B9E00640B0C /* ModelWeatherForecast.m */,
+				3ACBCA711E971B9E00640B0C /* ModelWeatherItem.h */,
+				3ACBCA721E971B9E00640B0C /* ModelWeatherItem.m */,
+				3ACBCA731E971B9E00640B0C /* ModelWind.h */,
+				3ACBCA741E971B9E00640B0C /* ModelWind.m */,
+				3ACBCA7F1E9734A600640B0C /* YahooWeatherForecastModelHead.h */,
+				3ACBCA811E9793F300640B0C /* YahooWeatherItemKey.h */,
+				3ACBCA821E9793F300640B0C /* YahooWeatherItemKey.m */,
+			);
+			name = YahooWeatherForecast;
 			sourceTree = "<group>";
 		};
 		3AE357B21E7004B0002D4221 /* AutoLayoutView */ = {
@@ -370,6 +439,7 @@
 		3AFEF04F1E5C2272007CC568 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3ACBCA601E971B5000640B0C /* YahooWeatherForecast */,
 				3AEBF4641E822EAE00AB9548 /* HHXXCity.h */,
 				3AEBF4651E822EAE00AB9548 /* HHXXCity.m */,
 				3AEBF4671E822EC500AB9548 /* HHXXSettings.h */,
@@ -709,22 +779,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AE357A81E6F90F0002D4221 /* SliderViewController.m in Sources */,
+				3ACBCA771E971B9E00640B0C /* ModelAtmosphere.m in Sources */,
 				3AE357C41E70323C002D4221 /* TableViewCellForSunMoon.m in Sources */,
 				3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */,
 				3AE357951E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m in Sources */,
+				3ACBCA7C1E971B9E00640B0C /* ModelWeatherForecast.m in Sources */,
 				3AE357C11E70322C002D4221 /* TableViewCellForSpeed.m in Sources */,
 				3A6CE1891E5B1952008059AC /* ViewController.m in Sources */,
 				3AE357D31E72343C002D4221 /* UIView+AutoLayout.m in Sources */,
 				3AE357CA1E70342F002D4221 /* HHXXAutoLayoutTableViewCell.m in Sources */,
 				3AFEF05B1E5C57CE007CC568 /* HHXXSOADelegate.m in Sources */,
 				3ACBCA551E96358000640B0C /* HHXXNetworkingServiceForCityInformation.m in Sources */,
+				3ACBCA7B1E971B9E00640B0C /* ModelUnits.m in Sources */,
+				3ACBCA791E971B9E00640B0C /* ModelYahooWeatherItemTypeInformation.m in Sources */,
 				3AE357D91E73088F002D4221 /* UITableViewCell+EnableDrag.m in Sources */,
+				3ACBCA761E971B9E00640B0C /* ModelAstronomy.m in Sources */,
 				3AE357B11E7004A3002D4221 /* HHXXAutoLayoutView.m in Sources */,
 				3AE357B81E7031ED002D4221 /* TableViewCellForDetail.m in Sources */,
 				3AEBF4691E822EC500AB9548 /* HHXXSettings.m in Sources */,
+				3ACBCA7E1E971B9E00640B0C /* ModelWind.m in Sources */,
 				3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */,
 				3AFEF0B71E5F476B007CC568 /* WeatherInformationViewController.m in Sources */,
+				3ACBCA7D1E971B9E00640B0C /* ModelWeatherItem.m in Sources */,
 				3AE357AE1E6FFA73002D4221 /* YahooWeatherInformationView.m in Sources */,
+				3ACBCA781E971B9E00640B0C /* ModelCity.m in Sources */,
 				3AFEF0641E5D9808007CC568 /* HHXXBaseUIService.m in Sources */,
 				3A81976B1E6C08A800A75C10 /* HHXXViewControllerTransitioningContext.m in Sources */,
 				3AEBF4751E83C9B800AB9548 /* UIImage+Processing.m in Sources */,
@@ -734,6 +812,7 @@
 				3A6CE1861E5B1952008059AC /* AppDelegate.m in Sources */,
 				3AEBF47B1E84ABBB00AB9548 /* HHXXSunRaiseLayer.m in Sources */,
 				3ACBCA5B1E967F6E00640B0C /* HHXXYQLApiManager.m in Sources */,
+				3ACBCA7A1E971B9E00640B0C /* ModelLocation.m in Sources */,
 				3ACBCA581E96557400640B0C /* HHXXNetworkingResponse.m in Sources */,
 				3AE357AB1E6F93E3002D4221 /* YahooWeatherInformationViewController.m in Sources */,
 				3A6CE1831E5B1952008059AC /* main.m in Sources */,
@@ -742,11 +821,14 @@
 				3AE357C71E703263002D4221 /* TableViewCellForWeekDaily.m in Sources */,
 				3ACBCA4E1E96352800640B0C /* HHXXNetworkingServiceForBingImage.m in Sources */,
 				3ACBCA521E96356500640B0C /* HHXXNetworkingServiceForWeatherInformation.m in Sources */,
+				3ACBCA5F1E97074800640B0C /* HHXXBingImageApiManager.m in Sources */,
+				3ACBCA831E9793F300640B0C /* YahooWeatherItemKey.m in Sources */,
 				3AEBF4821E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.m in Sources */,
 				3AEBF4781E83CB2100AB9548 /* HHXXWindmillView.m in Sources */,
 				3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */,
 				3AE357BB1E703202002D4221 /* TableViewCellForMap.m in Sources */,
 				3AE357CD1E711611002D4221 /* UIView+Border.m in Sources */,
+				3ACBCA751E971B9E00640B0C /* ModelAd.m in Sources */,
 				3AFEF0BB1E5F52E8007CC568 /* HHXXUIKitMacro.c in Sources */,
 				3AE357B51E7031A8002D4221 /* TableViewCellForAd.m in Sources */,
 				3AFEF0AF1E5EEF36007CC568 /* UIColor+Provider.m in Sources */,

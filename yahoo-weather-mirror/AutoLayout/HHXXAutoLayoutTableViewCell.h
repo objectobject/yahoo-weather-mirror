@@ -19,6 +19,7 @@ typedef void (^HHXXCellTouchBlock)();
 @property (nonatomic, strong, readonly) UIView* contentViewInstead;
 @property (nonatomic, assign) BOOL layoutConstraintsIsCreated;
 @property (nonatomic, copy) HHXXCellTouchBlock touchBlock;
+@property (nonatomic, assign) BOOL canDrag;
 
 + (BOOL)requiresConstraintBasedLayout;
 - (void)configureWithModel:(id)model;

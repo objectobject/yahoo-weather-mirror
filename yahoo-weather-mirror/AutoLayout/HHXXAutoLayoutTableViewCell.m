@@ -46,6 +46,7 @@ const CGFloat kHHXX2DivPadding = kHHXXVPadding / 2.0f;
 
 - (void)commonInit
 {
+    self.canDrag = YES;
     self.backgroundColor = [UIColor clearColor];
     self.contentViewInstead.backgroundColor = [UIColor colorWithWhite:0 alpha:.75];
     self.contentViewInstead.layer.cornerRadius = 4.0f;
