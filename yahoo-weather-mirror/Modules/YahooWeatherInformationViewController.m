@@ -132,12 +132,6 @@ const NSUInteger numberOfWeatherInformation = 7;
     HHXXAutoLayoutTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(cellType) forIndexPath:indexPath];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.switchDataBlock = ^(NSUInteger fromIndex, NSUInteger toIndex){
-//        id fromObject = self.cellTypes[fromIndex];
-//        id toObject = self.cellTypes[toIndex];
-//        NSArray<id> *limitCell = @[[TableViewCellForAd class], [TableViewCellForWeekDaily class]];
-//        if ([limitCell containsObject:fromObject] || [limitCell containsObject:toObject]) {
-//            return;
-//        }
         [self.cellTypes exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
     };
     

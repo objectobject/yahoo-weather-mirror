@@ -8,9 +8,8 @@
 
 #import "YahooWeatherItemKey.h"
 
+
 NSString* const kHHXXTemperatureUnit = @"°";
-
-
 // 广告Cell
 const NSString* kHHXXYahooWeatherItemKey_AdTitle = @"kHHXXYahooWeatherItemKey_AdTitle";
 const NSString* kHHXXYahooWeatherItemKey_AdContent = @"kHHXXYahooWeatherItemKey_AdContent";

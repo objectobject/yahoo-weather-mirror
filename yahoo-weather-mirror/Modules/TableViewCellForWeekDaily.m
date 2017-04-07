@@ -13,6 +13,7 @@
 #import "UIView+Border.h"
 #import "ModelWeatherItem.h"
 #import "YahooWeatherItemKey.h"
+#import "UIColor+Provider.h"
 
 
 const NSUInteger lowNumber = 7;
@@ -91,7 +92,7 @@ const NSUInteger hightNumber = 14;
 - (void)hhxx_createLayoutConstraints
 {
     CGFloat iconHeight = 32.0f;
-    CGFloat bodyAreaHeight = 192;
+//    CGFloat bodyAreaHeight = 192;
     
     
     [self.headArea mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -212,7 +213,7 @@ const NSUInteger hightNumber = 14;
             
             NSString* tempString = [NSString stringWithFormat:@"%@%@  %@%@", todayForecast.low, kHHXXTemperatureUnit, todayForecast.high, kHHXXTemperatureUnit];
             NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:tempString];
-            [attributeString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:[tempString rangeOfString:[NSString stringWithFormat:@"%@%@", todayForecast.high, kHHXXTemperatureUnit]]];
+            [attributeString addAttribute:NSForegroundColorAttributeName value:[UIColor hhxxColorWithHex:0x007fff] range:[tempString rangeOfString:[NSString stringWithFormat:@"%@%@", todayForecast.high, kHHXXTemperatureUnit]]];
             [(UILabel*)child[2] setAttributedText:attributeString];
         };
         [obj configureWithModel];
@@ -233,11 +234,10 @@ const NSUInteger hightNumber = 14;
     [rainFallString appendAttributedString:[NSAttributedString attributedStringWithAttachment:({
         NSTextAttachment* attachment = [NSTextAttachment new];
         attachment.image = [UIImage imageNamed:weatherIcon];
-        attachment.bounds = CGRectMake(0, 0, 18, 23.5);// 1.3的倍率
+        attachment.bounds = CGRectMake(0, 0, 18, 18);// 1.3的倍率
         attachment;
     })]];
     [rainFallString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\r\n%@", tempValue]]];
-    [rainFallString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, time.length)];
     return [rainFallString copy];
 }
 
@@ -474,7 +474,7 @@ const NSUInteger hightNumber = 14;
             [_hourOfDay addObject:({
                 UILabel *hour = [UILabel new];
                 [hour setTextColor:FONT_COLOR];
-                [hour setFont:[UIFont systemFontOfSize:14]];
+                [hour setFont:[UIFont systemFontOfSize:10]];
                 hour.numberOfLines = 0;
                 hour.backgroundColor = [UIColor clearColor];
                 hour.lineBreakMode = NSLineBreakByWordWrapping;

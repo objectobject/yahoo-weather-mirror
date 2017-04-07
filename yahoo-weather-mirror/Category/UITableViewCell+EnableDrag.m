@@ -295,7 +295,7 @@ const CGFloat kHHXXPerMSECScrollPiexl = 4.0f;
     minYValue = fatherView.contentOffset.y + kHHXXTouchHeight;
     maxYValue = fatherView.contentOffset.y + HHXX_MAIN_SCREEN_HEIGHT - kHHXXTouchHeight;
     
-    NSLog(@"cur %04f, minYValue = %04f", locationPoint.y, minYValue);
+//    NSLog(@"cur %04f, minYValue = %04f", locationPoint.y, minYValue);
     
     CGPoint newContentOffset = fatherView.contentOffset;
     if (locationPoint.y > maxYValue) {
