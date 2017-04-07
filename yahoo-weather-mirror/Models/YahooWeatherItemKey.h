@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 extern  NSString* const kHHXXTemperatureUnit;
 
 extern NSString* kHHXXYahooWeatherItemKey_AdTitle;
@@ -42,6 +41,7 @@ extern NSString* kHHXXYahooWeatherItemKey_SunSetTime;
 
 extern NSString* kHHXXYahooWeatherItemKey_DetailHumidity;
 extern NSString* kHHXXYahooWeatherItemKey_DetailVisibility;
+
 
 extern NSString* kHHXXYahooWeatherItemKey_Forecast_10Days;
 extern NSString* kHHXXYahooWeatherItemKey_Forecast_24Hours;

@@ -15,7 +15,6 @@
 @class ModelAstronomy;
 @class ModelWeatherItem;
 
-
 @interface ModelWeatherForecast : NSObject
 @property (nonatomic, strong) ModelUnits* units;
 @property (nonatomic, copy) NSString* title;
