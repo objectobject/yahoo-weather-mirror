@@ -20,6 +20,11 @@
 #import "UITableViewCell+EnableDrag.h"
 #import <UIImageView+LBBlurredImage.h>
 #import "HHXXYQLApiManager.h"
+#import "HHXXBingImageApiManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "ModelWeatherForecast.h"
+#import <YYModel.h>
+#import <NSObject+YYModel.h>
 
 
 const NSUInteger numberOfWeatherInformation = 7;
@@ -28,45 +33,25 @@ const NSUInteger numberOfWeatherInformation = 7;
 @property (nonatomic, strong) UITableView* mainView;
 @property (nonatomic, strong) UIImageView* backgroundView;
 @property (nonatomic, strong) UIImageView* maskView;
+@property (nonatomic, strong) YahooWeatherInformationView* yahooWeatherHeadView;
 
 @property (nonatomic, strong) NSMutableArray<Class>* cellTypes;
-
-
 @property (nonatomic, strong) HHXXYQLApiManager* yqlApi;
+@property (nonatomic, strong) HHXXBingImageApiManager* bingApi;
 @property (nonatomic, strong) NSString* queryKw;
+@property (nonatomic, strong) ModelWeatherForecast* weatherForecastInformation;
 @end
 
 @implementation YahooWeatherInformationViewController
 
-- (void)hhxxBackgroundImage
+- (YahooWeatherInformationView *)yahooWeatherHeadView
 {
-    __block UIImage* bg = nil;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSDateFormatter* dateFormater = [[NSDateFormatter alloc] init];
-        [dateFormater setDateFormat:@"yy-MM-dd"];
-        NSString* dateString = [dateFormater stringFromDate:[NSDate date]];
-        
-        
-//        NSURL* bingURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://s.tu.ihuan.me/bgc/%@.png", dateString]];
-        NSURL* bingURL = [NSURL URLWithString:[NSString stringWithFormat:@"www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"]];
-        
-        NSError* downloadError = nil;
-        NSData* imageData = [NSData dataWithContentsOfURL:bingURL options:NSDataReadingMappedIfSafe error:&downloadError];
-        
-        if (!downloadError) {
-            bg = [UIImage imageWithData:[NSData dataWithContentsOfURL:bingURL]];
-        }
-        
-        NSLog(@"%@", bingURL);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (bg) {
-                [self.backgroundView setImage:bg];
-                [self.maskView setImageToBlur:bg blurRadius:10 completionBlock:nil];
-            }
-        });
-    });
+    if (!_yahooWeatherHeadView) {
+        _yahooWeatherHeadView = [[YahooWeatherInformationView alloc] initWithFrame:HHXX_MAIN_SCREEN];
+    }
+    
+    return _yahooWeatherHeadView;
 }
-
 
 - (UIImageView*)maskView
 {
@@ -104,11 +89,7 @@ const NSUInteger numberOfWeatherInformation = 7;
         _mainView.showsVerticalScrollIndicator = NO;
         _mainView.estimatedRowHeight = 128;
         _mainView.rowHeight = UITableViewAutomaticDimension;
-        _mainView.tableHeaderView = ({
-            YahooWeatherInformationView* view = [[YahooWeatherInformationView alloc] initWithFrame:HHXX_MAIN_SCREEN];
-            view;
-        });
-        
+        _mainView.tableHeaderView = self.yahooWeatherHeadView;
         _mainView.tableFooterView = [UIView new];
         
         
@@ -124,8 +105,8 @@ const NSUInteger numberOfWeatherInformation = 7;
 - (NSMutableArray<Class> *)cellTypes
 {
     if (!_cellTypes) {
-        _cellTypes = [@[[TableViewCellForAd class], [TableViewCellForDetail class],
-                        [TableViewCellForWeekDaily class], [TableViewCellForMap class],
+        _cellTypes = [@[[TableViewCellForAd class], [TableViewCellForWeekDaily class],
+                        [TableViewCellForDetail class], [TableViewCellForMap class],
                         [TableViewCellForSpeed class], [TableViewCellForSunMoon class],
                         [TableViewCellForRainFall class]] mutableCopy];
     }
@@ -151,15 +132,44 @@ const NSUInteger numberOfWeatherInformation = 7;
     HHXXAutoLayoutTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(cellType) forIndexPath:indexPath];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.switchDataBlock = ^(NSUInteger fromIndex, NSUInteger toIndex){
+//        id fromObject = self.cellTypes[fromIndex];
+//        id toObject = self.cellTypes[toIndex];
+//        NSArray<id> *limitCell = @[[TableViewCellForAd class], [TableViewCellForWeekDaily class]];
+//        if ([limitCell containsObject:fromObject] || [limitCell containsObject:toObject]) {
+//            return;
+//        }
         [self.cellTypes exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
     };
     
+    if(self.weatherForecastInformation)
+    {
+        [cell configureWithModel:[self.weatherForecastInformation hhxxWeatherFiltrator:^(Class cls){
+            if (cls == [TableViewCellForAd class]) {
+                return HHXXWeatherForecastTypeAd;
+            }
+            if (cls == [TableViewCellForMap class]) {
+                return HHXXWeatherForecastTypeMap;
+            }
+            if (cls == [TableViewCellForSpeed class]) {
+                return HHXXWeatherForecastTypeWind;
+            }
+            if (cls == [TableViewCellForDetail class]) {
+                return HHXXWeatherForecastTypeDetail;
+            }
+            if (cls == [TableViewCellForSunMoon class]) {
+                return HHXXWeatherForecastTypeSunAndMoon;
+            }
+            if (cls == [TableViewCellForRainFall class]) {
+                return HHXXWeatherForecastTypeRainfall;
+            }
+            if (cls == [TableViewCellForWeekDaily class]) {
+                return HHXXWeatherForecastTypeForecast;
+            }
+            
+            return HHXXWeatherForecastTypeNone;
+        }(cellType)]];
+    }
     return cell;
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
 }
 
 
@@ -189,8 +199,6 @@ const NSUInteger numberOfWeatherInformation = 7;
     
     self.view.layer.borderColor = [UIColor blackColor].CGColor;
     self.view.layer.borderWidth = 2.0f;
-    
-    [self hhxxBackgroundImage];
 }
 
 
@@ -199,13 +207,11 @@ const NSUInteger numberOfWeatherInformation = 7;
     // Do any additional setup after loading the view.
     
     [self _hhxxInitChildView];
+    
+    [self.yqlApi hhxxFetchData];
+    [self.bingApi hhxxFetchData];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.yqlApi hhxxFetchData];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -224,6 +230,18 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 
 #pragma mark - about fetch data from networking
+
+- (HHXXBingImageApiManager*)bingApi
+{
+    if (!_bingApi) {
+        _bingApi = [[HHXXBingImageApiManager alloc] init];
+        _bingApi.delegate = self;
+        _bingApi.dataSource = self;
+    }
+    
+    return _bingApi;
+}
+
 - (HHXXYQLApiManager *)yqlApi
 {
     if (!_yqlApi) {
@@ -246,23 +264,34 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 - (void)hhxxCallApiFailed:(HHXXAbstractApiManager *)mgr
 {
-    id requestData = [mgr hhxxFetchDataWithFiltrator:nil];
-    NSError* error;
-    id result = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableLeaves error:&error];
-    if(!error)
-    {
-        NSLog(@"返回结果数据%@", result);
-    }
+    NSLog(@"网络请求失败!错误信息:\r\n%@", mgr);
 }
+
 
 - (void)hhxxCallApiSuccess:(HHXXAbstractApiManager *)mgr
 {
     id requestData = [mgr hhxxFetchDataWithFiltrator:nil];
-    NSError* error;
-    id result = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableLeaves error:&error];
-    if(!error)
-    {
-        NSLog(@"返回结果数据%@", result);
+    
+    // 这里设置背景图片
+    if ([mgr isKindOfClass:[HHXXBingImageApiManager class]]) {
+        NSString* backgroundImageURLString = requestData[@"data"][@"url"];
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.maskView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString]];
+            [weakSelf.backgroundView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString]];
+        });
+    }
+    
+    // 这里设置数据源
+    if ([mgr isKindOfClass:[HHXXYQLApiManager class]]) {
+        self.weatherForecastInformation = [ModelWeatherForecast yy_modelWithJSON:requestData];
+        
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.yahooWeatherHeadView configureWithModel:[self.weatherForecastInformation hhxxWeatherFiltrator:HHXXWeatherForecastTypeTodayCondition]];
+            [weakSelf.view setNeedsLayout];
+            [weakSelf.view layoutIfNeeded];
+        });
     }
 }
 @end

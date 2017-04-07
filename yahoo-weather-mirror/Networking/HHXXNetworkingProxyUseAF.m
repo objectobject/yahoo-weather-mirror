@@ -25,11 +25,13 @@
 - (NSUInteger)hhxxNetworkingWithRequest:(NSURLRequest*)request success:(HHXXNetworkingSuccessBlock)success failed:(HHXXNetworkingFailedBlock)failed
 {
     NSURLSessionTask* dataTask = [[self networkingSessionManager] dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        HHXXNetworkingResponse* networkingResponse = [[HHXXNetworkingResponse alloc] initWithRequest:request requestID:[dataTask taskIdentifier] responseObject:responseObject error:error];
+        
         [self.networkingTasks removeObjectForKey:@([dataTask taskIdentifier])];
         if (error) {
-            failed? failed([[HHXXNetworkingResponse alloc] initWithRequest:request requestID:[dataTask taskIdentifier] responseObject:responseObject error:error]) : nil;
+            failed? failed(networkingResponse) : nil;
         }else{
-            success? success([[HHXXNetworkingResponse alloc] initWithRequest:request requestID:[dataTask taskIdentifier] responseObject:responseObject error:error]): nil;
+            success? success(networkingResponse): nil;
         }
     }];
     
@@ -76,7 +78,9 @@
 {
     if (!_networkingSessionManager) {
         _networkingSessionManager = [AFHTTPSessionManager manager];
+//        _networkingSessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
         _networkingSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
         _networkingSessionManager.securityPolicy.allowInvalidCertificates = YES;
         _networkingSessionManager.securityPolicy.validatesDomainName = NO;
     }

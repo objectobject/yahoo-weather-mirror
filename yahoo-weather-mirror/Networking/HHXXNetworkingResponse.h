@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy, readonly) NSString* rawResponseString;
 @property (nonatomic, copy, readonly) NSData* rawResponseData;
+@property (nonatomic, copy, readonly) id rawJSONObject;
 @property (nonatomic, assign, readonly) NSInteger requestID;
 @property (nonatomic, strong, readonly) NSURLRequest* request;
 @property (nonatomic, copy, readonly) NSString* responseErrorMsg;

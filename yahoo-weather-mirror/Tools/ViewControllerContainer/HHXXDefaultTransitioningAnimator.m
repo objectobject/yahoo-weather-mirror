@@ -39,19 +39,19 @@ static const NSTimeInterval kHHXXViewControllerTransitionDuration = 5.0f;
     
     fromVC.view.transform = CGAffineTransformIdentity;
 ////    BOOL toRight = [transitionContext finalFrameForViewController:fromVC].origin.x > [transitionContext initialFrameForViewController:fromVC].origin.x;
-    [fromVC.view addSubview:({
-        UIView* view = [UIView new];
-        view.frame = CGRectMake(100, 100, 64, 64);
-        view.backgroundColor = [UIColor redColor];
-        view;
-    })];
-    
-    [toVC.view addSubview:({
-        UIView* view = [UIView new];
-        view.frame = CGRectMake(100, 100, 64, 64);
-        view.backgroundColor = [UIColor greenColor];
-        view;
-    })];
+//    [fromVC.view addSubview:({
+//        UIView* view = [UIView new];
+//        view.frame = CGRectMake(100, 100, 64, 64);
+//        view.backgroundColor = [UIColor redColor];
+//        view;
+//    })];
+//    
+//    [toVC.view addSubview:({
+//        UIView* view = [UIView new];
+//        view.frame = CGRectMake(100, 100, 64, 64);
+//        view.backgroundColor = [UIColor greenColor];
+//        view;
+//    })];
     
     toVC.view.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -containView.bounds.size.width, 0);
     

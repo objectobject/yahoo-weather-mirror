@@ -17,6 +17,7 @@ typedef void (^HHXXDecorateChildrenBlock)(NSArray* child);
 @property (nonatomic, copy) HHXXDecorateChildrenBlock modelBlock;
 
 - (instancetype)initWithSuvViewGenerator:(HHXXSubViewGeneratorBlock)generator number:(NSUInteger)number;
+- (instancetype)initWithChildren:(NSArray*)children;
 - (id)objectInChildrenAtIndex:(NSUInteger)index;
 
 - (void)decorateChildWithBlock:(HHXXDecorateChildrenBlock)modelBlock;

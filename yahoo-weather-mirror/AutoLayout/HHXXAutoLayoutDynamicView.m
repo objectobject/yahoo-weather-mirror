@@ -35,6 +35,22 @@
     return self;
 }
 
+- (instancetype)initWithChildren:(NSArray*)children
+{
+    self = [self init];
+    if(self)
+    {
+        self.children = [NSMutableArray arrayWithCapacity:[children count]];
+        for (NSUInteger index = 0; index < [children count]; ++index) {
+            [self.children addObject:children[index]];
+        }
+        
+        [self commonInit];
+    }
+    
+    return self;
+}
+
 
 - (void)decorateChildWithBlock:(HHXXDecorateChildrenBlock)modelBlock
 {

@@ -11,6 +11,8 @@
 #import "HHXXUIKitMacro.h"
 #import "HHXXAutoLayoutDynamicView.h"
 #import "UIView+Border.h"
+#import "ModelWeatherItem.h"
+#import "YahooWeatherItemKey.h"
 
 
 const NSUInteger lowNumber = 7;
@@ -202,31 +204,39 @@ const NSUInteger hightNumber = 14;
     [self.cellTitle setText:@"每日天气"];
     
     [self.dailyOfWeek enumerateObjectsUsingBlock:^(HHXXAutoLayoutDynamicView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        ModelForecast* todayForecast = [(NSArray*)model[kHHXXYahooWeatherItemKey_Forecast_10Days] objectAtIndex:idx];
+        
         obj.modelBlock = ^(NSArray* child){
-            [(UILabel*)child[0] setText:@"星期一"];
-            [(UILabel*)child[1] setText:@"天气"];
-            [(UILabel*)child[2] setText:@"10 99"];
+            [(UILabel*)child[0] setText:todayForecast.day];
+            [(UIImageView*)child[1] setImage:[UIImage imageNamed:[todayForecast formatterWeatherIcon]]];
+            
+            NSString* tempString = [NSString stringWithFormat:@"%@%@  %@%@", todayForecast.low, kHHXXTemperatureUnit, todayForecast.high, kHHXXTemperatureUnit];
+            NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:tempString];
+            [attributeString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:[tempString rangeOfString:[NSString stringWithFormat:@"%@%@", todayForecast.high, kHHXXTemperatureUnit]]];
+            [(UILabel*)child[2] setAttributedText:attributeString];
         };
         [obj configureWithModel];
     }];
     
+    NSArray* weatherForecastForHours = model[kHHXXYahooWeatherItemKey_Forecast_24Hours];
     [self.hourOfDay enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setAttributedText:[self _hhxxCreateRainFallAttributeString:@"22:00" tempValue:24]];
+        id weatherForecastForHour = [weatherForecastForHours objectAtIndex:idx];
+        [obj setAttributedText:[self _hhxxCreateRainFallAttributeString:weatherForecastForHour[kHHXXYahooWeatherItemKey_ForecastHoursTime] tempValue:weatherForecastForHour[kHHXXYahooWeatherItemKey_ForecastHoursTemp] weatherIcon:weatherForecastForHour[kHHXXYahooWeatherItemKey_ForecastHoursCode]]];
     }];
 }
 
 
-- (NSAttributedString*)_hhxxCreateRainFallAttributeString:(NSString*)time tempValue:(CGFloat)tempValue
+- (NSAttributedString*)_hhxxCreateRainFallAttributeString:(NSString*)time tempValue:(NSString*)tempValue weatherIcon:(NSString*)weatherIcon
 {
     NSMutableAttributedString* rainFallString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\r\n", time]];
     
     [rainFallString appendAttributedString:[NSAttributedString attributedStringWithAttachment:({
         NSTextAttachment* attachment = [NSTextAttachment new];
-        attachment.image = [UIImage imageNamed:@"rain_ico_0"];
+        attachment.image = [UIImage imageNamed:weatherIcon];
         attachment.bounds = CGRectMake(0, 0, 18, 23.5);// 1.3的倍率
         attachment;
     })]];
-    [rainFallString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\r\n22"]];
+    [rainFallString appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\r\n%@", tempValue]]];
     [rainFallString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, time.length)];
     return [rainFallString copy];
 }
@@ -237,6 +247,7 @@ const NSUInteger hightNumber = 14;
 - (void)commonInit
 {
     [super commonInit];
+    self.canDrag = NO;
     [@[self.headArea, self.borderView, self.dailyArea, self.weekArea, self.switchArea] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.contentViewInstead addSubview:obj];
     }];
@@ -420,18 +431,30 @@ const NSUInteger hightNumber = 14;
     if (!_dailyOfWeek) {
         _dailyOfWeek = [NSMutableArray new];
         
-        for (NSUInteger index = 0; index < 14; ++index) {
+        for (NSUInteger index = 0; index < 10; ++index) {
             [_dailyOfWeek addObject:({
-                HHXXAutoLayoutDynamicView* dailyView = [[HHXXAutoLayoutDynamicView alloc] initWithSuvViewGenerator:^id{
-                    UILabel* label = [UILabel new];
-                    label.textColor = FONT_COLOR;
-                    [label setBackgroundColor:[UIColor clearColor]];
-                    return label;
-                } number:3];
+                HHXXAutoLayoutDynamicView* dailyView = [[HHXXAutoLayoutDynamicView alloc] initWithChildren:
+                    @[({
+                        UILabel* label = [UILabel new];
+                        label.textColor = FONT_COLOR;
+                        [label setBackgroundColor:[UIColor clearColor]];
+                        label;
+                    }),
+                      ({
+                        UIImageView* image = [UIImageView new];
+                        [image setContentMode:UIViewContentModeScaleAspectFit];
+                        image;
+                      }),
+                      ({
+                          UILabel* label = [UILabel new];
+                          label.textColor = FONT_COLOR;
+                          [label setBackgroundColor:[UIColor clearColor]];
+                          label;
+                      }),
+                      ]];
                 
                 [dailyView decorateChildWithBlock:^(NSArray *child) {
                     [child[0] setTextAlignment:NSTextAlignmentLeft];
-                    [child[1] setTextAlignment:NSTextAlignmentCenter];
                     [child[2] setTextAlignment:NSTextAlignmentRight];
                 }];
                 dailyView;
@@ -451,6 +474,7 @@ const NSUInteger hightNumber = 14;
             [_hourOfDay addObject:({
                 UILabel *hour = [UILabel new];
                 [hour setTextColor:FONT_COLOR];
+                [hour setFont:[UIFont systemFontOfSize:14]];
                 hour.numberOfLines = 0;
                 hour.backgroundColor = [UIColor clearColor];
                 hour.lineBreakMode = NSLineBreakByWordWrapping;

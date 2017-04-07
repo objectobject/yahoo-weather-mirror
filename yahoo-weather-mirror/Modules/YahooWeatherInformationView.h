@@ -14,5 +14,5 @@
 
 
 - (instancetype)initWithFrame:(CGRect)frame;
-+ (BOOL)requiresConstraintBasedLayout;
+- (void)configureWithModel:(id)model;
 @end

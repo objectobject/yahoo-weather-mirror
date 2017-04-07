@@ -13,6 +13,8 @@
 @interface HHXXAbstractApiManager : NSObject
 @property (nonatomic, weak) id<HHXXNetworkingDelegate> delegate;
 @property (nonatomic, weak) id<HHXXNetworkingDataSource> dataSource;
+@property (nonatomic, strong) id responseData;
+@property (nonatomic, assign) HHXXResponseType responseDataType;
 
 - (NSUInteger)hhxxFetchData;
 - (id)hhxxFetchDataWithFiltrator:(id<HHXXNetworkingDataFiltrator>)filtrator;

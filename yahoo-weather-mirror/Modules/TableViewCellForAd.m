@@ -9,6 +9,7 @@
 #import "TableViewCellForAd.h"
 #import "HHXXUIKitMacro.h"
 #import <Masonry.h>
+#import "YahooWeatherItemKey.h"
 
 @interface TableViewCellForAd()
 @property (nonatomic, strong) UIView* headArea;
@@ -32,6 +33,10 @@
     [self.adVertiser setText:@"广告主"];
     [self.adContent setImage:[UIImage imageNamed:@"adContent"]];
 #endif
+    
+    [self.adTitle setText:model[kHHXXYahooWeatherItemKey_AdTitle]];
+    [self.adVertiser setText:model[kHHXXYahooWeatherItemKey_AdContent]];
+    [self.adContent setImage:[UIImage imageNamed:model[kHHXXYahooWeatherItemKey_AdImage]]];
 }
 
 
@@ -104,8 +109,8 @@
 - (void)commonInit
 {
 //    self.contentViewInstead.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
     [super commonInit];
+    self.canDrag = NO;
     self.layer.cornerRadius = 4.0f;
     [@[self.bodyArea, self.headArea, self.borderView] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.contentViewInstead addSubview:obj];
@@ -249,6 +254,7 @@
     if (!_typeImage) {
         _typeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell-type-ad"]];
         [_typeImage setContentMode:UIViewContentModeCenter];
+        _typeImage.hidden = YES;
     }
     
     return _typeImage;

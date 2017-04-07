@@ -21,6 +21,13 @@ typedef NS_ENUM(NSUInteger, HHXXRequestMethod)
     HHXXRequestMethodHEAD
 };
 
+typedef NS_ENUM(NSUInteger, HHXXResponseType)
+{
+    HHXXResponseString = 0,
+    HHXXResponseData,
+    HHXXResponseJSONObject
+};
+
 typedef void (^HHXXNetworkingSuccessBlock)(HHXXNetworkingResponse* response);
 typedef void (^HHXXNetworkingFailedBlock)(HHXXNetworkingResponse* response);
 

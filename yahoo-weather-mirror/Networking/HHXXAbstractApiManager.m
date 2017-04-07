@@ -17,8 +17,6 @@
 @property (nonatomic, weak) id<HHXXNetworkingApiProtocol> child;
 @property (nonatomic, strong) id<HHXXNetworkingProxyProtocol> networkingProxy;
 @property (nonatomic, weak) id<HHXXNetworkingRequestParamsValidator> validator;
-
-@property (nonatomic, strong) id responseData;
 @end
 
 @implementation HHXXAbstractApiManager
@@ -54,25 +52,51 @@
         self.delegate = nil;
         self.validator = nil;
         self.dataSource = nil;
+        self.responseData = nil;
+        
+        // 指定返回给delegate处理的数据类型
+        self.responseDataType = HHXXResponseJSONObject;
     }
     
     return self;
 }
 
 
+- (void)setResponseData:(id)responseData
+{
+    HHXXNetworkingResponse* response = responseData;
+    switch (self.responseDataType) {
+        case HHXXResponseData:
+            _responseData = [response.rawResponseData copy];
+            break;
+            
+        case HHXXResponseString:
+            _responseData = [response.rawResponseString copy];
+            break;
+            
+        case HHXXResponseJSONObject:
+            _responseData = [response.rawJSONObject copy];
+            break;
+            
+        default:
+            _responseData = [response.rawResponseData copy];
+            break;
+    }
+}
+
+
 - (void)_hhxxFetchDataSuccess:(HHXXNetworkingResponse*)response
 {
-    self.responseData = [response.rawResponseData copy];
-    
+    self.responseData = response;
     if (self.delegate) {
         [self.delegate hhxxCallApiSuccess:self];
     }
-    
+    NSLog(@"Scuess: %@", response);
 }
 
 - (void)_hhxxFetchDataFailed:(HHXXNetworkingResponse*)response
 {
-    self.responseData = [response.rawResponseData copy];
+    self.responseData = response;
     
     if (self.delegate) {
         [self.delegate hhxxCallApiFailed:self];
@@ -154,11 +178,10 @@
 }
 
 
-- (id)hhxxFetchDataWithFiltrator:(id<HHXXNetworkingDataFiltrator>)filtrator
-{
+- (id)hhxxFetchDataWithFiltrator:(id<HHXXNetworkingDataFiltrator>)filtrator{
     id resultData = nil;
     if ([filtrator respondsToSelector:@selector(hhxxManager:filterData:)]) {
-        [filtrator hhxxManager:self filterData:self.responseData];
+        resultData = [filtrator hhxxManager:self filterData:self.responseData];
     }else{
         resultData = self.responseData;
     }
