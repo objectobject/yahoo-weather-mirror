@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "NSObject+Enumerate.h"
 
 typedef void (^HHXXViewControllerTranstitionCompleteBlock)(BOOL);
 
@@ -18,6 +17,6 @@ typedef void (^HHXXViewControllerTranstitionCompleteBlock)(BOOL);
 @property (nonatomic, assign) BOOL isInteractive;
 @property (nonatomic, copy) HHXXViewControllerTranstitionCompleteBlock completeBlock;
 
-- (instancetype)initWithFromViewController:(UIViewController*)fromViewController toViewController:(UIViewController*)toViewController slideDirection:(HHXXDirection)slideDirection;
+- (instancetype)initWithFromViewController:(UIViewController*)fromViewController toViewController:(UIViewController*)toViewController;
 
 @end

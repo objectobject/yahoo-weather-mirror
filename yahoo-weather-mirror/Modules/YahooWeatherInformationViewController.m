@@ -56,10 +56,10 @@ const NSUInteger numberOfWeatherInformation = 7;
 - (UIImageView*)maskView
 {
     if (!_maskView) {
-        _maskView = [UIImageView new];
+        _maskView = [[UIImageView alloc] initWithFrame:HHXX_MAIN_SCREEN];
         [_maskView setContentMode:UIViewContentModeScaleAspectFill];
         _maskView.alpha = 0.75f;
-        [_maskView setImageToBlur:[UIImage imageNamed:@"adContent"] blurRadius:10.0 completionBlock:nil];
+//        [_maskView setImageToBlur:[UIImage imageNamed:@"adContent"] blurRadius:10.0 completionBlock:nil];
     }
     
     return _maskView;
@@ -68,8 +68,8 @@ const NSUInteger numberOfWeatherInformation = 7;
 - (UIImageView*)backgroundView
 {
     if (!_backgroundView) {
-        _backgroundView = [UIImageView new];
-        [_backgroundView setImage:[UIImage imageNamed:@"adContent"]];
+        _backgroundView = [[UIImageView alloc] initWithFrame:HHXX_MAIN_SCREEN];
+        //        [_backgroundView setImage:[UIImage imageNamed:@"adContent"]];
         [_backgroundView setContentMode:UIViewContentModeScaleAspectFill];
     }
     
@@ -175,6 +175,7 @@ const NSUInteger numberOfWeatherInformation = 7;
 //    [self.view addSubview:[UIView new]];
     self.view.backgroundColor = [UIColor clearColor];
     
+    self.view.clipsToBounds = YES;
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.maskView];
     [self.view addSubview:self.mainView];
@@ -258,6 +259,13 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 - (void)hhxxCallApiFailed:(HHXXAbstractApiManager *)mgr
 {
+    __weak typeof(self) weakSelf = self;
+    if ([mgr isKindOfClass:[HHXXBingImageApiManager class]]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.maskView setImageToBlur:[UIImage imageNamed:@"adContent"] blurRadius:10.0 completionBlock:nil];
+            [weakSelf.backgroundView setImage:[UIImage imageNamed:@"adContent"]];
+        });
+    }
     NSLog(@"网络请求失败!错误信息:\r\n%@", mgr);
 }
 
@@ -271,7 +279,9 @@ const NSUInteger numberOfWeatherInformation = 7;
         NSString* backgroundImageURLString = requestData[@"data"][@"url"];
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.maskView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString]];
+            [weakSelf.maskView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [_maskView setImageToBlur:image blurRadius:10.0 completionBlock:nil];
+            }];
             [weakSelf.backgroundView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString]];
         });
     }

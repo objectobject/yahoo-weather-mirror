@@ -7,15 +7,28 @@
 //
 
 #import "HHXXDefaultTransitioningAnimator.h"
+#import "NSObject+Enumerate.h"
 
-static const NSTimeInterval kHHXXViewControllerTransitionDuration = 5.0f;
+static const NSTimeInterval kHHXXViewControllerTransitionDuration = .5f;
 
 @interface HHXXDefaultTransitioningAnimator()
 @property (nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
+
+@property (nonatomic, assign) HHXXDirection direction;
 @end
 
 @implementation HHXXDefaultTransitioningAnimator
 
+- (instancetype)initWithDiection:(HHXXDirection)direction
+{
+    self = [super init];
+    
+    if (self) {
+        self.direction = direction;
+    }
+    
+    return self;
+}
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
@@ -25,50 +38,34 @@ static const NSTimeInterval kHHXXViewControllerTransitionDuration = 5.0f;
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
+    UIView* containView = [transitionContext containerView];
     UIViewController* fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController* toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView* containView = [transitionContext containerView];
-    
-    
-//
-//    //    NSLog(@"from:%@ to:%@", NSStringFromCGRect(fromView.bounds), NSStringFromCGRect(toVC.view.bounds));
-//    //
-//    //    NSLog(@"from: %@-->%@", NSStringFromCGRect( [transitionContext initialFrameForViewController:UITransitionContextFromViewKey]), NSStringFromCGRect([transitionContext finalFrameForViewController:UITransitionContextFromViewKey]));
-//    //    NSLog(@"to: %@-->%@", NSStringFromCGRect([transitionContext initialFrameForViewController:UITransitionContextToViewKey]), NSStringFromCGRect([transitionContext finalFrameForViewController:UITransitionContextToViewKey]));
 
+    UIView* fromView = nil;
+    UIView* toView = nil;
     
-    fromVC.view.transform = CGAffineTransformIdentity;
-////    BOOL toRight = [transitionContext finalFrameForViewController:fromVC].origin.x > [transitionContext initialFrameForViewController:fromVC].origin.x;
-//    [fromVC.view addSubview:({
-//        UIView* view = [UIView new];
-//        view.frame = CGRectMake(100, 100, 64, 64);
-//        view.backgroundColor = [UIColor redColor];
-//        view;
-//    })];
-//    
-//    [toVC.view addSubview:({
-//        UIView* view = [UIView new];
-//        view.frame = CGRectMake(100, 100, 64, 64);
-//        view.backgroundColor = [UIColor greenColor];
-//        view;
-//    })];
+    if ([transitionContext respondsToSelector:@selector(viewForKey:)]) {
+        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
+    }
+    else
+    {
+        fromView = fromVC.view;
+        toView = toVC.view;
+    }
     
-    toVC.view.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -containView.bounds.size.width, 0);
+    CGFloat slideDistanceForToView = self.direction == ToRight? -containView.bounds.size.width: containView.bounds.size.width;
     
     
-    NSLog(@"from bound %@", NSStringFromCGRect(fromVC.view.frame));
-    NSLog(@"to bound %@", NSStringFromCGRect(toVC.view.frame));
+    [[transitionContext containerView] addSubview:toView];
     
-    NSLog(@"from %@", NSStringFromCGRect([transitionContext initialFrameForViewController:fromVC]));
-    NSLog(@"from %@", NSStringFromCGRect([transitionContext finalFrameForViewController:fromVC]));
-    NSLog(@"to %@", NSStringFromCGRect([transitionContext initialFrameForViewController:toVC]));
-    NSLog(@"to %@", NSStringFromCGRect([transitionContext finalFrameForViewController:toVC]));
-    
-    [[transitionContext containerView] addSubview:toVC.view];
+    fromView.transform = CGAffineTransformIdentity;
+    toView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -slideDistanceForToView, 0);
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-        fromVC.view.transform = CGAffineTransformMakeTranslation(containView.bounds.size.width, 0);
-        toVC.view.transform = CGAffineTransformIdentity;
         
+        fromView.transform = CGAffineTransformMakeTranslation(slideDistanceForToView, 0);
+        toView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];

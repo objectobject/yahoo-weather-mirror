@@ -20,12 +20,11 @@
 @property (nonatomic, assign) CGRect appearToRect;
 @property (nonatomic, assign) CGRect disappearFromRect;
 @property (nonatomic, assign) CGRect disappearToRect;
-@property (nonatomic, assign) HHXXDirection animatedDirection;
 @end
 
 @implementation HHXXViewControllerTransitioningContext
 
-- (instancetype)initWithFromViewController:(UIViewController*)fromViewController toViewController:(UIViewController*)toViewController slideDirection:(HHXXDirection)slideDirection
+- (instancetype)initWithFromViewController:(UIViewController*)fromViewController toViewController:(UIViewController*)toViewController
 {
     NSAssert([fromViewController isViewLoaded] && fromViewController.view.superview, @"转场上下文无法完成初始化!");
     
@@ -39,17 +38,36 @@
         };
         self.presentationStyle = UIModalPresentationCustom;
         self.containerView = fromViewController.view.superview;
-        self.animatedDirection = slideDirection;
-        
-//        CGFloat travelDistance = (self.animatedDirection ==  ToRight? -self.containerView.bounds.size.width : self.containerView.bounds.size.width);
+//        self.animatedDirection = slideDirection;
 //        
-//        self.appearToRect = self.disappearFromRect = self.containerView.bounds;
-//        self.appearFromRect = CGRectOffset(self.containerView.bounds, -travelDistance, 0);
-//        self.disappearToRect = CGRectOffset(self.containerView.bounds, travelDistance, 0);
+//        CGFloat travelDistance = (self.animatedDirection ==  ToRight)? self.containerView.bounds.size.width : -self.containerView.bounds.size.width;
+//        
+//        self.appearFromRect = self.disappearToRect = self.containerView.bounds;
+//        self.disappearFromRect = self.appearToRect = CGRectOffset(self.containerView.bounds, travelDistance, 0);
     }
     
     return self;
 }
+
+//- (CGRect)initialFrameForViewController:(UIViewController *)vc
+//{
+//    if (vc == [self viewControllerForKey:UITransitionContextFromViewControllerKey])
+//    {
+//        return self.appearFromRect;
+//    }
+//    return self.disappearFromRect;
+//}
+//
+//
+//- (CGRect)finalFrameForViewController:(UIViewController *)vc
+//{
+//    if (vc == [self viewControllerForKey:UITransitionContextToViewControllerKey])
+//    {
+//        return self.appearToRect;
+//    }
+//    
+//    return self.disappearToRect;
+//}
 
 - (UIView *)containerView
 {
@@ -59,31 +77,6 @@
 - (void)setIsInteractive:(BOOL)isInteractive
 {
     _isInteractive = isInteractive;
-}
-
-
-
-
-- (CGRect)initialFrameForViewController:(UIViewController *)vc
-{
-//    if (vc == [self viewControllerForKey:UITransitionContextFromViewControllerKey])
-//    {
-//        return self.appearFromRect;
-//    }
-//    return self.disappearFromRect;
-    return self.containerView.bounds;
-}
-
-
-- (CGRect)finalFrameForViewController:(UIViewController *)vc
-{
-    return self.containerView.bounds;
-    if (vc == [self viewControllerForKey:UITransitionContextToViewControllerKey])
-    {
-        return self.appearToRect;
-    }
-    
-    return self.disappearToRect;
 }
 
 - (BOOL)transitionWasCancelled
@@ -112,9 +105,11 @@
 
 - (UIView *)viewForKey:(UITransitionContextViewKey)key
 {
-    UIViewController* vc = [self viewControllerForKey:key];
+    if ([key isEqualToString:UITransitionContextFromViewKey]) {
+        return [self viewControllerForKey:UITransitionContextFromViewControllerKey].view;
+    }
     
-    return vc.view;
+    return [self viewControllerForKey:UITransitionContextToViewControllerKey].view;
 }
 
 

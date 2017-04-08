@@ -69,7 +69,7 @@
 - (void)hhxx_createLayoutConstraints
 {
     CGFloat iconHeight = 32.0f;
-    CGFloat bodyAreaHeight = 192;
+//    CGFloat bodyAreaHeight = 192;
     
     
     [self.headArea mas_makeConstraints:^(MASConstraintMaker *make) {

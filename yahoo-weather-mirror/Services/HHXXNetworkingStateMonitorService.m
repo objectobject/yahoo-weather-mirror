@@ -60,6 +60,10 @@ HHXX_AUTO_REGISTER_SERVICE(HHXXNetworkingStateMonitorService)
                 break;
                 
             default:
+                if (_hub) {
+                    [_hub hideAnimated:YES afterDelay:1.0];
+                    _hub = nil;
+                }
                 break;
         }
     }];

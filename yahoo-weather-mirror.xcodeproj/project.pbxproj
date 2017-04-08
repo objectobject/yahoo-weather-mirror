@@ -35,6 +35,7 @@
 		3ACBCA7D1E971B9E00640B0C /* ModelWeatherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA721E971B9E00640B0C /* ModelWeatherItem.m */; };
 		3ACBCA7E1E971B9E00640B0C /* ModelWind.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA741E971B9E00640B0C /* ModelWind.m */; };
 		3ACBCA831E9793F300640B0C /* YahooWeatherItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA821E9793F300640B0C /* YahooWeatherItemKey.m */; };
+		3ACBCA891E98632200640B0C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ACBCA8B1E98632200640B0C /* Localizable.strings */; };
 		3AE357951E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */; };
 		3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357971E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m */; };
 		3AE357A51E6EE399002D4221 /* NSObject+Enumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357A41E6EE399002D4221 /* NSObject+Enumerate.m */; };
@@ -152,6 +153,9 @@
 		3ACBCA7F1E9734A600640B0C /* YahooWeatherForecastModelHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YahooWeatherForecastModelHead.h; path = Models/YahooWeatherForecastModelHead.h; sourceTree = "<group>"; };
 		3ACBCA811E9793F300640B0C /* YahooWeatherItemKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YahooWeatherItemKey.h; path = Models/YahooWeatherItemKey.h; sourceTree = "<group>"; };
 		3ACBCA821E9793F300640B0C /* YahooWeatherItemKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YahooWeatherItemKey.m; path = Models/YahooWeatherItemKey.m; sourceTree = "<group>"; };
+		3ACBCA871E98630C00640B0C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		3ACBCA881E98630C00640B0C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		3ACBCA8A1E98632200640B0C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3AE357931E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXDefaultTransitioningAnimator.h; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.h; sourceTree = "<group>"; };
 		3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXDefaultTransitioningAnimator.m; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.m; sourceTree = "<group>"; };
 		3AE357961E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIPanGestureRecognizer+Addition.h"; path = "Category/UIPanGestureRecognizer+Addition.h"; sourceTree = "<group>"; };
@@ -384,6 +388,14 @@
 			name = YahooWeatherForecast;
 			sourceTree = "<group>";
 		};
+		3ACBCA841E98610500640B0C /* LocalFile */ = {
+			isa = PBXGroup;
+			children = (
+				3ACBCA8B1E98632200640B0C /* Localizable.strings */,
+			);
+			name = LocalFile;
+			sourceTree = "<group>";
+		};
 		3AE357B21E7004B0002D4221 /* AutoLayoutView */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +474,7 @@
 		3AFEF0521E5C2476007CC568 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				3ACBCA841E98610500640B0C /* LocalFile */,
 			);
 			name = Res;
 			sourceTree = "<group>";
@@ -704,6 +717,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A6CE1911E5B1952008059AC /* LaunchScreen.storyboard in Resources */,
+				3ACBCA891E98632200640B0C /* Localizable.strings in Resources */,
 				3A6CE18E1E5B1952008059AC /* Assets.xcassets in Resources */,
 				3A6CE18C1E5B1952008059AC /* Main.storyboard in Resources */,
 			);
@@ -877,6 +891,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3A6CE18B1E5B1952008059AC /* Base */,
+				3ACBCA871E98630C00640B0C /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -885,8 +900,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				3A6CE1901E5B1952008059AC /* Base */,
+				3ACBCA881E98630C00640B0C /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3ACBCA8B1E98632200640B0C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3ACBCA8A1E98632200640B0C /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			path = Res;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -896,6 +921,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -944,6 +970,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

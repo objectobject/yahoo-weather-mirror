@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "NSObject+Enumerate.h"
 
 @interface HHXXDefaultTransitioningAnimator : NSObject<UIViewControllerInteractiveTransitioning, UIViewControllerAnimatedTransitioning>
 
+- (instancetype)initWithDiection:(HHXXDirection)direction;
 
 - (void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext;
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext;

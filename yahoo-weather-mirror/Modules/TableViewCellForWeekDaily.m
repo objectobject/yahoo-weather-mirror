@@ -229,7 +229,7 @@ const NSUInteger hightNumber = 14;
 
 - (NSAttributedString*)_hhxxCreateRainFallAttributeString:(NSString*)time tempValue:(NSString*)tempValue weatherIcon:(NSString*)weatherIcon
 {
-    NSMutableAttributedString* rainFallString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\r\n", time]];
+    NSMutableAttributedString* rainFallString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\r\n", NSLocalizedString(time, nil)]];
     
     [rainFallString appendAttributedString:[NSAttributedString attributedStringWithAttachment:({
         NSTextAttachment* attachment = [NSTextAttachment new];

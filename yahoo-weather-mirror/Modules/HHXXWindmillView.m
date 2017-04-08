@@ -13,6 +13,7 @@
 @interface HHXXWindmillView()
 @property (nonatomic, strong) UIImageView* headerView;
 @property (nonatomic, strong) UIImageView* bodyView;
+@property (nonatomic, strong) CADisplayLink* displayLink;
 @end
 
 @implementation HHXXWindmillView
@@ -20,8 +21,7 @@
 #pragma mark - private method
 - (void)hhxxTick
 {
-    CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(_hhxxTick:)];
-    [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 }
 
 - (void)_hhxxTick:(CADisplayLink*)displayLine
@@ -105,6 +105,18 @@
 
 
 #pragma mark - getter and setter
+- (CADisplayLink *)displayLink
+{
+    if (_displayLink) {
+        [_displayLink invalidate];
+    }
+    CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(_hhxxTick:)];
+    _displayLink = displayLink;
+    
+    return _displayLink;
+}
+
+
 - (UIImageView*)bodyView
 {
     if (_bodyView == nil)

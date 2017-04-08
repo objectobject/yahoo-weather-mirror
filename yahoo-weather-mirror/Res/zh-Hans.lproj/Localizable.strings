@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  yahoo-weather-mirror
+
+  Created by as4 on 17/4/8.
+  Copyright © 2017年 hhxx. All rights reserved.
+*/
+"Mon" = "星期一";
+"Tue" = "星期二";
+"Wed" = "星期三";
+"Thu" = "星期四";
+"Fri" = "星期五";
+"Sat" = "星期六";
+"Sun" = "星期日";

@@ -22,7 +22,7 @@
 
 + (UIColor*)hhxxColorWithHexString:(NSString*)hexValue withOpacity:(float)opacity
 {
-    return [self hhxxColorWithHex:[hexValue longLongValue] withOpacity:opacity];
+    return [self hhxxColorWithHex:(long)[hexValue longLongValue] withOpacity:opacity];
 }
 
 

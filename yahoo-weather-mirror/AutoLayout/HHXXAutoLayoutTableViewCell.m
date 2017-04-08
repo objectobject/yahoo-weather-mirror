@@ -92,4 +92,7 @@ const CGFloat kHHXX2DivPadding = kHHXXVPadding / 2.0f;
     // Configure the view for the selected state
 }
 
+- (void)hhxx_createLayoutConstraints
+{
+}
 @end

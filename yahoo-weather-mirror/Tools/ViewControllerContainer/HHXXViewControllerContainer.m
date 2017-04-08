@@ -224,8 +224,8 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     }
     
     
-
-    self.animator = [HHXXDefaultTransitioningAnimator new];
+    self.animator = [[HHXXDefaultTransitioningAnimator alloc] initWithDiection:self.directionForAnimation];
+    
     if (!self.withInteractive && [self.hhxxTransitioningDelegate respondsToSelector:@selector(hhxxContainerViewController:fromViewController:toViewController:)]) {
         self.animator = [self.hhxxTransitioningDelegate hhxxContainerViewController:self fromViewController:fromViewController toViewController:toViewController];
     }
@@ -236,7 +236,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     }
     
     id<UIViewControllerContextTransitioning> transitioningContext = ({
-        HHXXViewControllerTransitioningContext* context = [[HHXXViewControllerTransitioningContext alloc] initWithFromViewController:fromViewController toViewController:toViewController slideDirection:self.directionForAnimation];
+        HHXXViewControllerTransitioningContext* context = [[HHXXViewControllerTransitioningContext alloc] initWithFromViewController:fromViewController toViewController:toViewController];
         context.isInteractive = NO;
         context.completeBlock = ^(BOOL didComplete){
             [self.view addSubview:toViewController.view];
@@ -334,11 +334,11 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     
     switch (item.tag) {
         case HHXXViewControllerContainerActionToLeft:
-            index -= 1;
+            index += 1;
             break;
             
         case HHXXViewControllerContainerActionToRight:
-            index += 1;
+            index -= 1;
             break;
             
         case HHXXViewControllerContainerActionAddVC:
