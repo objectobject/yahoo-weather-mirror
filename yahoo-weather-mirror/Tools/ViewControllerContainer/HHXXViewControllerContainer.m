@@ -114,6 +114,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
         self.children = [NSMutableArray arrayWithArray:[viewControllers copy]];
         self.selectedViewController = [_children objectAtIndex:0];
         self.selectedIndex = 0;
+        [self _hhxxUpdateUI];
     }
     
     return self;
@@ -143,7 +144,6 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     _preSelectedViewController = _selectedViewController;
     [self _transitionToViewController:selectedViewController];
     _selectedViewController = selectedViewController;
-    [self _updateUI];
 }
 
 - (NSUInteger)selectedIndex
@@ -197,7 +197,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 
 
 #pragma mark - private method
-- (void)_updateUI
+- (void)_hhxxUpdateUI
 {
     self.title = [NSString stringWithFormat:@"Title_%ld", self.selectedIndex];
 }
@@ -220,6 +220,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
         [toViewController didMoveToParentViewController:self];
         
         [fromViewController removeFromParentViewController];
+        [self _hhxxUpdateUI];
         return;
     }
     
@@ -237,22 +238,28 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     
     id<UIViewControllerContextTransitioning> transitioningContext = ({
         HHXXViewControllerTransitioningContext* context = [[HHXXViewControllerTransitioningContext alloc] initWithFromViewController:fromViewController toViewController:toViewController];
-        context.isInteractive = NO;
+        __weak typeof(context) weakContext = context;
+        context.isInteractive = self.withInteractive;
         context.completeBlock = ^(BOOL didComplete){
-            [self.view addSubview:toViewController.view];
-            [toViewController didMoveToParentViewController:self];
+            // 取消转场动画逻辑
+            if ([weakContext transitionWasCancelled]) {
+                _selectedViewController = self.preSelectedViewController;
+            }
+            else
+            {
+                [self.view addSubview:toViewController.view];
+                [toViewController didMoveToParentViewController:self];
+                
+                [fromViewController.view removeFromSuperview];
+                [fromViewController removeFromParentViewController];
+            }
             
-            [fromViewController.view removeFromSuperview];
-            [fromViewController removeFromParentViewController];
-            
-
             if ([self.animator respondsToSelector:@selector(animationEnded:)]) {
                 [self.animator animationEnded:didComplete];
             }
-            //            NSLog(@"After = %ld\r\n", [self.view.subviews count]);
             
             self.withInteractive = NO;
-            NSLog(@"bool == %d", didComplete);
+            [self _hhxxUpdateUI];
         };
         context;
     });
@@ -367,55 +374,21 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 
 - (void)_hhxxPanGesture:(UIPanGestureRecognizer*)gestureRecognizer
 {
-//    HHXXDirection direction = [gestureRecognizer hhxxSwipeDirectionInView:self.view withoutVertical:YES];
-//    if(direction != NoDirection)
-//    {
-//        NSInteger index = self.selectedIndex;
-//        switch (direction)
-//        {
-//            case ToLeft:
-//            {
-//                index += 1;
-//                NSLog(@"toleft");
-//                self.directionForAnimation = ToLeft;
-//            }
-//                break;
-//                
-//            case ToRight:
-//            {
-//                index -= 1;
-//                NSLog(@"toRight");
-//                self.directionForAnimation = ToRight;
-//            }
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//        if (index <= 0) {
-//            index = 0;
-//        }
-//        if (index >= [self.children count]) {
-//            index -= 1;
-//        }
-//        self.selectedViewController = [self.children objectAtIndex:index % [self.children count]];
-//    }
-//    else
-//    {
     NSInteger selectedIndex = [self.children indexOfObject:self.selectedViewController];
-    NSLog(@"value = %02f", [gestureRecognizer translationInView:self.view].x);
     
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
         {
             self.withInteractive = true;
             self.view.layer.speed = 0;
-            HHXXDirection panDirection = [gestureRecognizer hhxxPanDirectionInView:self.view withoutVertical:YES];
+            HHXXDirection panDirection = [gestureRecognizer velocityInView:self.view].x > 0? ToRight: ToLeft;
             if (panDirection == ToRight) {
-                selectedIndex += 1;
+                selectedIndex -= 1;
+                self.directionForAnimation = ToRight;
             }
             if (panDirection == ToLeft) {
-                selectedIndex -= 1;
+                selectedIndex += 1;
+                self.directionForAnimation = ToLeft;
             }
             if (selectedIndex <= 0) {
                 selectedIndex = 0;
@@ -474,27 +447,6 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     
     return _panGestureRecognizer;
 }
-
-- (UISwipeGestureRecognizer*)leftSwipeGestureRecognizer
-{
-    if (!_leftSwipeGestureRecognizer) {
-        _leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeGesture:)];
-        [_leftSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
-    }
-    
-    return _leftSwipeGestureRecognizer;
-}
-
-- (UISwipeGestureRecognizer *)rightSwipeGestureRecognizer
-{
-    if (!_rightSwipeGestureRecognizer) {
-        _rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(_swipeGesture:)];
-        [_rightSwipeGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-    }
-    
-    return _rightSwipeGestureRecognizer;
-}
-
 
 - (UIView*)rootView
 {

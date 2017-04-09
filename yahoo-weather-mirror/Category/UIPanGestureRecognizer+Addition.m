@@ -28,6 +28,7 @@ const CGFloat kAvalidSwipeDistance = 22;
     
     if (withoutVertical)
     {
+        NSLog(@"point.x %.03f", point.x);
         return point.x > 0 ? ToRight: ToLeft;
     }
     

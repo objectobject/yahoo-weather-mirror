@@ -55,7 +55,7 @@ static const NSTimeInterval kHHXXViewControllerTransitionDuration = .5f;
         toView = toVC.view;
     }
     
-    CGFloat slideDistanceForToView = self.direction == ToRight? -containView.bounds.size.width: containView.bounds.size.width;
+    CGFloat slideDistanceForToView = self.direction == ToRight? containView.bounds.size.width: -containView.bounds.size.width;
     
     
     [[transitionContext containerView] addSubview:toView];

@@ -51,22 +51,13 @@
 
 //- (CGRect)initialFrameForViewController:(UIViewController *)vc
 //{
-//    if (vc == [self viewControllerForKey:UITransitionContextFromViewControllerKey])
-//    {
-//        return self.appearFromRect;
-//    }
-//    return self.disappearFromRect;
+//    return CGRectZero;
 //}
 //
 //
 //- (CGRect)finalFrameForViewController:(UIViewController *)vc
 //{
-//    if (vc == [self viewControllerForKey:UITransitionContextToViewControllerKey])
-//    {
-//        return self.appearToRect;
-//    }
-//    
-//    return self.disappearToRect;
+//    return vc.view.frame;
 //}
 
 - (UIView *)containerView
@@ -82,7 +73,7 @@
 - (BOOL)transitionWasCancelled
 {
     if (!_isInteractive) {
-        return YES;
+        return NO;
     }
     
     return _transitionWasCancelled;
@@ -94,6 +85,7 @@
     if (self.completeBlock) {
         self.completeBlock(didComplete);
     }
+    self.completeBlock = nil;
 }
 
 
@@ -125,8 +117,8 @@
 
 - (void)cancelInteractiveTransition
 {
+    _transitionWasCancelled = YES;
     CADisplayLink* displaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(_hhxxCancelAnimation:)];
-    
     [displaylink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
