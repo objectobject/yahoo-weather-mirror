@@ -10,11 +10,11 @@
 @class HHXXCity;
 
 @interface HHXXCityManager : NSObject
-
+@property (nonatomic, readonly, copy) NSMutableArray<HHXXCity*>* allCitys;
 
 + (instancetype)sharedCityManager;
 
-- (BOOL)addCity:(HHXXCity*)city;
-- (BOOL)removeCity:(HHXXCity*)city;
-- (BOOL)switchCityWithIndex:(NSUInteger)index1 index2:(NSUInteger)index2;
+- (void)addCity:(HHXXCity*)city;
+- (void)removeCity:(HHXXCity*)city;
+- (void)switchCityWithIndex:(NSUInteger)index1 index2:(NSUInteger)index2;
 @end

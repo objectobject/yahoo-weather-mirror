@@ -25,6 +25,9 @@
 #import "ModelWeatherForecast.h"
 #import <YYModel.h>
 #import <NSObject+YYModel.h>
+#import "HHXXCustionNavigationView.h"
+#import "SliderViewController.h"
+#import "HHXXCityManager.h"
 
 
 const NSUInteger numberOfWeatherInformation = 7;
@@ -40,9 +43,23 @@ const NSUInteger numberOfWeatherInformation = 7;
 @property (nonatomic, strong) HHXXBingImageApiManager* bingApi;
 @property (nonatomic, strong) NSString* queryKw;
 @property (nonatomic, strong) ModelWeatherForecast* weatherForecastInformation;
+
+@property (nonatomic, strong) HHXXCustionNavigationView* nav;
 @end
 
 @implementation YahooWeatherInformationViewController
+
+
+- (HHXXCustionNavigationView *)nav
+{
+    if(!_nav)
+    {
+        _nav = [HHXXCustionNavigationView new];
+    }
+    
+    return _nav;
+}
+
 
 - (YahooWeatherInformationView *)yahooWeatherHeadView
 {
@@ -100,7 +117,6 @@ const NSUInteger numberOfWeatherInformation = 7;
     
     return _mainView;
 }
-
 
 - (NSMutableArray<Class> *)cellTypes
 {
@@ -179,7 +195,12 @@ const NSUInteger numberOfWeatherInformation = 7;
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.maskView];
     [self.view addSubview:self.mainView];
+    [self.view addSubview:self.nav];
     
+    [self.nav mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.height.equalTo(@64);
+    }];
     
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -203,10 +224,18 @@ const NSUInteger numberOfWeatherInformation = 7;
     
     [self _hhxxInitChildView];
     
+    [self.nav.titleLabel setText:@"这是标题"];
+    
+    [self.nav.leftButton addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.yqlApi hhxxFetchData];
     [self.bingApi hhxxFetchData];
 }
 
+- (void)test
+{
+    [self showViewController:[SliderViewController new] sender:self];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -250,8 +279,10 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 - (NSDictionary *)hhxxRequestParamsForApi:(HHXXAbstractApiManager *)mgr
 {
+//    HHXXCityManager* cm = [HHXXCityManager sharedCityManager];
+    NSString* queryString = [HHXXYQLApiManager hhxxGetWeatherForecastByWoeid:@"12712963"];
     return @{
-             @"q": [HHXXYQLApiManager hhxxGetWeatherForecastByWoeid:@"2502265"],
+             @"q": queryString,
              @"format": @"json",
              @"u":@"c",
              };

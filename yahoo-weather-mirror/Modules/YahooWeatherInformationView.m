@@ -11,6 +11,7 @@
 #import "HHXXUIKitMacro.h"
 #import "UIView+Border.h"
 #import "YahooWeatherItemKey.h"
+#import "HHXXCustionNavigationView.h"
 
 @interface YahooWeatherInformationView()
 
@@ -29,8 +30,6 @@
 
 // 版权信息
 @property (nonatomic, strong) UILabel* copyrightLabel;
-
-
 @property (nonatomic, strong) UIView* rowOne, *rowTwo, *rowThree;
 @end
 

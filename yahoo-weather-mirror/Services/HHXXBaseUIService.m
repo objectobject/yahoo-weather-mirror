@@ -12,6 +12,7 @@
 #import "HHXXViewControllerContainer.h"
 #import "WeatherInformationViewController.h"
 #import "YahooWeatherInformationViewController.h"
+#import "HHXXViewControllerContainer+Private.h"
 
 @interface HHXXBaseUIService()<HHXXSOAServiceDelegate>
 @end
@@ -20,15 +21,19 @@
 
 HHXX_AUTO_REGISTER_SERVICE(HHXXBaseUIService)
 
+- (void)test
+{
+    NSLog(@"test");
+}
+
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions
 {
     
     UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     HHXXViewControllerContainer* rootVC = [[HHXXViewControllerContainer alloc] initWithViewControllers:@[[YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new]]];
     
-    
-//    YahooWeatherInformationViewController* rootVC = [[YahooWeatherInformationViewController alloc] init];
-    window.rootViewController = [[UINavigationController alloc] initWithRootViewController:rootVC];
+//    window.rootViewController = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    window.rootViewController = rootVC;
     application.delegate.window = window;
     [application.delegate.window makeKeyAndVisible];
     return YES;
