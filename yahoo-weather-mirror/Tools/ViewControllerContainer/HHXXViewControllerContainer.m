@@ -8,40 +8,20 @@
 
 #import "HHXXViewControllerContainer.h"
 #import "HHXXViewControllerTransitioningContext.h"
-#import <Masonry.h>
+//#import <Masonry.h>
 #import "HHXXDefaultTransitioningAnimator.h"
 #import "UIPanGestureRecognizer+Addition.h"
 #import "NSObject+Enumerate.h"
 #import "YahooWeatherInformationViewController.h"
+#import "HHXXViewControllerContainer+Private.h"
 
 const NSTimeInterval kHHXXDefaultTransitionDuring = 1.0f;
 const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 
 
-@interface HHXXViewControllerContainer()<UIViewControllerTransitioningDelegate>
-@property (nonatomic, copy, readwrite) NSMutableArray<UIViewController*>* children;
-@property (nonatomic, strong) UIViewController* selectedViewController;
-@property (nonatomic, assign) NSUInteger selectedIndex;
-@property (nonatomic, strong) UIViewController* preSelectedViewController;
-
-// 装饰视图
-@property (nonatomic, strong) NSArray<UIButton*>* switchButtons;
-@property (nonatomic, strong) UIView* decorateView;
-@property (nonatomic, strong) UIView* rootView;
-
-// 布局约束
-@property (nonatomic, strong) NSLayoutConstraint* topConstraintForDecorateView;
-@property (nonatomic, strong) NSLayoutConstraint* widthConstraintForDecorateView;
-
-
-// 交互式转场
-@property (nonatomic, strong) id animator;
-@property (nonatomic, assign) HHXXDirection directionForAnimation;
-@property (nonatomic, assign) CGFloat xDistance;
-
-@property (nonatomic, strong) UIPanGestureRecognizer* panGestureRecognizer;
-@property (nonatomic, strong) UISwipeGestureRecognizer* leftSwipeGestureRecognizer, *rightSwipeGestureRecognizer;
-@end
+//@interface HHXXViewControllerContainer()
+//
+//@end
 
 @implementation HHXXViewControllerContainer
 #pragma mark - logic for UI
@@ -96,6 +76,11 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 //    [self.rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_decorateView(==height)]" options:0 metrics:NSDictionaryOfVariableBindings(height) views:NSDictionaryOfVariableBindings(_decorateView)]];
 //    self.topConstraintForDecorateView = [NSLayoutConstraint constraintWithItem:self.decorateView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.rootView attribute:NSLayoutAttributeTop multiplier:1.0 constant:22 + [self.topLayoutGuide length]];
 //    [self.rootView addConstraint:self.topConstraintForDecorateView];
+    
+    
+//    self.nav.translatesAutoresizingMaskIntoConstraints = NO;
+//    [self.rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_nav]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nav)]];
+//    [self.rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_nav(==64)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_nav)]];
 }
 
 
@@ -199,7 +184,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 #pragma mark - private method
 - (void)_hhxxUpdateUI
 {
-    self.title = [NSString stringWithFormat:@"Title_%ld", self.selectedIndex];
+//    self.title = [NSString stringWithFormat:@"Title_%ld", self.selectedIndex];
 }
 
 
@@ -216,7 +201,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     
     if(!fromViewController)
     {
-        [self.view addSubview:toViewController.view];
+        [self.rootView addSubview:toViewController.view];
         [toViewController didMoveToParentViewController:self];
         
         [fromViewController removeFromParentViewController];
@@ -247,7 +232,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
             }
             else
             {
-                [self.view addSubview:toViewController.view];
+                [self.rootView addSubview:toViewController.view];
                 [toViewController didMoveToParentViewController:self];
                 
                 [fromViewController.view removeFromSuperview];
@@ -305,12 +290,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
                                                 ];
     
     [self.rootView addSubview:self.decorateView];
-    
     [self.rootView addGestureRecognizer:self.panGestureRecognizer];
-//    [self.rootView addGestureRecognizer:self.leftSwipeGestureRecognizer];
-//    [self.rootView addGestureRecognizer:self.rightSwipeGestureRecognizer];
-//    [self.panGestureRecognizer requireGestureRecognizerToFail:self.leftSwipeGestureRecognizer];
-//    [self.panGestureRecognizer requireGestureRecognizerToFail:self.rightSwipeGestureRecognizer];
     
     if (!self.selectedViewController) {
         return;

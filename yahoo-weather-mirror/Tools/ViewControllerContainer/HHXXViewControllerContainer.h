@@ -12,7 +12,7 @@
 
 @protocol HHXXTransitioningDelegate;
 
-@interface HHXXViewControllerContainer : UIViewController
+@interface HHXXViewControllerContainer : UIViewController<UIViewControllerTransitioningDelegate>
 @property (nonatomic, copy, readonly) NSMutableArray<UIViewController*>* children;
 @property (nonatomic, copy) id<HHXXTransitioningDelegate> hhxxTransitioningDelegate;
 
@@ -23,6 +23,8 @@
 - (void)insertViewController:(UIViewController*)viewController atIndex:(NSUInteger)index;
 - (UIViewController*)removeViewControllerAtIndex:(NSUInteger)index;
 - (void)containerSwitchViewController:(UIViewController*)vc1 viewController2:(UIViewController*)vc2;
+
++ (UINavigationController*)viewControllerContainerWithNavigationController;
 @end
 
 

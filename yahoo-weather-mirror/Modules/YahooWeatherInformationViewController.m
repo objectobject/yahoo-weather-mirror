@@ -25,6 +25,10 @@
 #import "ModelWeatherForecast.h"
 #import <YYModel.h>
 #import <NSObject+YYModel.h>
+#import "HHXXCustionNavigationView.h"
+#import "SliderViewController.h"
+#import "HHXXCityManager.h"
+#import "HHXXAddNewCityViewController.h"
 
 
 const NSUInteger numberOfWeatherInformation = 7;
@@ -40,81 +44,31 @@ const NSUInteger numberOfWeatherInformation = 7;
 @property (nonatomic, strong) HHXXBingImageApiManager* bingApi;
 @property (nonatomic, strong) NSString* queryKw;
 @property (nonatomic, strong) ModelWeatherForecast* weatherForecastInformation;
+
+@property (nonatomic, strong) HHXXCustionNavigationView* nav;
 @end
 
 @implementation YahooWeatherInformationViewController
 
-- (YahooWeatherInformationView *)yahooWeatherHeadView
-{
-    if (!_yahooWeatherHeadView) {
-        _yahooWeatherHeadView = [[YahooWeatherInformationView alloc] initWithFrame:HHXX_MAIN_SCREEN];
-    }
-    
-    return _yahooWeatherHeadView;
-}
+#pragma mark - private method
 
-- (UIImageView*)maskView
+- (void)_hhxxAddNewCity:(id)sender
 {
-    if (!_maskView) {
-        _maskView = [[UIImageView alloc] initWithFrame:HHXX_MAIN_SCREEN];
-        [_maskView setContentMode:UIViewContentModeScaleAspectFill];
-        _maskView.alpha = 0.75f;
-//        [_maskView setImageToBlur:[UIImage imageNamed:@"adContent"] blurRadius:10.0 completionBlock:nil];
-    }
-    
-    return _maskView;
-}
-
-- (UIImageView*)backgroundView
-{
-    if (!_backgroundView) {
-        _backgroundView = [[UIImageView alloc] initWithFrame:HHXX_MAIN_SCREEN];
-        //        [_backgroundView setImage:[UIImage imageNamed:@"adContent"]];
-        [_backgroundView setContentMode:UIViewContentModeScaleAspectFill];
-    }
-    
-    return _backgroundView;
+    [self presentViewController:({
+        HHXXAddNewCityViewController* addNewCity = [HHXXAddNewCityViewController new];
+        addNewCity.fromType = HHXXFromViewControllerLeftSlider;
+        addNewCity;
+    }) animated:YES completion:nil];
 }
 
 
-- (UITableView*)mainView
+- (void)_hhxxShowSliderViewController:(id)sender
 {
-    if (!_mainView)
-    {
-        _mainView = [[UITableView alloc] initWithFrame:HHXX_MAIN_SCREEN style:UITableViewStylePlain];
-        _mainView.translatesAutoresizingMaskIntoConstraints = NO;
-        _mainView.delegate = self;
-        _mainView.dataSource = self;
-        _mainView.backgroundColor = [UIColor clearColor];
-        _mainView.showsVerticalScrollIndicator = NO;
-        _mainView.estimatedRowHeight = 128;
-        _mainView.rowHeight = UITableViewAutomaticDimension;
-        _mainView.tableHeaderView = self.yahooWeatherHeadView;
-        _mainView.tableFooterView = [UIView new];
-        
-        
-        for (Class _cls in self.cellTypes) {
-            [_mainView registerClass:_cls forCellReuseIdentifier:NSStringFromClass(_cls)];
-        }
-    }
-    
-    return _mainView;
+    [self presentViewController:[SliderViewController new] animated:YES completion:nil];
 }
 
 
-- (NSMutableArray<Class> *)cellTypes
-{
-    if (!_cellTypes) {
-        _cellTypes = [@[[TableViewCellForAd class], [TableViewCellForWeekDaily class],
-                        [TableViewCellForDetail class], [TableViewCellForMap class],
-                        [TableViewCellForSpeed class], [TableViewCellForSunMoon class],
-                        [TableViewCellForRainFall class]] mutableCopy];
-    }
-    return _cellTypes;
-}
-
-
-
+# pragma mark - delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -179,7 +133,12 @@ const NSUInteger numberOfWeatherInformation = 7;
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.maskView];
     [self.view addSubview:self.mainView];
+    [self.view addSubview:self.nav];
     
+    [self.nav mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.height.equalTo(@64);
+    }];
     
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -203,10 +162,14 @@ const NSUInteger numberOfWeatherInformation = 7;
     
     [self _hhxxInitChildView];
     
+    [self.nav.titleLabel setText:@"这是标题"];
+    
+    [self.nav.leftButton addTarget:self action:@selector(_hhxxShowSliderViewController:) forControlEvents:UIControlEventTouchUpInside];
+    [self.nav.rightButton addTarget:self action:@selector(_hhxxAddNewCity:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.yqlApi hhxxFetchData];
     [self.bingApi hhxxFetchData];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -250,8 +213,10 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 - (NSDictionary *)hhxxRequestParamsForApi:(HHXXAbstractApiManager *)mgr
 {
+//    HHXXCityManager* cm = [HHXXCityManager sharedCityManager];
+    NSString* queryString = [HHXXYQLApiManager hhxxGetWeatherForecastByWoeid:@"12712963"];
     return @{
-             @"q": [HHXXYQLApiManager hhxxGetWeatherForecastByWoeid:@"2502265"],
+             @"q": queryString,
              @"format": @"json",
              @"u":@"c",
              };
@@ -297,5 +262,85 @@ const NSUInteger numberOfWeatherInformation = 7;
             [weakSelf.view layoutIfNeeded];
         });
     }
+}
+
+#pragma mark - setter and getter
+- (HHXXCustionNavigationView *)nav
+{
+    if(!_nav)
+    {
+        _nav = [HHXXCustionNavigationView new];
+    }
+    
+    return _nav;
+}
+
+
+- (YahooWeatherInformationView *)yahooWeatherHeadView
+{
+    if (!_yahooWeatherHeadView) {
+        _yahooWeatherHeadView = [[YahooWeatherInformationView alloc] initWithFrame:HHXX_MAIN_SCREEN];
+    }
+    
+    return _yahooWeatherHeadView;
+}
+
+- (UIImageView*)maskView
+{
+    if (!_maskView) {
+        _maskView = [[UIImageView alloc] initWithFrame:HHXX_MAIN_SCREEN];
+        [_maskView setContentMode:UIViewContentModeScaleAspectFill];
+        _maskView.alpha = 0.75f;
+        //        [_maskView setImageToBlur:[UIImage imageNamed:@"adContent"] blurRadius:10.0 completionBlock:nil];
+    }
+    
+    return _maskView;
+}
+
+- (UIImageView*)backgroundView
+{
+    if (!_backgroundView) {
+        _backgroundView = [[UIImageView alloc] initWithFrame:HHXX_MAIN_SCREEN];
+        //        [_backgroundView setImage:[UIImage imageNamed:@"adContent"]];
+        [_backgroundView setContentMode:UIViewContentModeScaleAspectFill];
+    }
+    
+    return _backgroundView;
+}
+
+
+- (UITableView*)mainView
+{
+    if (!_mainView)
+    {
+        _mainView = [[UITableView alloc] initWithFrame:HHXX_MAIN_SCREEN style:UITableViewStylePlain];
+        _mainView.translatesAutoresizingMaskIntoConstraints = NO;
+        _mainView.delegate = self;
+        _mainView.dataSource = self;
+        _mainView.backgroundColor = [UIColor clearColor];
+        _mainView.showsVerticalScrollIndicator = NO;
+        _mainView.estimatedRowHeight = 128;
+        _mainView.rowHeight = UITableViewAutomaticDimension;
+        _mainView.tableHeaderView = self.yahooWeatherHeadView;
+        _mainView.tableFooterView = [UIView new];
+        
+        
+        for (Class _cls in self.cellTypes) {
+            [_mainView registerClass:_cls forCellReuseIdentifier:NSStringFromClass(_cls)];
+        }
+    }
+    
+    return _mainView;
+}
+
+- (NSMutableArray<Class> *)cellTypes
+{
+    if (!_cellTypes) {
+        _cellTypes = [@[[TableViewCellForAd class], [TableViewCellForWeekDaily class],
+                        [TableViewCellForDetail class], [TableViewCellForMap class],
+                        [TableViewCellForSpeed class], [TableViewCellForSunMoon class],
+                        [TableViewCellForRainFall class]] mutableCopy];
+    }
+    return _cellTypes;
 }
 @end

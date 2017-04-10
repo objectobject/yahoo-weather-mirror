@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HHXXCity : NSObject
-@property (nonatomic, readonly, copy) NSString* cnCityName;
-@property (nonatomic, readonly, copy) NSString* enCityName;
-@property (nonatomic, readonly, copy) NSString* zipCode;
-@property (nonatomic, readonly, copy) NSArray<NSString*>* keyWords;
+extern const NSString* kHHXXCurrentCity;
+
+@interface HHXXCity : NSObject<NSCoding>
+@property (nonatomic, copy) NSString* cnCityName;
+@property (nonatomic, copy) NSString* enCityName;
+@property (nonatomic, copy) NSString* zipCode;
+
+@property (nonatomic, copy) NSString* woeid;
+@property (nonatomic, assign) BOOL isLocation;
 @end
