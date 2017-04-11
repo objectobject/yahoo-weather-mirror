@@ -15,10 +15,11 @@
 #import "ModelPlaceManager.h"
 #import <NSObject+YYModel.h>
 #import "ModelPlace.h"
+#import "LeftSliderHead.h"
 
 @interface HHXXAddNewCityViewController ()<UISearchResultsUpdating, UISearchBarDelegate, NSXMLParserDelegate, HHXXNetworkingDelegate, HHXXNetworkingDataSource>
 @property (nonatomic, strong) UISearchController* searchViewController;
-@property (nonatomic, copy) NSMutableArray* searchResult;
+@property (nonatomic, strong) NSMutableArray* searchResult;
 @property (nonatomic, strong) NSXMLParser* parse;
 @property (nonatomic, strong) NSString* parserElmentName;
 
@@ -63,13 +64,29 @@
     id data = [mgr hhxxFetchDataWithFiltrator:nil];
     
     if ([mgr isKindOfClass:[HHXXYQLApiManager class]]) {
+        NSInteger countOfResult = [[data valueForKeyPath:@"query.count"] integerValue];
+        if (countOfResult == 1) {
+            ModelPlaceManagerWithOnePlace* placeMgr = [ModelPlaceManagerWithOnePlace yy_modelWithDictionary:data];
+            [self.searchResult addObject:placeMgr.place];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+            return;
+        }
         ModelPlaceManager* placeMgr = [ModelPlaceManager yy_modelWithDictionary:data];
         [self.searchViewController.searchBar resignFirstResponder];
-        self.searchResult = [placeMgr.place mutableCopy];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+        if (!placeMgr.count) {
+            [self.searchResult addObject:@"查不到结果!"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }else{
+            self.searchResult = [placeMgr.place mutableCopy];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
     }
 }
 
@@ -82,56 +99,12 @@
 
 - (NSMutableArray *)searchResult
 {
-    if (_searchResult == nil) {
+    if (!_searchResult) {
         _searchResult = [[NSMutableArray alloc] init];
     }
     
     return _searchResult;
 }
-
-//- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict
-//{
-//    if ([elementName isEqualToString:@"s"]) {
-//        NSString* value = [attributeDict objectForKey:@"d"];
-//        if (value)
-//        {
-//            NSArray* parseValue = [value componentsSeparatedByString:@":"];
-//            if ([parseValue count] >= 2) {
-//                HHXXCity* newCity = [HHXXCity new];
-//                id cityInfoList = [parseValue[1] componentsSeparatedByString:@"&"];
-//                
-//                for (NSString* city in cityInfoList) {
-//                    NSLog(@"cityinfolist %@", cityInfoList);
-//                    NSArray* cityInfo = [city componentsSeparatedByString:@"="];
-//                    NSLog(@"cityInfo %@", cityInfo);
-//                    if ([cityInfo[0] isEqualToString:@"woeid"]) {
-//                        newCity.woeid = (NSString*)cityInfo[1];
-//                        continue;
-//                    }
-//                    if ([cityInfo[0] isEqualToString:@"n"]) {
-//                        newCity.cnCityName = cityInfo[1];
-//                        continue;
-//                    }
-//                }
-//                [self.searchResult addObject:newCity];
-//            }
-//        }
-//    }
-//    
-//}
-//
-//- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-//{
-//    __weak typeof (self) weakSelf = self;
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        if ([weakSelf.searchResult count] <= 0)
-//        {
-//            [weakSelf.searchResult addObject:@"查不到结果!"];
-//        }
-//        
-//        [weakSelf.tableView reloadData];
-//    });
-//}
 
 
 - (UISearchController*)searchViewController
@@ -155,7 +128,7 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-    [self.searchResult removeAllObjects];
+    self.searchResult = [NSMutableArray array];
     [self.tableView reloadData];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     return YES;
@@ -192,7 +165,6 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    
     id data = [self.searchResult objectAtIndex:indexPath.row];
     
     if ([data isKindOfClass:[NSString class]]) {
@@ -201,7 +173,6 @@
     else
     {
         [cell.textLabel setText: [NSString stringWithFormat:@"%@", (ModelPlace*)data]];
-        NSLog(@"palce = %@", data);
     }
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     [cell setBackgroundColor:[UIColor blackColor]];
@@ -230,7 +201,7 @@
             city;
         })];
         
-        
+        self.refreshDelegate? [self.refreshDelegate hhxxRefreshView] : nil;
         [self dismissViewControllerAnimated:YES completion:^{
             if (self.fromType == HHXXFromViewControllerHome) {
                 // 调整到新的视图控制器

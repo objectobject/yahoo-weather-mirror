@@ -10,7 +10,6 @@
 #import "HHXXServiceManager.h"
 #import "ViewController.h"
 #import "HHXXViewControllerContainer.h"
-#import "WeatherInformationViewController.h"
 #import "YahooWeatherInformationViewController.h"
 #import "HHXXViewControllerContainer+Private.h"
 

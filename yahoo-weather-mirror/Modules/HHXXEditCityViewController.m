@@ -12,14 +12,12 @@
 #import "HHXXCity.h"
 #import "TableViewCellForPosition.h"
 #import "HHXXAddNewCityViewController.h"
+#import "LeftSliderHead.h"
 
-@interface HHXXEditCityViewController ()
-
-@end
 
 #define HHXXCellDefaultBackground [UIColor colorWithRed:39.0 / 255 green:38.0 / 255 blue:38.0 / 255 alpha:1]
 
-@interface HHXXEditCityViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface HHXXEditCityViewController ()<UITableViewDelegate, UITableViewDataSource, HHXXRefreshDelegate>
 @property (nonatomic, strong) UITableView* cityTableView;
 
 @property (nonatomic, strong) NSArray* cityDataSources;
@@ -114,9 +112,15 @@
     [self.cityTableView setEditing:YES animated:YES];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super viewWillAppear:animated];
+    HHXXCity* city = [self.cityDataSources objectAtIndex:indexPath.row];
+    if (editingStyle == UITableViewCellEditingStyleDelete && !city.isLocation) {
+        [tableView beginUpdates];
+        [[HHXXCityManager sharedCityManager] removeCity:city];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [tableView endUpdates];
+    }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,12 +144,19 @@
     [[HHXXCityManager sharedCityManager] switchCityWithIndex:sourceIndexPath.row index2:destinationIndexPath.row];
 }
 
+
+- (void)hhxxRefreshView
+{
+    [self.cityTableView reloadData];
+}
+
 #pragma mark - private method
 - (void)_hhxxAddNewCity:(id)sender
 {
     [self presentViewController:({
         HHXXAddNewCityViewController* addNewCity = [HHXXAddNewCityViewController new];
         addNewCity.fromType = HHXXFromViewControllerLeftSlider;
+        addNewCity.refreshDelegate = self;
         addNewCity;
     }) animated:YES completion:nil];
 }
@@ -153,6 +164,7 @@
 
 - (void)_hhxxBackToPreVC:(id)sender
 {
+    self.refreshDelegate? [self.refreshDelegate hhxxRefreshView] : nil;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

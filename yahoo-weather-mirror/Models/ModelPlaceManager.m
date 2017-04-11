@@ -31,3 +31,15 @@
 }
 
 @end
+
+@implementation ModelPlaceManagerWithOnePlace
+
++ (NSDictionary*)modelCustomPropertyMapper
+{
+    return @{
+             @"place": @"query.results.place",
+             @"created":@"query.created",
+             @"count": @"query.count"
+             };
+}
+@end

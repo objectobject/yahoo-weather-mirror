@@ -15,4 +15,9 @@ typedef NS_ENUM(NSUInteger, HHXXFromViewController) {
 };
 
 
+@protocol HHXXRefreshDelegate <NSObject>
+
+- (void)hhxxRefreshView;
+@end
+
 #endif /* LeftSliderHead_h */

@@ -14,6 +14,8 @@
 #import "HHXXCityManager.h"
 #import "HHXXCity+Transform.h"
 #import "HHXXEditCityViewController.h"
+#import "LeftSliderHead.h"
+#import "HHXXCityManager+Transform.h"
 
 
 
@@ -31,7 +33,7 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
     HHXXSectionSetting = 2
 };
 
-@interface SliderViewController ()
+@interface SliderViewController ()<HHXXRefreshDelegate>
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, assign) BOOL isExpaned;
@@ -46,11 +48,7 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
 #pragma mark - setter and getter function
 - (NSArray *)cityDataSource
 {
-    if (!_cityDataSource) {
-        _cityDataSource = [HHXXCityManager sharedCityManager].allCitys;
-    }
-    
-    return _cityDataSource;
+    return [[HHXXCityManager sharedCityManager] hhxxAllCityToSetings:self.isExpaned];
 }
 
 - (NSArray *)settingDataSource
@@ -126,9 +124,13 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
+- (void)hhxxRefreshView
+{
+    [self.tableView reloadData];
+}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -138,14 +140,13 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
         numberOfRowsInSection = [self.settingDataSource[0] count];
     }
     
-    if (section == HHXXSectionCity) {
-        numberOfRowsInSection = [self.cityDataSource count];
-    }
-    
     if (section == HHXXSectionSetting) {
         numberOfRowsInSection = [self.settingDataSource[1] count];
     }
-    
+
+    if (section == HHXXSectionCity) {
+        numberOfRowsInSection = [self.cityDataSource count];
+    }
     return numberOfRowsInSection;
 }
 
@@ -169,7 +170,7 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
         item = self.settingDataSource[0][indexPath.row];
     }
     if (indexPath.section == HHXXSectionCity) {
-        item = [self.cityDataSource[indexPath.row] hhxxToSetting];
+        item = self.cityDataSource[indexPath.row];
     }
     
     [cell.textLabel setText:item.title];
@@ -256,7 +257,7 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
         currentSetting = self.settingDataSource[0][indexPath.row];
     }
     if (indexPath.section == HHXXSectionCity) {
-        currentSetting = [self.cityDataSource[indexPath.row] hhxxToSetting];
+        currentSetting = self.cityDataSource[indexPath.row];
     }
     
     UIViewController * newVC = nil;
@@ -284,29 +285,20 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
         case ModelSettingAddPosition:
         {
             HHXXEditCityViewController* editCityVC = [HHXXEditCityViewController new];
+            editCityVC.refreshDelegate = self;
             [self presentViewController:[[UINavigationController alloc] initWithRootViewController:editCityVC] animated:YES completion:nil];
         }
             break;
             
         case ModelSettingLoadMore:
+        {
+            self.isExpaned = YES;
+            [self.tableView reloadData];
+            break;
+        }
         case ModelSettingShowFewer:
         {
-//            if (!self.isExpaned)
-//            {
-//                [self.dataSource[0] removeObjectAtIndex:kHHHXXCityNumberLimit];
-//                [self.dataSource[0] insertObject:({
-//                    [HHXXSetting loadFewerSetting];
-//                }) atIndex:[self.dataSource[0] count]];
-//                self.isExpaned = YES;
-//            }
-//            else
-//            {
-//                [self.dataSource[0] removeObjectAtIndex:[self.dataSource[0] count] - 1];
-//                [self.dataSource[0] insertObject:({
-//                    [HHXXSetting loadMoreSetting];
-//                }) atIndex:kHHHXXCityNumberLimit];
-//                self.isExpaned = NO;
-//            }
+            self.isExpaned = NO;
             [self.tableView reloadData];
         }
             break;

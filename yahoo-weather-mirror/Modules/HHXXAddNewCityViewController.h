@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "LeftSliderHead.h"
+@protocol HHXXRefreshDelegate;
+
 
 @interface HHXXAddNewCityViewController : UITableViewController
 @property (nonatomic, assign) HHXXFromViewController fromType;
+@property (nonatomic, weak) id<HHXXRefreshDelegate> refreshDelegate;
 @end

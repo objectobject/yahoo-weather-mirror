@@ -76,6 +76,7 @@
 		3AF4E7BB1E9BF58800A86085 /* HHXXAddNewCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7BA1E9BF58800A86085 /* HHXXAddNewCityViewController.m */; };
 		3AF4E7BE1E9C65CE00A86085 /* ModelPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7BD1E9C65CE00A86085 /* ModelPlace.m */; };
 		3AF4E7C11E9C6BF700A86085 /* ModelPlaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7C01E9C6BF700A86085 /* ModelPlaceManager.m */; };
+		3AF4E7C61E9CDCAE00A86085 /* HHXXCityManager+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7C51E9CDCAE00A86085 /* HHXXCityManager+Transform.m */; };
 		3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */; };
 		3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */; };
 		3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */; };
@@ -83,7 +84,6 @@
 		3AFEF0641E5D9808007CC568 /* HHXXBaseUIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0631E5D9808007CC568 /* HHXXBaseUIService.m */; };
 		3AFEF0AA1E5EAE2D007CC568 /* HHXXViewControllerContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0A91E5EAE2D007CC568 /* HHXXViewControllerContainer.m */; };
 		3AFEF0AF1E5EEF36007CC568 /* UIColor+Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0AE1E5EEF36007CC568 /* UIColor+Provider.m */; };
-		3AFEF0B71E5F476B007CC568 /* WeatherInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0B61E5F476B007CC568 /* WeatherInformationViewController.m */; };
 		3AFEF0BB1E5F52E8007CC568 /* HHXXUIKitMacro.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0B91E5F52E8007CC568 /* HHXXUIKitMacro.c */; };
 		5C7F11186A4E5F5703684C10 /* libPods-yahoo-weather-mirror.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C76A801FFE5F4B70324FB2BE /* libPods-yahoo-weather-mirror.a */; };
 /* End PBXBuildFile section */
@@ -251,6 +251,8 @@
 		3AF4E7BF1E9C6BF700A86085 /* ModelPlaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelPlaceManager.h; path = Models/ModelPlaceManager.h; sourceTree = "<group>"; };
 		3AF4E7C01E9C6BF700A86085 /* ModelPlaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelPlaceManager.m; path = Models/ModelPlaceManager.m; sourceTree = "<group>"; };
 		3AF4E7C31E9C87C400A86085 /* LeftSliderHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftSliderHead.h; sourceTree = "<group>"; };
+		3AF4E7C41E9CDCAE00A86085 /* HHXXCityManager+Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HHXXCityManager+Transform.h"; path = "Models/HHXXCityManager+Transform.h"; sourceTree = "<group>"; };
+		3AF4E7C51E9CDCAE00A86085 /* HHXXCityManager+Transform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HHXXCityManager+Transform.m"; path = "Models/HHXXCityManager+Transform.m"; sourceTree = "<group>"; };
 		3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNotificationService.h; path = Services/HHXXNotificationService.h; sourceTree = "<group>"; };
 		3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNotificationService.m; path = Services/HHXXNotificationService.m; sourceTree = "<group>"; };
 		3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXAMapService.h; path = Services/HHXXAMapService.h; sourceTree = "<group>"; };
@@ -265,8 +267,6 @@
 		3AFEF0A91E5EAE2D007CC568 /* HHXXViewControllerContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXViewControllerContainer.m; path = Tools/ViewControllerContainer/HHXXViewControllerContainer.m; sourceTree = "<group>"; };
 		3AFEF0AD1E5EEF36007CC568 /* UIColor+Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Provider.h"; path = "Category/UIColor+Provider.h"; sourceTree = "<group>"; };
 		3AFEF0AE1E5EEF36007CC568 /* UIColor+Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Provider.m"; path = "Category/UIColor+Provider.m"; sourceTree = "<group>"; };
-		3AFEF0B51E5F476B007CC568 /* WeatherInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherInformationViewController.h; path = Modules/WeatherInformationViewController.h; sourceTree = "<group>"; };
-		3AFEF0B61E5F476B007CC568 /* WeatherInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherInformationViewController.m; path = Modules/WeatherInformationViewController.m; sourceTree = "<group>"; };
 		3AFEF0B91E5F52E8007CC568 /* HHXXUIKitMacro.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = HHXXUIKitMacro.c; path = Macro/HHXXUIKitMacro.c; sourceTree = "<group>"; };
 		3AFEF0BA1E5F52E8007CC568 /* HHXXUIKitMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXUIKitMacro.h; path = Macro/HHXXUIKitMacro.h; sourceTree = "<group>"; };
 		999093E0B8A5E5F11FDEF2BF /* Pods-yahoo-weather-mirror.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yahoo-weather-mirror.release.xcconfig"; path = "Pods/Target Support Files/Pods-yahoo-weather-mirror/Pods-yahoo-weather-mirror.release.xcconfig"; sourceTree = "<group>"; };
@@ -500,6 +500,8 @@
 				3AF4E7BD1E9C65CE00A86085 /* ModelPlace.m */,
 				3AF4E7BF1E9C6BF700A86085 /* ModelPlaceManager.h */,
 				3AF4E7C01E9C6BF700A86085 /* ModelPlaceManager.m */,
+				3AF4E7C41E9CDCAE00A86085 /* HHXXCityManager+Transform.h */,
+				3AF4E7C51E9CDCAE00A86085 /* HHXXCityManager+Transform.m */,
 			);
 			name = LeftSlider;
 			sourceTree = "<group>";
@@ -606,8 +608,6 @@
 		3AFEF0B31E5F4723007CC568 /* WeatherInformation */ = {
 			isa = PBXGroup;
 			children = (
-				3AFEF0B51E5F476B007CC568 /* WeatherInformationViewController.h */,
-				3AFEF0B61E5F476B007CC568 /* WeatherInformationViewController.m */,
 				3AE357A91E6F93E3002D4221 /* YahooWeatherInformationViewController.h */,
 				3AE357AA1E6F93E3002D4221 /* YahooWeatherInformationViewController.m */,
 				3AE357AC1E6FFA73002D4221 /* YahooWeatherInformationView.h */,
@@ -895,10 +895,10 @@
 				3AF4E79C1E9BA52800A86085 /* HHXXViewControllerContainer+NavgationBar.m in Sources */,
 				3AF4E7AC1E9BECE800A86085 /* TableViewCellForCurrentPosition.m in Sources */,
 				3AE357B81E7031ED002D4221 /* TableViewCellForDetail.m in Sources */,
+				3AF4E7C61E9CDCAE00A86085 /* HHXXCityManager+Transform.m in Sources */,
 				3AEBF4691E822EC500AB9548 /* HHXXSetting.m in Sources */,
 				3ACBCA7E1E971B9E00640B0C /* ModelWind.m in Sources */,
 				3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */,
-				3AFEF0B71E5F476B007CC568 /* WeatherInformationViewController.m in Sources */,
 				3ACBCA7D1E971B9E00640B0C /* ModelWeatherItem.m in Sources */,
 				3AF4E7C11E9C6BF700A86085 /* ModelPlaceManager.m in Sources */,
 				3AF4E7BE1E9C65CE00A86085 /* ModelPlace.m in Sources */,

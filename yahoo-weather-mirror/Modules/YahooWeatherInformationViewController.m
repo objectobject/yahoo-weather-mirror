@@ -52,6 +52,7 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 #pragma mark - private method
 
+
 - (void)_hhxxAddNewCity:(id)sender
 {
     [self presentViewController:({
@@ -60,7 +61,6 @@ const NSUInteger numberOfWeatherInformation = 7;
         addNewCity;
     }) animated:YES completion:nil];
 }
-
 
 - (void)_hhxxShowSliderViewController:(id)sender
 {

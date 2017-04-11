@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol HHXXRefreshDelegate;
 
 @interface HHXXEditCityViewController : UIViewController
 
+@property (nonatomic, weak) id<HHXXRefreshDelegate> refreshDelegate;
 @end
