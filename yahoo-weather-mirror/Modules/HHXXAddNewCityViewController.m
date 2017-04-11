@@ -106,7 +106,6 @@
     return _searchResult;
 }
 
-
 - (UISearchController*)searchViewController
 {
     if (_searchViewController == nil) {
