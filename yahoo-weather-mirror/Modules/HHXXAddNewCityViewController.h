@@ -11,4 +11,5 @@
 
 @interface HHXXAddNewCityViewController : UITableViewController
 @property (nonatomic, assign) HHXXFromViewController fromType;
+
 @end

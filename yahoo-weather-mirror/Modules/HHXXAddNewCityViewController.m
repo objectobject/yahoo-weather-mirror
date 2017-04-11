@@ -192,7 +192,6 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    
     id data = [self.searchResult objectAtIndex:indexPath.row];
     
     if ([data isKindOfClass:[NSString class]]) {
@@ -201,7 +200,6 @@
     else
     {
         [cell.textLabel setText: [NSString stringWithFormat:@"%@", (ModelPlace*)data]];
-        NSLog(@"palce = %@", data);
     }
     [cell.textLabel setTextColor:[UIColor whiteColor]];
     [cell setBackgroundColor:[UIColor blackColor]];
