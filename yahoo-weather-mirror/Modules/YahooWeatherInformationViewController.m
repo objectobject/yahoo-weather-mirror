@@ -29,11 +29,14 @@
 #import "SliderViewController.h"
 #import "HHXXCityManager.h"
 #import "HHXXAddNewCityViewController.h"
+#import "HHXXDefaultTransitioningAnimator.h"
+#import "HHXXSliderAnimator.h"
+#import "HHXXViewControllerContainer.h"
 
 
 const NSUInteger numberOfWeatherInformation = 7;
 
-@interface YahooWeatherInformationViewController ()<UITableViewDelegate, UITableViewDataSource, HHXXNetworkingDelegate, HHXXNetworkingDataSource>
+@interface YahooWeatherInformationViewController ()<UITableViewDelegate, UITableViewDataSource, HHXXNetworkingDelegate, HHXXNetworkingDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) UITableView* mainView;
 @property (nonatomic, strong) UIImageView* backgroundView;
 @property (nonatomic, strong) UIImageView* maskView;
@@ -64,9 +67,35 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 - (void)_hhxxShowSliderViewController:(id)sender
 {
-    [self presentViewController:[SliderViewController new] animated:YES completion:nil];
+    if ([self.parentViewController isKindOfClass:[HHXXViewControllerContainer class]]) {
+        HHXXViewControllerContainer* fatherVC = (HHXXViewControllerContainer*)self.parentViewController;
+        if (!fatherVC.leftSliderExpend) {
+            SliderViewController* sliderVC = [[SliderViewController alloc] init];
+            fatherVC.leftSliderViewController = sliderVC;
+//            sliderVC.modalPresentationStyle = UIModalPresentationCustom;
+//            sliderVC.transitioningDelegate = self;
+//            [self presentViewController:sliderVC animated:YES completion:^{
+//                fatherVC.leftSliderExpend = YES;
+//            }];
+        }else{
+            fatherVC.leftSliderViewController = nil;
+//            [self dismissViewControllerAnimated:YES completion:^{
+//                fatherVC.leftSliderExpend = NO;
+//            }];
+        }
+    }
+    
 }
 
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    return [HHXXSliderAnimator new];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    return [[HHXXSliderAnimator alloc] initWithDismiss:YES];
+}
 
 # pragma mark - delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

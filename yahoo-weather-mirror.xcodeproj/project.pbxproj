@@ -66,7 +66,6 @@
 		3AEBF4821E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AEBF4811E8DCC2E00AB9548 /* HHXXNetworkingStateMonitorService.m */; };
 		3AF4E7921E9B028300A86085 /* HHXXCustionNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7911E9B028300A86085 /* HHXXCustionNavigationView.m */; };
 		3AF4E7951E9B99BA00A86085 /* UIViewController+Decorate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7941E9B99BA00A86085 /* UIViewController+Decorate.m */; };
-		3AF4E79C1E9BA52800A86085 /* HHXXViewControllerContainer+NavgationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E79B1E9BA52800A86085 /* HHXXViewControllerContainer+NavgationBar.m */; };
 		3AF4E7A31E9BBD7100A86085 /* HHXXSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7A21E9BBD7100A86085 /* HHXXSettingManager.m */; };
 		3AF4E7A61E9BD34700A86085 /* HHXXCity+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7A51E9BD34700A86085 /* HHXXCity+Transform.m */; };
 		3AF4E7A91E9BE76F00A86085 /* HHXXEditCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7A81E9BE76F00A86085 /* HHXXEditCityViewController.m */; };
@@ -77,6 +76,8 @@
 		3AF4E7BE1E9C65CE00A86085 /* ModelPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7BD1E9C65CE00A86085 /* ModelPlace.m */; };
 		3AF4E7C11E9C6BF700A86085 /* ModelPlaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7C01E9C6BF700A86085 /* ModelPlaceManager.m */; };
 		3AF4E7C61E9CDCAE00A86085 /* HHXXCityManager+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7C51E9CDCAE00A86085 /* HHXXCityManager+Transform.m */; };
+		3AF4E7C91E9E010900A86085 /* HHXXSliderAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7C81E9E010900A86085 /* HHXXSliderAnimator.m */; };
+		3AF4E7CC1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7CB1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.m */; };
 		3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */; };
 		3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */; };
 		3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */; };
@@ -231,8 +232,6 @@
 		3AF4E7931E9B99BA00A86085 /* UIViewController+Decorate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Decorate.h"; path = "Category/UIViewController+Decorate.h"; sourceTree = "<group>"; };
 		3AF4E7941E9B99BA00A86085 /* UIViewController+Decorate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Decorate.m"; path = "Category/UIViewController+Decorate.m"; sourceTree = "<group>"; };
 		3AF4E7991E9B9DB100A86085 /* HHXXViewControllerContainer+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "HHXXViewControllerContainer+Private.h"; path = "Tools/ViewControllerContainer/HHXXViewControllerContainer+Private.h"; sourceTree = "<group>"; };
-		3AF4E79A1E9BA52800A86085 /* HHXXViewControllerContainer+NavgationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HHXXViewControllerContainer+NavgationBar.h"; path = "Tools/ViewControllerContainer/HHXXViewControllerContainer+NavgationBar.h"; sourceTree = "<group>"; };
-		3AF4E79B1E9BA52800A86085 /* HHXXViewControllerContainer+NavgationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HHXXViewControllerContainer+NavgationBar.m"; path = "Tools/ViewControllerContainer/HHXXViewControllerContainer+NavgationBar.m"; sourceTree = "<group>"; };
 		3AF4E7A11E9BBD7100A86085 /* HHXXSettingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXSettingManager.h; path = Models/HHXXSettingManager.h; sourceTree = "<group>"; };
 		3AF4E7A21E9BBD7100A86085 /* HHXXSettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXSettingManager.m; path = Models/HHXXSettingManager.m; sourceTree = "<group>"; };
 		3AF4E7A41E9BD34700A86085 /* HHXXCity+Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HHXXCity+Transform.h"; path = "Models/HHXXCity+Transform.h"; sourceTree = "<group>"; };
@@ -253,6 +252,10 @@
 		3AF4E7C31E9C87C400A86085 /* LeftSliderHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftSliderHead.h; sourceTree = "<group>"; };
 		3AF4E7C41E9CDCAE00A86085 /* HHXXCityManager+Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HHXXCityManager+Transform.h"; path = "Models/HHXXCityManager+Transform.h"; sourceTree = "<group>"; };
 		3AF4E7C51E9CDCAE00A86085 /* HHXXCityManager+Transform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HHXXCityManager+Transform.m"; path = "Models/HHXXCityManager+Transform.m"; sourceTree = "<group>"; };
+		3AF4E7C71E9E010900A86085 /* HHXXSliderAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXSliderAnimator.h; path = Modules/HHXXSliderAnimator.h; sourceTree = "<group>"; };
+		3AF4E7C81E9E010900A86085 /* HHXXSliderAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXSliderAnimator.m; path = Modules/HHXXSliderAnimator.m; sourceTree = "<group>"; };
+		3AF4E7CA1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HHXXViewControllerContainer+Slider.h"; path = "Tools/ViewControllerContainer/HHXXViewControllerContainer+Slider.h"; sourceTree = "<group>"; };
+		3AF4E7CB1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HHXXViewControllerContainer+Slider.m"; path = "Tools/ViewControllerContainer/HHXXViewControllerContainer+Slider.m"; sourceTree = "<group>"; };
 		3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNotificationService.h; path = Services/HHXXNotificationService.h; sourceTree = "<group>"; };
 		3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNotificationService.m; path = Services/HHXXNotificationService.m; sourceTree = "<group>"; };
 		3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXAMapService.h; path = Services/HHXXAMapService.h; sourceTree = "<group>"; };
@@ -578,8 +581,8 @@
 				3AE357931E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.h */,
 				3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */,
 				3AF4E7991E9B9DB100A86085 /* HHXXViewControllerContainer+Private.h */,
-				3AF4E79A1E9BA52800A86085 /* HHXXViewControllerContainer+NavgationBar.h */,
-				3AF4E79B1E9BA52800A86085 /* HHXXViewControllerContainer+NavgationBar.m */,
+				3AF4E7CA1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.h */,
+				3AF4E7CB1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.m */,
 			);
 			name = ViewComtrollerContainer;
 			sourceTree = "<group>";
@@ -651,6 +654,8 @@
 				3AF4E7B91E9BF58800A86085 /* HHXXAddNewCityViewController.h */,
 				3AF4E7BA1E9BF58800A86085 /* HHXXAddNewCityViewController.m */,
 				3AF4E7C31E9C87C400A86085 /* LeftSliderHead.h */,
+				3AF4E7C71E9E010900A86085 /* HHXXSliderAnimator.h */,
+				3AF4E7C81E9E010900A86085 /* HHXXSliderAnimator.m */,
 			);
 			name = LeftSlider;
 			sourceTree = "<group>";
@@ -886,13 +891,13 @@
 				3AE357CA1E70342F002D4221 /* HHXXAutoLayoutTableViewCell.m in Sources */,
 				3AFEF05B1E5C57CE007CC568 /* HHXXSOADelegate.m in Sources */,
 				3ACBCA551E96358000640B0C /* HHXXNetworkingServiceForCityInformation.m in Sources */,
+				3AF4E7CC1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.m in Sources */,
 				3AF4E7BB1E9BF58800A86085 /* HHXXAddNewCityViewController.m in Sources */,
 				3ACBCA7B1E971B9E00640B0C /* ModelUnits.m in Sources */,
 				3ACBCA791E971B9E00640B0C /* ModelYahooWeatherItemTypeInformation.m in Sources */,
 				3AE357D91E73088F002D4221 /* UITableViewCell+EnableDrag.m in Sources */,
 				3ACBCA761E971B9E00640B0C /* ModelAstronomy.m in Sources */,
 				3AE357B11E7004A3002D4221 /* HHXXAutoLayoutView.m in Sources */,
-				3AF4E79C1E9BA52800A86085 /* HHXXViewControllerContainer+NavgationBar.m in Sources */,
 				3AF4E7AC1E9BECE800A86085 /* TableViewCellForCurrentPosition.m in Sources */,
 				3AE357B81E7031ED002D4221 /* TableViewCellForDetail.m in Sources */,
 				3AF4E7C61E9CDCAE00A86085 /* HHXXCityManager+Transform.m in Sources */,
@@ -916,6 +921,7 @@
 				3AEBF47B1E84ABBB00AB9548 /* HHXXSunRaiseLayer.m in Sources */,
 				3AF4E7B71E9BEEA300A86085 /* TableViewCellForPosition.m in Sources */,
 				3ACBCA5B1E967F6E00640B0C /* HHXXYQLApiManager.m in Sources */,
+				3AF4E7C91E9E010900A86085 /* HHXXSliderAnimator.m in Sources */,
 				3ACBCA7A1E971B9E00640B0C /* ModelLocation.m in Sources */,
 				3ACBCA581E96557400640B0C /* HHXXNetworkingResponse.m in Sources */,
 				3AE357AB1E6F93E3002D4221 /* YahooWeatherInformationViewController.m in Sources */,

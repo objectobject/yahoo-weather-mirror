@@ -16,6 +16,7 @@
 #import "HHXXEditCityViewController.h"
 #import "LeftSliderHead.h"
 #import "HHXXCityManager+Transform.h"
+#import "UIImage+Processing.h"
 
 
 
@@ -112,20 +113,15 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
 {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor clearColor]];
+    [self.view setBackgroundColor:HHXXCellDefaultBackground];
     [self.view addSubview:self.tableView];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.top.mas_equalTo(self.view);
+        make.left.bottom.top.mas_equalTo(self.view);
+        make.width.equalTo(self.view.mas_width).multipliedBy(0.66);
     }];
 }
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-//    [self.tableView reloadData];
-}
 
 - (void)hhxxRefreshView
 {
@@ -160,6 +156,7 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:kHHXXTableViewCellId];
+    cell.accessoryView = nil;
     
     HHXXSetting* item = nil;
     if (indexPath.section == HHXXSectionSetting) {
@@ -171,6 +168,19 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
     }
     if (indexPath.section == HHXXSectionCity) {
         item = self.cityDataSource[indexPath.row];
+        
+        if (item.type == ModelSettingShowFewer || item.type == ModelSettingLoadMore) {
+            cell.accessoryView = ({
+                UIImageView* decorateView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kHHXXDefaultHeight, kHHXXDefaultHeight)];
+                if (item.type == ModelSettingLoadMore) {
+                    decorateView.image = [[UIImage imageNamed:@"icon-arrow-up"]  hhxxRotateWithOrientation:UIImageOrientationLeft];
+                }
+                if (item.type == ModelSettingShowFewer) {
+                    decorateView.image = [UIImage imageNamed:@"icon-arrow-up"];
+                }
+                decorateView;
+            });
+        }
     }
     
     [cell.textLabel setText:item.title];
@@ -349,7 +359,7 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
     NSURL* URL = [NSURL URLWithString:@"http://www.yahoo.com"];
     if ([[URL scheme]isEqualToString:@"http"] || [[URL scheme]isEqualToString:@"https"]) {
         if ([[UIApplication sharedApplication] canOpenURL:URL]) {
-            [[UIApplication sharedApplication] openURL:URL];
+            [[UIApplication sharedApplication] openURL:URL options:nil completionHandler:nil];
         }
     }
 }

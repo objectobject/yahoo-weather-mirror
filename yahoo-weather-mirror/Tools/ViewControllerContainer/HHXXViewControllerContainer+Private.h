@@ -34,10 +34,4 @@
 
 @property (nonatomic, strong) UIPanGestureRecognizer* panGestureRecognizer;
 @property (nonatomic, strong) UISwipeGestureRecognizer* leftSwipeGestureRecognizer, *rightSwipeGestureRecognizer;
-
-
-// 导航栏
-//@property (nonatomic, strong) HHXXCustionNavigationView* nav;
-//@property (nonatomic, strong) UIButton* leftButton;
-//@property (nonatomic, strong) UIButton* rightButton;
 @end

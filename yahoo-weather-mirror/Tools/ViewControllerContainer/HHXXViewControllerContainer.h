@@ -12,7 +12,7 @@
 
 @protocol HHXXTransitioningDelegate;
 
-@interface HHXXViewControllerContainer : UIViewController<UIViewControllerTransitioningDelegate>
+@interface HHXXViewControllerContainer : UIViewController
 @property (nonatomic, copy, readonly) NSMutableArray<UIViewController*>* children;
 @property (nonatomic, copy) id<HHXXTransitioningDelegate> hhxxTransitioningDelegate;
 
@@ -25,6 +25,10 @@
 - (void)containerSwitchViewController:(UIViewController*)vc1 viewController2:(UIViewController*)vc2;
 
 + (UINavigationController*)viewControllerContainerWithNavigationController;
+
+// 侧边栏情况
+@property (nonatomic, assign) BOOL leftSliderExpend;
+@property (nonatomic, strong) UIViewController* leftSliderViewController;
 @end
 
 
