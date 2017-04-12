@@ -14,7 +14,6 @@
 
 @property (nonatomic, copy, readwrite) NSMutableArray<UIViewController*>* children;
 @property (nonatomic, strong) UIViewController* selectedViewController;
-@property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, strong) UIViewController* preSelectedViewController;
 
 // 装饰视图
@@ -28,16 +27,12 @@
 
 
 // 交互式转场
+
+@property (nonatomic, assign) BOOL withInteractive;
 @property (nonatomic, strong) id animator;
 @property (nonatomic, assign) HHXXDirection directionForAnimation;
 @property (nonatomic, assign) CGFloat xDistance;
 
 @property (nonatomic, strong) UIPanGestureRecognizer* panGestureRecognizer;
 @property (nonatomic, strong) UISwipeGestureRecognizer* leftSwipeGestureRecognizer, *rightSwipeGestureRecognizer;
-
-
-// 导航栏
-//@property (nonatomic, strong) HHXXCustionNavigationView* nav;
-//@property (nonatomic, strong) UIButton* leftButton;
-//@property (nonatomic, strong) UIButton* rightButton;
 @end

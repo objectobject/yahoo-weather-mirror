@@ -14,14 +14,10 @@
 #import "NSObject+Enumerate.h"
 #import "YahooWeatherInformationViewController.h"
 #import "HHXXViewControllerContainer+Private.h"
+#import "HHXXSliderAnimator.h"
 
 const NSTimeInterval kHHXXDefaultTransitionDuring = 1.0f;
 const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
-
-
-//@interface HHXXViewControllerContainer()
-//
-//@end
 
 @implementation HHXXViewControllerContainer
 #pragma mark - logic for UI
@@ -123,6 +119,22 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     return self;
 }
 
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex
+{
+    if (selectedIndex >= [self.children count]) {
+        return;
+    }
+    UIViewController* toViewController = [self.children objectAtIndex:selectedIndex];
+    _preSelectedViewController = _selectedViewController;
+    _selectedViewController = toViewController;
+    
+    if (self.leftSliderViewController) {
+        self.leftSliderViewController = nil;
+    }else{
+    self.selectedViewController = toViewController;
+    }
+}
 
 - (void)setSelectedViewController:(UIViewController *)selectedViewController
 {
@@ -261,7 +273,75 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 }
 
 
+- (void)_hideLeftSliderViewController:(UIViewController*)oldSliderViewController
+{
+    if (!oldSliderViewController) {
+        return;
+    }
+    
+    [oldSliderViewController willMoveToParentViewController:nil];
+    [self addChildViewController:self.selectedViewController];
+    [self.rootView addSubview:self.selectedViewController.view];
+    [self.selectedViewController didMoveToParentViewController:self];
+    
+    HHXXSliderAnimator* animator = [[HHXXSliderAnimator alloc] initWithDismiss:YES];
+    id<UIViewControllerContextTransitioning> transitioningContext = ({
+        HHXXViewControllerTransitioningContext* context = [[HHXXViewControllerTransitioningContext alloc] initWithFromViewController:oldSliderViewController toViewController:self.selectedViewController];
+        
+        context.isInteractive = NO;
+        context.completeBlock = ^(BOOL didComplete){
+            [oldSliderViewController.view removeFromSuperview];
+            [oldSliderViewController removeFromParentViewController];
+            
+            [self.rootView addGestureRecognizer:self.panGestureRecognizer];
+            
+            if ([animator respondsToSelector:@selector(animationEnded:)]) {
+                [animator animationEnded:didComplete];
+            }
+        };
+        context;
+    });
+    [animator animateTransition:transitioningContext];
+}
 
+
+
+- (void)_showLeftSliderViewController:(UIViewController*)newSliderViewController
+{
+    if (!newSliderViewController) {
+        return;
+    }
+    
+    [self.selectedViewController willMoveToParentViewController:nil];
+    [self addChildViewController:newSliderViewController];
+    
+    HHXXSliderAnimator* animator = [HHXXSliderAnimator new];
+    id<UIViewControllerContextTransitioning> transitioningContext = ({
+        HHXXViewControllerTransitioningContext* context = [[HHXXViewControllerTransitioningContext alloc] initWithFromViewController:self.selectedViewController toViewController:newSliderViewController];
+        
+        [self.rootView addSubview:newSliderViewController.view];
+        [newSliderViewController didMoveToParentViewController:self];
+        
+        context.isInteractive = NO;
+        context.completeBlock = ^(BOOL didComplete){
+            
+            [self.selectedViewController.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_hhxxTapWhenLeftExpend:)]];
+            [self.rootView removeGestureRecognizer:self.panGestureRecognizer];
+            
+            if ([animator respondsToSelector:@selector(animationEnded:)]) {
+                [animator animationEnded:didComplete];
+            }
+        };
+        context;
+    });
+    [animator animateTransition:transitioningContext];
+}
+
+
+- (void)_hhxxTapWhenLeftExpend:(id)sender
+{
+    self.leftSliderViewController = nil;
+}
 
 - (void)_hhxxInitView
 {
@@ -304,11 +384,6 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     [self.rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mainView]-0-|" options:0 metrics:NULL views:NSDictionaryOfVariableBindings(mainView)]];
     
     [self.selectedViewController didMoveToParentViewController:self];
-    
-    if (!self.transitioningDelegate)
-    {
-        self.transitioningDelegate = self;
-    }
 }
 
 
@@ -415,7 +490,6 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
             self.xDistance = 0;
             break;
     }
-//    }
 }
 
 #pragma mark - setter and getter
@@ -452,5 +526,15 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     }
     
     return _decorateView;
+}
+
+- (void)setLeftSliderViewController:(UIViewController *)leftSliderViewController
+{
+    if (leftSliderViewController) {
+        [self _showLeftSliderViewController:leftSliderViewController];
+    }else{
+        [self _hideLeftSliderViewController:_leftSliderViewController];
+    }
+    _leftSliderViewController = leftSliderViewController;
 }
 @end

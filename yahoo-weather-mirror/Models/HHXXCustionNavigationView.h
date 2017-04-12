@@ -16,4 +16,6 @@
 @property (nonatomic, strong) UIButton* rightButton;
 @property (nonatomic, strong) CAGradientLayer* gradientLayer;
 
+
+- (void)setTitle:(NSString*)title;
 @end

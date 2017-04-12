@@ -91,7 +91,6 @@
     if (self.delegate) {
         [self.delegate hhxxCallApiSuccess:self];
     }
-    NSLog(@"Scuess: %@", response);
 }
 
 - (void)_hhxxFetchDataFailed:(HHXXNetworkingResponse*)response

@@ -12,11 +12,10 @@
 
 @protocol HHXXTransitioningDelegate;
 
-@interface HHXXViewControllerContainer : UIViewController<UIViewControllerTransitioningDelegate>
+@interface HHXXViewControllerContainer : UIViewController
 @property (nonatomic, copy, readonly) NSMutableArray<UIViewController*>* children;
 @property (nonatomic, copy) id<HHXXTransitioningDelegate> hhxxTransitioningDelegate;
-
-@property (nonatomic, assign) BOOL withInteractive;
+@property (nonatomic, assign) NSUInteger selectedIndex;
 
 - (instancetype)initWithViewControllers:(NSMutableArray<UIViewController*>*)viewControllers;
 
@@ -24,7 +23,8 @@
 - (UIViewController*)removeViewControllerAtIndex:(NSUInteger)index;
 - (void)containerSwitchViewController:(UIViewController*)vc1 viewController2:(UIViewController*)vc2;
 
-+ (UINavigationController*)viewControllerContainerWithNavigationController;
+// 侧边栏情况
+@property (nonatomic, strong) UIViewController* leftSliderViewController;
 @end
 
 

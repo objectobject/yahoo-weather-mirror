@@ -29,11 +29,15 @@
 #import "SliderViewController.h"
 #import "HHXXCityManager.h"
 #import "HHXXAddNewCityViewController.h"
+#import "HHXXDefaultTransitioningAnimator.h"
+#import "HHXXSliderAnimator.h"
+#import "HHXXViewControllerContainer.h"
+#import "HHXXCity.h"
 
 
 const NSUInteger numberOfWeatherInformation = 7;
 
-@interface YahooWeatherInformationViewController ()<UITableViewDelegate, UITableViewDataSource, HHXXNetworkingDelegate, HHXXNetworkingDataSource>
+@interface YahooWeatherInformationViewController ()<UITableViewDelegate, UITableViewDataSource, HHXXNetworkingDelegate, HHXXNetworkingDataSource, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) UITableView* mainView;
 @property (nonatomic, strong) UIImageView* backgroundView;
 @property (nonatomic, strong) UIImageView* maskView;
@@ -46,12 +50,12 @@ const NSUInteger numberOfWeatherInformation = 7;
 @property (nonatomic, strong) ModelWeatherForecast* weatherForecastInformation;
 
 @property (nonatomic, strong) HHXXCustionNavigationView* nav;
+@property (nonatomic, strong) HHXXCity* currentCity;
 @end
 
 @implementation YahooWeatherInformationViewController
 
 #pragma mark - private method
-
 
 - (void)_hhxxAddNewCity:(id)sender
 {
@@ -64,9 +68,27 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 - (void)_hhxxShowSliderViewController:(id)sender
 {
-    [self presentViewController:[SliderViewController new] animated:YES completion:nil];
+    if ([self.parentViewController isKindOfClass:[HHXXViewControllerContainer class]]) {
+        HHXXViewControllerContainer* fatherVC = (HHXXViewControllerContainer*)self.parentViewController;
+        if (!fatherVC.leftSliderViewController) {
+            SliderViewController* sliderVC = [[SliderViewController alloc] init];
+            fatherVC.leftSliderViewController = sliderVC;
+        }else{
+            fatherVC.leftSliderViewController = nil;
+        }
+    }
+    
 }
 
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    return [HHXXSliderAnimator new];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    return [[HHXXSliderAnimator alloc] initWithDismiss:YES];
+}
 
 # pragma mark - delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -211,10 +233,13 @@ const NSUInteger numberOfWeatherInformation = 7;
     return _yqlApi;
 }
 
+
 - (NSDictionary *)hhxxRequestParamsForApi:(HHXXAbstractApiManager *)mgr
 {
-//    HHXXCityManager* cm = [HHXXCityManager sharedCityManager];
-    NSString* queryString = [HHXXYQLApiManager hhxxGetWeatherForecastByWoeid:@"12712963"];
+    if (!self.currentCity) {
+        return nil;
+    }
+    NSString* queryString = [HHXXYQLApiManager hhxxGetWeatherForecastByWoeid:self.currentCity.woeid];
     return @{
              @"q": queryString,
              @"format": @"json",
@@ -252,9 +277,14 @@ const NSUInteger numberOfWeatherInformation = 7;
     }
     
     // 这里设置数据源
+    
+    id count = [requestData valueForKeyPath:@"query.count"];
+    if (!count || [count  isEqual: @(0)]) {
+        return;
+    }
+    
     if ([mgr isKindOfClass:[HHXXYQLApiManager class]]) {
         self.weatherForecastInformation = [ModelWeatherForecast yy_modelWithJSON:requestData];
-        
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.yahooWeatherHeadView configureWithModel:[self.weatherForecastInformation hhxxWeatherFiltrator:HHXXWeatherForecastTypeTodayCondition]];
@@ -265,6 +295,23 @@ const NSUInteger numberOfWeatherInformation = 7;
 }
 
 #pragma mark - setter and getter
+- (HHXXCity *)currentCity
+{
+    if (!_currentCity) {
+        HHXXViewControllerContainer* fatherVC = (HHXXViewControllerContainer*)self.parentViewController;
+        NSUInteger index = [fatherVC.children indexOfObject:self];
+        if (index == NSNotFound) {
+            _currentCity = nil;
+        }else{
+            _currentCity = [[HHXXCityManager sharedCityManager].allCitys objectAtIndex:index];
+        }
+        [self.nav setTitle:_currentCity.cnCityName];
+    }
+    
+    return _currentCity;
+}
+
+
 - (HHXXCustionNavigationView *)nav
 {
     if(!_nav)

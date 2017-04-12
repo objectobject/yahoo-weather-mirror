@@ -37,15 +37,15 @@
     switch (orientation)
     {
         case UIImageOrientationLeft:
-            CGContextRotateCTM(context, -90);
+            CGContextRotateCTM(context, M_PI_2);
             break;
             
         case UIImageOrientationUp:
-            CGContextRotateCTM(context, -90);
+            CGContextRotateCTM(context, M_PI);
             break;
             
         case UIImageOrientationRight:
-            CGContextRotateCTM(context, -90);
+            CGContextRotateCTM(context, M_PI + M_PI_2);
             break;
             
         default:

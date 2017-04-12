@@ -12,6 +12,7 @@
 #import "HHXXViewControllerContainer.h"
 #import "YahooWeatherInformationViewController.h"
 #import "HHXXViewControllerContainer+Private.h"
+#import "HHXXCityManager.h"
 
 @interface HHXXBaseUIService()<HHXXSOAServiceDelegate>
 @end
@@ -20,16 +21,18 @@
 
 HHXX_AUTO_REGISTER_SERVICE(HHXXBaseUIService)
 
-- (void)test
-{
-    NSLog(@"test");
-}
-
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions
 {
     
     UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    HHXXViewControllerContainer* rootVC = [[HHXXViewControllerContainer alloc] initWithViewControllers:@[[YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new], [YahooWeatherInformationViewController new]]];
+    
+    NSMutableArray* allVC = [NSMutableArray array];
+    [[HHXXCityManager sharedCityManager].allCitys enumerateObjectsUsingBlock:^(HHXXCity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [allVC addObject:({
+            [YahooWeatherInformationViewController new];
+        })];
+    }];
+    HHXXViewControllerContainer* rootVC = [[HHXXViewControllerContainer alloc] initWithViewControllers:allVC];
     
 //    window.rootViewController = [[UINavigationController alloc] initWithRootViewController:rootVC];
     window.rootViewController = rootVC;

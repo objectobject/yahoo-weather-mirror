@@ -13,6 +13,11 @@ const CGFloat kHHXXNavHeight = 64;
 
 @implementation HHXXCustionNavigationView
 
+- (void)setTitle:(NSString*)title
+{
+    [self.titleLabel setText:title];
+}
+
 - (void)hhxx_createLayoutConstraints
 {
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
