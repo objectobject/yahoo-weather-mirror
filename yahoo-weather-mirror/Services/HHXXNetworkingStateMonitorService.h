@@ -10,7 +10,4 @@
 #import "HHXXAMapService.h"
 
 @interface HHXXNetworkingStateMonitorService : NSObject<HHXXSOAServiceDelegate>
-
-- (NSString*)hhxxNetworkingServiceName;
-- (NSString*)hhxxBaseURLForService;
 @end

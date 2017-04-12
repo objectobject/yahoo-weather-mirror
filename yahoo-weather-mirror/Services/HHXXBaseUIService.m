@@ -8,7 +8,6 @@
 
 #import "HHXXBaseUIService.h"
 #import "HHXXServiceManager.h"
-#import "ViewController.h"
 #import "HHXXViewControllerContainer.h"
 #import "YahooWeatherInformationViewController.h"
 #import "HHXXViewControllerContainer+Private.h"
@@ -23,7 +22,6 @@ HHXX_AUTO_REGISTER_SERVICE(HHXXBaseUIService)
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions
 {
-    
     UIWindow* window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     NSMutableArray* allVC = [NSMutableArray array];

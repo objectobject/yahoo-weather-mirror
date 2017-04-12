@@ -14,7 +14,7 @@
 @property (nonatomic, assign) BOOL transitionWasCancelled;
 
 @property (nonatomic, assign) UIModalPresentationStyle presentationStyle;
-@property (nonatomic, weak) UIView* containerView;
+@property (nonatomic, strong) UIView* containerView;
 
 @property (nonatomic, assign) CGRect appearFromRect;
 @property (nonatomic, assign) CGRect appearToRect;
@@ -49,16 +49,16 @@
     return self;
 }
 
-//- (CGRect)initialFrameForViewController:(UIViewController *)vc
-//{
-//    return CGRectZero;
-//}
-//
-//
-//- (CGRect)finalFrameForViewController:(UIViewController *)vc
-//{
-//    return vc.view.frame;
-//}
+- (CGRect)initialFrameForViewController:(UIViewController *)vc
+{
+    return CGRectZero;
+}
+
+
+- (CGRect)finalFrameForViewController:(UIViewController *)vc
+{
+    return vc.view.frame;
+}
 
 - (UIView *)containerView
 {

@@ -8,6 +8,8 @@
 
 #import "HHXXCityManager.h"
 #import "HHXXCity.h"
+//#import "HHXXViewControllerContainerHead.h"
+#import "YahooWeatherInformationViewController.h"
 
 
 NSString* const kHHXXAllCitys = @"kHHXXAllCitys";
@@ -67,6 +69,7 @@ NSString* const kHHXXAllCitys = @"kHHXXAllCitys";
         return;
     }
     [self.allCitys addObject:city];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHHXXPostMessage_AddVC" object:([YahooWeatherInformationViewController new])];
     [self _hhxxSave];
 }
 
@@ -74,7 +77,9 @@ NSString* const kHHXXAllCitys = @"kHHXXAllCitys";
 - (void)removeCity:(HHXXCity*)city
 {
     if ([self.allCitys containsObject:city]) {
+        NSUInteger index = [self.allCitys indexOfObject:city];
         [self.allCitys removeObject:city];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kHHXXPostMessage_DeleteVC" object:@(index)];
         [self _hhxxSave];
     }
 }
@@ -93,6 +98,7 @@ NSString* const kHHXXAllCitys = @"kHHXXAllCitys";
     NSParameterAssert(index1 < [self.allCitys count] && index2 < [self.allCitys count]);
     
     [self.allCitys exchangeObjectAtIndex:index2 withObjectAtIndex:index1];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHHXXPostMessage_DeleteVC" object:@{@"kHHXXPostMessage_OldIndex": @(index1), @"kHHXXPostMessage_NewIndex": @(index2)}];
     [self _hhxxSave];
 }
 

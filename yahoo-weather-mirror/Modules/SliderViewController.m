@@ -123,6 +123,7 @@ typedef NS_ENUM(NSUInteger, HHXXSectionType) {
     }];
 }
 
+
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
