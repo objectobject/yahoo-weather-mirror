@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A6CE1831E5B1952008059AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE1821E5B1952008059AC /* main.m */; };
 		3A6CE1861E5B1952008059AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE1851E5B1952008059AC /* AppDelegate.m */; };
-		3A6CE1891E5B1952008059AC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6CE1881E5B1952008059AC /* ViewController.m */; };
 		3A6CE18C1E5B1952008059AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A6CE18A1E5B1952008059AC /* Main.storyboard */; };
 		3A6CE18E1E5B1952008059AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A6CE18D1E5B1952008059AC /* Assets.xcassets */; };
 		3A6CE1911E5B1952008059AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A6CE18F1E5B1952008059AC /* LaunchScreen.storyboard */; };
@@ -111,8 +110,6 @@
 		3A6CE1821E5B1952008059AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3A6CE1841E5B1952008059AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A6CE1851E5B1952008059AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3A6CE1871E5B1952008059AC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3A6CE1881E5B1952008059AC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3A6CE18B1E5B1952008059AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A6CE18D1E5B1952008059AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A6CE1901E5B1952008059AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -253,6 +250,7 @@
 		3AF4E7CB1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HHXXViewControllerContainer+Slider.m"; path = "Tools/ViewControllerContainer/HHXXViewControllerContainer+Slider.m"; sourceTree = "<group>"; };
 		3AF4E7CD1E9E44F800A86085 /* HHXXSliderAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXSliderAnimator.h; path = Tools/ViewControllerContainer/HHXXSliderAnimator.h; sourceTree = "<group>"; };
 		3AF4E7CE1E9E44F800A86085 /* HHXXSliderAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXSliderAnimator.m; path = Tools/ViewControllerContainer/HHXXSliderAnimator.m; sourceTree = "<group>"; };
+		3AF4E7D01E9E742A00A86085 /* HHXXViewControllerContainerHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HHXXViewControllerContainerHead.h; path = Tools/ViewControllerContainer/HHXXViewControllerContainerHead.h; sourceTree = "<group>"; };
 		3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNotificationService.h; path = Services/HHXXNotificationService.h; sourceTree = "<group>"; };
 		3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNotificationService.m; path = Services/HHXXNotificationService.m; sourceTree = "<group>"; };
 		3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXAMapService.h; path = Services/HHXXAMapService.h; sourceTree = "<group>"; };
@@ -333,8 +331,6 @@
 				3AFEF0481E5C1CEB007CC568 /* Services */,
 				3A6CE1841E5B1952008059AC /* AppDelegate.h */,
 				3A6CE1851E5B1952008059AC /* AppDelegate.m */,
-				3A6CE1871E5B1952008059AC /* ViewController.h */,
-				3A6CE1881E5B1952008059AC /* ViewController.m */,
 				3A6CE18A1E5B1952008059AC /* Main.storyboard */,
 				3A6CE18D1E5B1952008059AC /* Assets.xcassets */,
 				3A6CE18F1E5B1952008059AC /* LaunchScreen.storyboard */,
@@ -580,6 +576,7 @@
 				3AF4E7991E9B9DB100A86085 /* HHXXViewControllerContainer+Private.h */,
 				3AF4E7CA1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.h */,
 				3AF4E7CB1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.m */,
+				3AF4E7D01E9E742A00A86085 /* HHXXViewControllerContainerHead.h */,
 			);
 			name = ViewComtrollerContainer;
 			sourceTree = "<group>";
@@ -881,7 +878,6 @@
 				3AF4E7A91E9BE76F00A86085 /* HHXXEditCityViewController.m in Sources */,
 				3ACBCA7C1E971B9E00640B0C /* ModelWeatherForecast.m in Sources */,
 				3AE357C11E70322C002D4221 /* TableViewCellForSpeed.m in Sources */,
-				3A6CE1891E5B1952008059AC /* ViewController.m in Sources */,
 				3AE357D31E72343C002D4221 /* UIView+AutoLayout.m in Sources */,
 				3AE357CA1E70342F002D4221 /* HHXXAutoLayoutTableViewCell.m in Sources */,
 				3AFEF05B1E5C57CE007CC568 /* HHXXSOADelegate.m in Sources */,

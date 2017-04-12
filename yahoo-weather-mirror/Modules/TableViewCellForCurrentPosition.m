@@ -9,7 +9,7 @@
 #import "TableViewCellForCurrentPosition.h"
 
 @interface TableViewCellForCurrentPosition()
-@property (nonatomic, strong) UIImageView* imageView;
+@property (nonatomic, strong) UIImageView* positionImageView;
 @property (nonatomic, strong) UILabel* titleLabel;
 @property (nonatomic, strong) UISwitch* switcher;
 @end

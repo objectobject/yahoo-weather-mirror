@@ -8,16 +8,14 @@
 
 #import "HHXXViewControllerContainer.h"
 #import "HHXXViewControllerTransitioningContext.h"
-//#import <Masonry.h>
 #import "HHXXDefaultTransitioningAnimator.h"
 #import "UIPanGestureRecognizer+Addition.h"
 #import "NSObject+Enumerate.h"
 #import "YahooWeatherInformationViewController.h"
 #import "HHXXViewControllerContainer+Private.h"
 #import "HHXXSliderAnimator.h"
+#import "HHXXViewControllerContainerHead.h"
 
-const NSTimeInterval kHHXXDefaultTransitionDuring = 1.0f;
-const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 
 @implementation HHXXViewControllerContainer
 #pragma mark - logic for UI
@@ -92,7 +90,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     if (self)
     {
         NSAssert(viewControllers != nil && [viewControllers count] > 0, @"ViewController Container must container ViewController!");
-        self.children = [NSMutableArray arrayWithArray:[viewControllers copy]];
+        self.children = [NSMutableArray arrayWithArray:viewControllers];
         self.selectedViewController = [_children objectAtIndex:0];
         self.selectedIndex = 0;
         [self _hhxxUpdateUI];
@@ -132,46 +130,24 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     if (self.leftSliderViewController) {
         self.leftSliderViewController = nil;
     }else{
-    self.selectedViewController = toViewController;
+        self.selectedViewController = toViewController;
     }
 }
 
-- (void)setSelectedViewController:(UIViewController *)selectedViewController
-{
-    _preSelectedViewController = _selectedViewController;
-    [self _transitionToViewController:selectedViewController];
-    _selectedViewController = selectedViewController;
-}
-
-- (NSUInteger)selectedIndex
-{
-    return [self.children indexOfObject:_selectedViewController];
-}
-
-- (NSMutableArray<UIViewController *> *)children
-{
-    if (!_children) {
-        _children = [[NSMutableArray alloc] initWithCapacity:1];
-    }
-    return [_children mutableCopy];
-}
-
-
-
-- (UIViewController *)removeViewControllerAtIndex:(NSUInteger)index
+- (UIViewController *)hhxxRemoveViewControllerAtIndex:(NSUInteger)index
 {
     if (index > [self.children count]) {
         return nil;
     }
     
     UIViewController* oldVC = [self.children objectAtIndex:index];
-    [self.children removeObjectAtIndex:index];
     self.selectedIndex = self.selectedIndex == index? 0: self.selectedIndex;
+    [self.children removeObjectAtIndex:index];
     return oldVC;
 }
 
 
-- (void)insertViewController:(UIViewController *)viewController atIndex:(NSUInteger)index
+- (void)hhxxInsertViewController:(UIViewController *)viewController atIndex:(NSUInteger)index
 {
     if (index > [self.children count] || viewController == nil) {
         return ;
@@ -180,10 +156,12 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     [self.children insertObject:viewController atIndex:index];
 }
 
-- (void)hhxxAddViewController:(UIViewController*)viewController
+- (void)hhxxAddViewController:(UIViewController*)viewController animated:(BOOL)animated
 {
     if (self.children) {
-        [self.children insertObject:viewController atIndex:[self.children count]];
+        [self.children addObject:viewController];
+    }
+    if (animated) {
         self.selectedViewController = viewController;
     }
 }
@@ -241,6 +219,8 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
             // 取消转场动画逻辑
             if ([weakContext transitionWasCancelled]) {
                 _selectedViewController = self.preSelectedViewController;
+                [_selectedViewController.view setNeedsLayout];
+                [_selectedViewController.view layoutIfNeeded];
             }
             else
             {
@@ -284,7 +264,9 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     [self.rootView addSubview:self.selectedViewController.view];
     [self.selectedViewController didMoveToParentViewController:self];
     
+
     HHXXSliderAnimator* animator = [[HHXXSliderAnimator alloc] initWithDismiss:YES];
+
     id<UIViewControllerContextTransitioning> transitioningContext = ({
         HHXXViewControllerTransitioningContext* context = [[HHXXViewControllerTransitioningContext alloc] initWithFromViewController:oldSliderViewController toViewController:self.selectedViewController];
         
@@ -295,16 +277,22 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
             
             [self.rootView addGestureRecognizer:self.panGestureRecognizer];
             
+
             if ([animator respondsToSelector:@selector(animationEnded:)]) {
                 [animator animationEnded:didComplete];
             }
         };
         context;
     });
+    
     [animator animateTransition:transitioningContext];
 }
 
 
+- (void)_hhxxTapWhenLeftExpend:(id)sender
+{
+    self.leftSliderViewController = nil;
+}
 
 - (void)_showLeftSliderViewController:(UIViewController*)newSliderViewController
 {
@@ -337,11 +325,6 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     [animator animateTransition:transitioningContext];
 }
 
-
-- (void)_hhxxTapWhenLeftExpend:(id)sender
-{
-    self.leftSliderViewController = nil;
-}
 
 - (void)_hhxxInitView
 {
@@ -384,6 +367,30 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
     [self.rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mainView]-0-|" options:0 metrics:NULL views:NSDictionaryOfVariableBindings(mainView)]];
     
     [self.selectedViewController didMoveToParentViewController:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hhxxChildrenVCChanged:) name:kHHXXPostMessage_AddVC object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hhxxChildrenVCChanged:) name:kHHXXPostMessage_SwapVC object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_hhxxChildrenVCChanged:) name:kHHXXPostMessage_DeleteVC object:nil];
+}
+
+
+- (void)_hhxxChildrenVCChanged:(NSNotification*)postObject
+{
+    NSString* postName = postObject.name;
+    if ([postName isEqualToString:kHHXXPostMessage_AddVC]) {
+        [self hhxxAddViewController:(UIViewController *)postObject.object animated:NO];
+        return;
+    }
+    if ([postName isEqualToString:kHHXXPostMessage_DeleteVC]) {
+        [self hhxxRemoveViewControllerAtIndex:[postObject.object unsignedIntegerValue]];
+        return;
+    }
+    if ([postName isEqualToString:kHHXXPostMessage_SwapVC]) {
+        NSUInteger firstIndex = [[postObject.object objectForKey:kHHXXPostMessage_NewIndex] unsignedIntegerValue];
+        NSUInteger secondIndex = [[postObject.object objectForKey:kHHXXPostMessage_OldIndex] unsignedIntegerValue];
+        
+        [self.children exchangeObjectAtIndex:firstIndex withObjectAtIndex:secondIndex];
+    }
 }
 
 
@@ -405,7 +412,7 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
             
         case HHXXViewControllerContainerActionAddVC:
         {
-            [self hhxxAddViewController:[YahooWeatherInformationViewController new]];
+            [self hhxxAddViewController:[YahooWeatherInformationViewController new] animated:YES];
         }
             break;
             
@@ -536,5 +543,25 @@ const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
         [self _hideLeftSliderViewController:_leftSliderViewController];
     }
     _leftSliderViewController = leftSliderViewController;
+}
+
+- (void)setSelectedViewController:(UIViewController *)selectedViewController
+{
+    _preSelectedViewController = _selectedViewController;
+    [self _transitionToViewController:selectedViewController];
+    _selectedViewController = selectedViewController;
+}
+
+- (NSUInteger)selectedIndex
+{
+    return [self.children indexOfObject:_selectedViewController];
+}
+
+- (NSMutableArray<UIViewController *> *)children
+{
+    if (!_children) {
+        _children = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    return _children;
 }
 @end

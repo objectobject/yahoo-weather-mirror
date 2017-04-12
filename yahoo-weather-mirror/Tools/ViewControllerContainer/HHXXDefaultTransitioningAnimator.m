@@ -67,7 +67,6 @@ static const NSTimeInterval kHHXXViewControllerTransitionDuration = .5f;
         fromView.transform = CGAffineTransformMakeTranslation(slideDistanceForToView, 0);
         toView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-        
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];
 }

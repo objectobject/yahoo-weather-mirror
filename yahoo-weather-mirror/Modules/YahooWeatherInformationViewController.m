@@ -70,6 +70,7 @@ const NSUInteger numberOfWeatherInformation = 7;
 {
     if ([self.parentViewController isKindOfClass:[HHXXViewControllerContainer class]]) {
         HHXXViewControllerContainer* fatherVC = (HHXXViewControllerContainer*)self.parentViewController;
+
         if (!fatherVC.leftSliderViewController) {
             SliderViewController* sliderVC = [[SliderViewController alloc] init];
             fatherVC.leftSliderViewController = sliderVC;
@@ -84,6 +85,7 @@ const NSUInteger numberOfWeatherInformation = 7;
 {
     return [HHXXSliderAnimator new];
 }
+
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
@@ -183,14 +185,24 @@ const NSUInteger numberOfWeatherInformation = 7;
     // Do any additional setup after loading the view.
     
     [self _hhxxInitChildView];
-    
-    [self.nav.titleLabel setText:@"这是标题"];
-    
     [self.nav.leftButton addTarget:self action:@selector(_hhxxShowSliderViewController:) forControlEvents:UIControlEventTouchUpInside];
     [self.nav.rightButton addTarget:self action:@selector(_hhxxAddNewCity:) forControlEvents:UIControlEventTouchUpInside];
     
+    [self.nav setTitle:self.currentCity.cnCityName];
     [self.yqlApi hhxxFetchData];
     [self.bingApi hhxxFetchData];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    NSLog(@"viewDidDisappear");
+}
+
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -297,17 +309,13 @@ const NSUInteger numberOfWeatherInformation = 7;
 #pragma mark - setter and getter
 - (HHXXCity *)currentCity
 {
-    if (!_currentCity) {
-        HHXXViewControllerContainer* fatherVC = (HHXXViewControllerContainer*)self.parentViewController;
-        NSUInteger index = [fatherVC.children indexOfObject:self];
-        if (index == NSNotFound) {
-            _currentCity = nil;
-        }else{
-            _currentCity = [[HHXXCityManager sharedCityManager].allCitys objectAtIndex:index];
-        }
-        [self.nav setTitle:_currentCity.cnCityName];
+    HHXXViewControllerContainer* fatherVC = (HHXXViewControllerContainer*)self.parentViewController;
+    NSUInteger index = [fatherVC.children indexOfObject:self];
+    if (index == NSNotFound) {
+        _currentCity = nil;
+    }else{
+        _currentCity = [[HHXXCityManager sharedCityManager].allCitys objectAtIndex:index];
     }
-    
     return _currentCity;
 }
 

@@ -9,19 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
 @protocol HHXXTransitioningDelegate;
 
 @interface HHXXViewControllerContainer : UIViewController
-@property (nonatomic, copy, readonly) NSMutableArray<UIViewController*>* children;
+@property (nonatomic, strong, readonly) NSMutableArray<UIViewController*>* children;
 @property (nonatomic, copy) id<HHXXTransitioningDelegate> hhxxTransitioningDelegate;
 @property (nonatomic, assign) NSUInteger selectedIndex;
 
 - (instancetype)initWithViewControllers:(NSMutableArray<UIViewController*>*)viewControllers;
 
-- (void)insertViewController:(UIViewController*)viewController atIndex:(NSUInteger)index;
-- (UIViewController*)removeViewControllerAtIndex:(NSUInteger)index;
+- (void)hhxxInsertViewController:(UIViewController*)viewController atIndex:(NSUInteger)index;
+- (UIViewController*)hhxxRemoveViewControllerAtIndex:(NSUInteger)index;
 - (void)containerSwitchViewController:(UIViewController*)vc1 viewController2:(UIViewController*)vc2;
+
 
 // 侧边栏情况
 @property (nonatomic, strong) UIViewController* leftSliderViewController;
