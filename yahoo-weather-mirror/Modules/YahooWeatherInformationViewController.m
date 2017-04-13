@@ -51,11 +51,22 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 @property (nonatomic, strong) HHXXCustionNavigationView* nav;
 @property (nonatomic, strong) HHXXCity* currentCity;
+@property (nonatomic, strong) UIView* shadowView;
 @end
 
 @implementation YahooWeatherInformationViewController
 
 #pragma mark - private method
+
+- (UIView*)shadowView
+{
+    if (!_shadowView) {
+        // 为了左划阴影效果特意加的视图层级
+        _shadowView = [UIView new];
+    }
+    
+    return _shadowView;
+}
 
 - (void)_hhxxAddNewCity:(id)sender
 {
@@ -150,33 +161,37 @@ const NSUInteger numberOfWeatherInformation = 7;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     //防止上面出现空白UISCrollView
-//    [self.view addSubview:[UIView new]];
-    self.view.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.shadowView];
+    [self.shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     
-    self.view.clipsToBounds = YES;
-    [self.view addSubview:self.backgroundView];
-    [self.view addSubview:self.maskView];
-    [self.view addSubview:self.mainView];
-    [self.view addSubview:self.nav];
+    self.shadowView.backgroundColor = [UIColor clearColor];
+    
+    self.shadowView.clipsToBounds = YES;
+    [self.shadowView addSubview:self.backgroundView];
+    [self.shadowView addSubview:self.maskView];
+    [self.shadowView addSubview:self.mainView];
+    [self.shadowView addSubview:self.nav];
     
     [self.nav mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
+        make.left.right.top.equalTo(self.shadowView);
         make.height.equalTo(@64);
     }];
     
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(self.shadowView);
     }];
     [self.backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(self.shadowView);
     }];
     
     [self.mainView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(self.shadowView);
     }];
     
-    self.view.layer.borderColor = [UIColor blackColor].CGColor;
-    self.view.layer.borderWidth = 2.0f;
+    self.shadowView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.shadowView.layer.borderWidth = 2.0f;
 }
 
 
@@ -188,22 +203,30 @@ const NSUInteger numberOfWeatherInformation = 7;
     [self.nav.leftButton addTarget:self action:@selector(_hhxxShowSliderViewController:) forControlEvents:UIControlEventTouchUpInside];
     [self.nav.rightButton addTarget:self action:@selector(_hhxxAddNewCity:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.nav setTitle:self.currentCity.cnCityName];
     [self.yqlApi hhxxFetchData];
     [self.bingApi hhxxFetchData];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
-    NSLog(@"viewDidDisappear");
+    [super viewDidAppear:animated];
+    [self.nav setTitle:self.currentCity.cnCityName];
+    {
+        HHXXViewControllerContainer* fatherVC = (HHXXViewControllerContainer*)self.parentViewController;
+        NSUInteger index = [fatherVC.children indexOfObject:self];
+        if (index == NSNotFound) {
+            return;
+        }
+        NSString* backgroundImageURLString = [NSString stringWithFormat:@"http://bing.ioliu.cn/v1?w=%@&h=%@&d=%@", @([UIScreen mainScreen].bounds.size.width), @([UIScreen mainScreen].bounds.size.height), @(index)];
+        
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.maskView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString] placeholderImage:[UIImage imageNamed:@"AdContent"]];
+            [weakSelf.backgroundView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString] placeholderImage:[UIImage imageNamed:@"AdContent"]];
+        });
+    }
 }
 
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -251,12 +274,17 @@ const NSUInteger numberOfWeatherInformation = 7;
     if (!self.currentCity) {
         return nil;
     }
-    NSString* queryString = [HHXXYQLApiManager hhxxGetWeatherForecastByWoeid:self.currentCity.woeid];
-    return @{
-             @"q": queryString,
-             @"format": @"json",
-             @"u":@"c",
-             };
+    
+    if ([mgr isKindOfClass:[HHXXYQLApiManager class]]) {
+        NSString* queryString = [HHXXYQLApiManager hhxxGetWeatherForecastByWoeid:self.currentCity.woeid];
+        return @{
+                 @"q": queryString,
+                 @"format": @"json",
+                 @"u":@"c",
+                 };
+    }
+    
+    return @{};
 }
 
 - (void)hhxxCallApiFailed:(HHXXAbstractApiManager *)mgr
@@ -277,16 +305,16 @@ const NSUInteger numberOfWeatherInformation = 7;
     id requestData = [mgr hhxxFetchDataWithFiltrator:nil];
     
     // 这里设置背景图片
-    if ([mgr isKindOfClass:[HHXXBingImageApiManager class]]) {
-        NSString* backgroundImageURLString = requestData[@"data"][@"url"];
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.maskView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                [_maskView setImageToBlur:image blurRadius:10.0 completionBlock:nil];
-            }];
-            [weakSelf.backgroundView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString]];
-        });
-    }
+//    if ([mgr isKindOfClass:[HHXXBingImageApiManager class]]) {
+//        NSString* backgroundImageURLString = requestData[@"data"][@"url"];
+//        __weak typeof(self) weakSelf = self;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [weakSelf.maskView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                [_maskView setImageToBlur:image blurRadius:10.0 completionBlock:nil];
+//            }];
+//            [weakSelf.backgroundView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString]];
+//        });
+//    }
     
     // 这里设置数据源
     
@@ -300,8 +328,8 @@ const NSUInteger numberOfWeatherInformation = 7;
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.yahooWeatherHeadView configureWithModel:[self.weatherForecastInformation hhxxWeatherFiltrator:HHXXWeatherForecastTypeTodayCondition]];
-            [weakSelf.view setNeedsLayout];
-            [weakSelf.view layoutIfNeeded];
+            [weakSelf.shadowView setNeedsLayout];
+            [weakSelf.shadowView layoutIfNeeded];
         });
     }
 }

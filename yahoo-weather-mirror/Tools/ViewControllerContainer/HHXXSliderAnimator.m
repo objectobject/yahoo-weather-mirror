@@ -40,6 +40,8 @@
     UIView* containerView = [transitionContext containerView];
     
     if (self.isDismiss) {
+        toView.transform = CGAffineTransformMakeTranslation(containerView.bounds.size.width * 0.66, 0);
+        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             toView.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
@@ -52,10 +54,6 @@
         fromView.transform = CGAffineTransformIdentity;
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             fromView.transform = CGAffineTransformMakeTranslation(containerView.bounds.size.width * 0.66, 0);
-            
-            fromView.layer.shadowOffset = CGSizeMake(-1.6, 0);
-            fromView.layer.shadowColor = [UIColor blackColor].CGColor;
-            fromView.layer.shadowOpacity = 1.0;
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
         }];

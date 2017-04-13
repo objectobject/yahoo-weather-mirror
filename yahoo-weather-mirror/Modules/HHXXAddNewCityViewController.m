@@ -53,6 +53,7 @@
 
 - (void)hhxxCallApiFailed:(HHXXAbstractApiManager *)mgr
 {
+    [self.searchViewController.searchBar resignFirstResponder];
     [self.searchResult addObject:@"查不到结果!"];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
@@ -61,6 +62,7 @@
 
 - (void)hhxxCallApiSuccess:(HHXXAbstractApiManager *)mgr
 {
+    [self.searchViewController.searchBar resignFirstResponder];
     id data = [mgr hhxxFetchDataWithFiltrator:nil];
     
     if ([mgr isKindOfClass:[HHXXYQLApiManager class]]) {
@@ -74,7 +76,6 @@
             return;
         }
         ModelPlaceManager* placeMgr = [ModelPlaceManager yy_modelWithDictionary:data];
-        [self.searchViewController.searchBar resignFirstResponder];
         
         if (!placeMgr.count) {
             [self.searchResult addObject:@"查不到结果!"];
@@ -112,10 +113,11 @@
         
         _searchViewController = [[UISearchController alloc] initWithSearchResultsController:nil];
         _searchViewController.searchResultsUpdater = self;
-        _searchViewController.dimsBackgroundDuringPresentation = false;
+        _searchViewController.dimsBackgroundDuringPresentation = YES;
         [_searchViewController.searchBar sizeToFit];
         _searchViewController.searchBar.placeholder = @"输入城市名";
         _searchViewController.searchBar.delegate = self;
+        _searchViewController.searchBar.showsCancelButton = YES;
         self.tableView.tableHeaderView = self.searchViewController.searchBar;
         
         UITextField* searchTextField = [_searchViewController.searchBar valueForKey:@"searchField"];
@@ -183,6 +185,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.searchViewController.active) {
+        return;
+    }
     id data = [self.searchResult objectAtIndex:indexPath.row];
     
     if ([data isKindOfClass:[NSString class]]) {

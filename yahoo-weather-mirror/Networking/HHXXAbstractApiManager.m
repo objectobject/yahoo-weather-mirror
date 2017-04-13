@@ -178,6 +178,8 @@
 
 
 - (id)hhxxFetchDataWithFiltrator:(id<HHXXNetworkingDataFiltrator>)filtrator{
+//    NSLog(@"%@", self.responseData);
+    
     id resultData = nil;
     if ([filtrator respondsToSelector:@selector(hhxxManager:filterData:)]) {
         resultData = [filtrator hhxxManager:self filterData:self.responseData];

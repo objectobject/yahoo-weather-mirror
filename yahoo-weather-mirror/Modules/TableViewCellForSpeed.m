@@ -11,6 +11,7 @@
 #import "HHXXUIKitMacro.h"
 #import "HHXXWindmillView.h"
 #import "YahooWeatherItemKey.h"
+#import "UITableViewCell+EnableDrag.h"
 
 
 const NSString* kHHXXDashedLayer = @"kHHXXDashedLayer";
@@ -197,9 +198,18 @@ const NSString* kHHXXDashedLayer = @"kHHXXDashedLayer";
     [self.bodyArea addSubview:self.airDetail];
     [self.bodyArea addSubview:self.divisionBorder];
     
-    //if view based frame, noted
+    self.typeImage.userInteractionEnabled = YES;
+    [self.typeImage addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_hhxxTouchCell:)]];
+    
+    //    [self updateConstraintsIfNeeded];
+    //    [self setNeedsUpdateConstraints];
 }
 
+
+- (void)_hhxxTouchCell:(UILongPressGestureRecognizer*)sender
+{
+    [self hhxxDragView:self.typeImage];
+}
 
 
 #pragma mark - init function

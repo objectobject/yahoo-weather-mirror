@@ -9,6 +9,7 @@
 #import "TableViewCellForMap.h"
 #import <Masonry.h>
 #import "HHXXUIKitMacro.h"
+#import "UITableViewCell+EnableDrag.h"
 
 @interface TableViewCellForMap()
 @property (nonatomic, strong) UIView* headArea;
@@ -128,10 +129,19 @@
     [self.bodyArea addSubview:self.touchImage];
     
     //if view based frame, noted
-    [self updateConstraintsIfNeeded];
-    [self setNeedsUpdateConstraints];
+    self.typeImage.userInteractionEnabled = YES;
+    [self.typeImage addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_hhxxTouchCell:)]];
+    
+//    
+//    [self updateConstraintsIfNeeded];
+//    [self setNeedsUpdateConstraints];
 }
 
+
+- (void)_hhxxTouchCell:(UILongPressGestureRecognizer*)sender
+{
+    [self hhxxDragView:self.typeImage];
+}
 
 
 #pragma mark - init function
