@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern const NSString* kHHXXCurrentCity;
+extern NSString *const kHHXXCurrentCity;
 
 @interface HHXXCity : NSObject<NSCoding>
 @property (nonatomic, copy) NSString* cnCityName;

@@ -12,10 +12,10 @@
 const NSTimeInterval kHHXXDefaultTransitionDuring = 1.0f;
 const NSUInteger kHHXXDefaultSwitcherButtonWidth = 32;
 
-const NSString* kHHXXPostMessage_AddVC = @"kHHXXPostMessage_AddVC";
-const NSString* kHHXXPostMessage_DeleteVC = @"kHHXXPostMessage_DeleteVC";
-const NSString* kHHXXPostMessage_SwapVC = @"kHHXXPostMessage_SwapVC";
-const NSString* kHHXXPostMessage_OldIndex = @"kHHXXPostMessage_OldIndex";
-const NSString* kHHXXPostMessage_NewIndex = @"kHHXXPostMessage_NewIndex";
+NSString *const kHHXXPostMessage_AddVC = @"kHHXXPostMessage_AddVC";
+NSString *const kHHXXPostMessage_DeleteVC = @"kHHXXPostMessage_DeleteVC";
+NSString *const kHHXXPostMessage_SwapVC = @"kHHXXPostMessage_SwapVC";
+NSString *const kHHXXPostMessage_OldIndex = @"kHHXXPostMessage_OldIndex";
+NSString *const kHHXXPostMessage_NewIndex = @"kHHXXPostMessage_NewIndex";
 
 #endif /* HHXXViewControllerContainerHead_h */

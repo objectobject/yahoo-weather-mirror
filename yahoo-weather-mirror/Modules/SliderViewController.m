@@ -21,7 +21,7 @@
 
 
 
-static NSString* const kHHXXTableViewCellId = @"kHHXXTableViewCellId";
+static NSString *const kHHXXTableViewCellId = @"kHHXXTableViewCellId";
 
 #define HHXXCellDefaultBackground [UIColor colorWithRed:39.0 / 255 green:38.0 / 255 blue:38.0 / 255 alpha:1]
 static const CGFloat kHHXXDefaultMargin = 0.0f;

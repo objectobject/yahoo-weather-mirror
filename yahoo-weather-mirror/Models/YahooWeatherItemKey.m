@@ -9,49 +9,49 @@
 #import "YahooWeatherItemKey.h"
 
 
-NSString* const kHHXXTemperatureUnit = @"°";
+NSString *const kHHXXTemperatureUnit = @"°";
 // 广告Cell
-const NSString* kHHXXYahooWeatherItemKey_AdTitle = @"kHHXXYahooWeatherItemKey_AdTitle";
-const NSString* kHHXXYahooWeatherItemKey_AdContent = @"kHHXXYahooWeatherItemKey_AdContent";
-const NSString* kHHXXYahooWeatherItemKey_AdImage = @"kHHXXYahooWeatherItemKey_AdImage";
-const NSString* kHHXXYahooWeatherItemKey_AdURL = @"kHHXXYahooWeatherItemKey_AdURL";
+NSString *const kHHXXYahooWeatherItemKey_AdTitle = @"kHHXXYahooWeatherItemKey_AdTitle";
+NSString *const kHHXXYahooWeatherItemKey_AdContent = @"kHHXXYahooWeatherItemKey_AdContent";
+NSString *const kHHXXYahooWeatherItemKey_AdImage = @"kHHXXYahooWeatherItemKey_AdImage";
+NSString *const kHHXXYahooWeatherItemKey_AdURL = @"kHHXXYahooWeatherItemKey_AdURL";
 
 // 头部信息
-const NSString* kHHXXYahooWeatherItemKey_HeadTopTemp = @"kHHXXYahooWeatherItemKey_HeadTopTemp";
-const NSString* kHHXXYahooWeatherItemKey_HeadLowTemp = @"kHHXXYahooWeatherItemKey_HeadLowTemp";
-const NSString* kHHXXYahooWeatherItemKey_HeadTemp = @"kHHXXYahooWeatherItemKey_HeadTemp";
-const NSString* kHHXXYahooWeatherItemKey_HeadImage = @"kHHXXYahooWeatherItemKey_HeadImage";
-const NSString* kHHXXYahooWeatherItemKey_HeadCode = @"kHHXXYahooWeatherItemKey_HeadCode";
-const NSString* kHHXXYahooWeatherItemKey_HeadDate = @"kHHXXYahooWeatherItemKey_HeadDate";
-const NSString* kHHXXYahooWeatherItemKey_HeadText = @"kHHXXYahooWeatherItemKey_HeadText";
+NSString *const kHHXXYahooWeatherItemKey_HeadTopTemp = @"kHHXXYahooWeatherItemKey_HeadTopTemp";
+NSString *const kHHXXYahooWeatherItemKey_HeadLowTemp = @"kHHXXYahooWeatherItemKey_HeadLowTemp";
+NSString *const kHHXXYahooWeatherItemKey_HeadTemp = @"kHHXXYahooWeatherItemKey_HeadTemp";
+NSString *const kHHXXYahooWeatherItemKey_HeadImage = @"kHHXXYahooWeatherItemKey_HeadImage";
+NSString *const kHHXXYahooWeatherItemKey_HeadCode = @"kHHXXYahooWeatherItemKey_HeadCode";
+NSString *const kHHXXYahooWeatherItemKey_HeadDate = @"kHHXXYahooWeatherItemKey_HeadDate";
+NSString *const kHHXXYahooWeatherItemKey_HeadText = @"kHHXXYahooWeatherItemKey_HeadText";
 
 // 降雨量信息
-const NSString* kHHXXYahooWeatherItemKey_RainFallValue0 = @"kHHXXYahooWeatherItemKey_RainFallValue0";
-const NSString* kHHXXYahooWeatherItemKey_RainFallValue1 = @"kHHXXYahooWeatherItemKey_RainFallValue1";
-const NSString* kHHXXYahooWeatherItemKey_RainFallValue2 = @"kHHXXYahooWeatherItemKey_RainFallValue2";
-const NSString* kHHXXYahooWeatherItemKey_RainFallValue3 = @"kHHXXYahooWeatherItemKey_RainFallValue3";
-const NSString* kHHXXYahooWeatherItemKey_RainFallTitle0 = @"kHHXXYahooWeatherItemKey_RainFallTitle0";
-const NSString* kHHXXYahooWeatherItemKey_RainFallTitle1 = @"kHHXXYahooWeatherItemKey_RainFallTitle1";
-const NSString* kHHXXYahooWeatherItemKey_RainFallTitle2 = @"kHHXXYahooWeatherItemKey_RainFallTitle2";
-const NSString* kHHXXYahooWeatherItemKey_RainFallTitle3 = @"kHHXXYahooWeatherItemKey_RainFallTitle3";
+NSString *const kHHXXYahooWeatherItemKey_RainFallValue0 = @"kHHXXYahooWeatherItemKey_RainFallValue0";
+NSString *const kHHXXYahooWeatherItemKey_RainFallValue1 = @"kHHXXYahooWeatherItemKey_RainFallValue1";
+NSString *const kHHXXYahooWeatherItemKey_RainFallValue2 = @"kHHXXYahooWeatherItemKey_RainFallValue2";
+NSString *const kHHXXYahooWeatherItemKey_RainFallValue3 = @"kHHXXYahooWeatherItemKey_RainFallValue3";
+NSString *const kHHXXYahooWeatherItemKey_RainFallTitle0 = @"kHHXXYahooWeatherItemKey_RainFallTitle0";
+NSString *const kHHXXYahooWeatherItemKey_RainFallTitle1 = @"kHHXXYahooWeatherItemKey_RainFallTitle1";
+NSString *const kHHXXYahooWeatherItemKey_RainFallTitle2 = @"kHHXXYahooWeatherItemKey_RainFallTitle2";
+NSString *const kHHXXYahooWeatherItemKey_RainFallTitle3 = @"kHHXXYahooWeatherItemKey_RainFallTitle3";
 
 // 风速和气压
-const NSString* kHHXXYahooWeatherItemKey_WindDirection = @"kHHXXYahooWeatherItemKey_WindDirection";
-const NSString* kHHXXYahooWeatherItemKey_WindSpeed = @"kHHXXYahooWeatherItemKey_WindSpeed";
-const NSString* kHHXXYahooWeatherItemKey_PressureValue = @"kHHXXYahooWeatherItemKey_PressureValue";
+NSString *const kHHXXYahooWeatherItemKey_WindDirection = @"kHHXXYahooWeatherItemKey_WindDirection";
+NSString *const kHHXXYahooWeatherItemKey_WindSpeed = @"kHHXXYahooWeatherItemKey_WindSpeed";
+NSString *const kHHXXYahooWeatherItemKey_PressureValue = @"kHHXXYahooWeatherItemKey_PressureValue";
 
 // 日落日出和月亮
-const NSString* kHHXXYahooWeatherItemKey_SunRaiseTime = @"kHHXXYahooWeatherItemKey_SunRaiseTime";
-const NSString* kHHXXYahooWeatherItemKey_SunSetTime = @"kHHXXYahooWeatherItemKey_SunSetTime";
+NSString *const kHHXXYahooWeatherItemKey_SunRaiseTime = @"kHHXXYahooWeatherItemKey_SunRaiseTime";
+NSString *const kHHXXYahooWeatherItemKey_SunSetTime = @"kHHXXYahooWeatherItemKey_SunSetTime";
 
 
 // 其他天气信息
-const NSString* kHHXXYahooWeatherItemKey_DetailHumidity = @"kHHXXYahooWeatherItemKey_DetailHumidity";
-const NSString* kHHXXYahooWeatherItemKey_DetailVisibility = @"kHHXXYahooWeatherItemKey_DetailVisibility";
+NSString *const kHHXXYahooWeatherItemKey_DetailHumidity = @"kHHXXYahooWeatherItemKey_DetailHumidity";
+NSString *const kHHXXYahooWeatherItemKey_DetailVisibility = @"kHHXXYahooWeatherItemKey_DetailVisibility";
 
 // 周期天气详情
-const NSString* kHHXXYahooWeatherItemKey_Forecast_10Days = @"kHHXXYahooWeatherItemKey_Forecast_10Days";
-const NSString* kHHXXYahooWeatherItemKey_Forecast_24Hours = @"kHHXXYahooWeatherItemKey_Forecast_24Hours";
-const NSString* kHHXXYahooWeatherItemKey_ForecastHoursTime = @"kHHXXYahooWeatherItemKey_ForecastHoursTime";
-const NSString* kHHXXYahooWeatherItemKey_ForecastHoursCode = @"kHHXXYahooWeatherItemKey_ForecastHoursCode";
-const NSString* kHHXXYahooWeatherItemKey_ForecastHoursTemp = @"kHHXXYahooWeatherItemKey_ForecastHoursTemp";
+NSString *const kHHXXYahooWeatherItemKey_Forecast_10Days = @"kHHXXYahooWeatherItemKey_Forecast_10Days";
+NSString *const kHHXXYahooWeatherItemKey_Forecast_24Hours = @"kHHXXYahooWeatherItemKey_Forecast_24Hours";
+NSString *const kHHXXYahooWeatherItemKey_ForecastHoursTime = @"kHHXXYahooWeatherItemKey_ForecastHoursTime";
+NSString *const kHHXXYahooWeatherItemKey_ForecastHoursCode = @"kHHXXYahooWeatherItemKey_ForecastHoursCode";
+NSString *const kHHXXYahooWeatherItemKey_ForecastHoursTemp = @"kHHXXYahooWeatherItemKey_ForecastHoursTemp";

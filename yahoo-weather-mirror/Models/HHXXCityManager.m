@@ -12,7 +12,7 @@
 #import "YahooWeatherInformationViewController.h"
 
 
-NSString* const kHHXXAllCitys = @"kHHXXAllCitys";
+NSString *const kHHXXAllCitys = @"kHHXXAllCitys";
 
 @interface HHXXCityManager()
 

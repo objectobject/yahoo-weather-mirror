@@ -8,7 +8,7 @@
 
 #import "HHXXCity.h"
 
-const NSString* kHHXXCurrentCity = @"目前位置";
+NSString *const kHHXXCurrentCity = @"目前位置";
 
 @implementation HHXXCity
 
