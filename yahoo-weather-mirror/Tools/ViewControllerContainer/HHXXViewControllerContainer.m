@@ -275,8 +275,10 @@
             [oldSliderViewController.view removeFromSuperview];
             [oldSliderViewController removeFromParentViewController];
             
-            [self.rootView addGestureRecognizer:self.panGestureRecognizer];
-            
+            self.selectedViewController.view.clipsToBounds = YES;
+            self.selectedViewController.view.layer.shadowOffset = CGSizeZero;
+            self.selectedViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+            self.selectedViewController.view.layer.shadowOpacity = 1.0;
 
             if ([animator respondsToSelector:@selector(animationEnded:)]) {
                 [animator animationEnded:didComplete];
@@ -312,9 +314,12 @@
         
         context.isInteractive = NO;
         context.completeBlock = ^(BOOL didComplete){
+            self.selectedViewController.view.clipsToBounds = NO;
+            self.selectedViewController.view.layer.shadowOffset = CGSizeMake(-1.6, 0);
+            self.selectedViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
+            self.selectedViewController.view.layer.shadowOpacity = 1.0;
             
             [self.selectedViewController.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_hhxxTapWhenLeftExpend:)]];
-            [self.rootView removeGestureRecognizer:self.panGestureRecognizer];
             
             if ([animator respondsToSelector:@selector(animationEnded:)]) {
                 [animator animationEnded:didComplete];
@@ -436,6 +441,10 @@
 
 - (void)_hhxxPanGesture:(UIPanGestureRecognizer*)gestureRecognizer
 {
+    if (self.leftSliderViewController) {
+        return;
+    }
+    
     NSInteger selectedIndex = [self.children indexOfObject:self.selectedViewController];
     
     switch (gestureRecognizer.state) {

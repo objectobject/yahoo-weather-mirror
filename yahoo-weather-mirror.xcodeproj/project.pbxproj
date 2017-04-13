@@ -76,6 +76,7 @@
 		3AF4E7C61E9CDCAE00A86085 /* HHXXCityManager+Transform.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7C51E9CDCAE00A86085 /* HHXXCityManager+Transform.m */; };
 		3AF4E7CC1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7CB1E9E0CB100A86085 /* HHXXViewControllerContainer+Slider.m */; };
 		3AF4E7CF1E9E44F800A86085 /* HHXXSliderAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7CE1E9E44F800A86085 /* HHXXSliderAnimator.m */; };
+		3AF4E7D61E9F1F8B00A86085 /* HHXXNetworkingURLRequestGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF4E7D51E9F1F8B00A86085 /* HHXXNetworkingURLRequestGenerator.m */; };
 		3AFEF0471E5C1CE4007CC568 /* HHXXNotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */; };
 		3AFEF04E1E5C2231007CC568 /* HHXXAMapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF04D1E5C2231007CC568 /* HHXXAMapService.m */; };
 		3AFEF0581E5C291A007CC568 /* HHXXServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEF0571E5C291A007CC568 /* HHXXServiceManager.m */; };
@@ -251,6 +252,8 @@
 		3AF4E7CD1E9E44F800A86085 /* HHXXSliderAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXSliderAnimator.h; path = Tools/ViewControllerContainer/HHXXSliderAnimator.h; sourceTree = "<group>"; };
 		3AF4E7CE1E9E44F800A86085 /* HHXXSliderAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXSliderAnimator.m; path = Tools/ViewControllerContainer/HHXXSliderAnimator.m; sourceTree = "<group>"; };
 		3AF4E7D01E9E742A00A86085 /* HHXXViewControllerContainerHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HHXXViewControllerContainerHead.h; path = Tools/ViewControllerContainer/HHXXViewControllerContainerHead.h; sourceTree = "<group>"; };
+		3AF4E7D41E9F1F8B00A86085 /* HHXXNetworkingURLRequestGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNetworkingURLRequestGenerator.h; path = Networking/HHXXNetworkingURLRequestGenerator.h; sourceTree = "<group>"; };
+		3AF4E7D51E9F1F8B00A86085 /* HHXXNetworkingURLRequestGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNetworkingURLRequestGenerator.m; path = Networking/HHXXNetworkingURLRequestGenerator.m; sourceTree = "<group>"; };
 		3AFEF0451E5C1CE4007CC568 /* HHXXNotificationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXNotificationService.h; path = Services/HHXXNotificationService.h; sourceTree = "<group>"; };
 		3AFEF0461E5C1CE4007CC568 /* HHXXNotificationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXNotificationService.m; path = Services/HHXXNotificationService.m; sourceTree = "<group>"; };
 		3AFEF04C1E5C2231007CC568 /* HHXXAMapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXAMapService.h; path = Services/HHXXAMapService.h; sourceTree = "<group>"; };
@@ -454,6 +457,8 @@
 				3ACBCA4A1E962F2700640B0C /* HHXXNetworkingService.m */,
 				3ACBCA561E96557400640B0C /* HHXXNetworkingResponse.h */,
 				3ACBCA571E96557400640B0C /* HHXXNetworkingResponse.m */,
+				3AF4E7D41E9F1F8B00A86085 /* HHXXNetworkingURLRequestGenerator.h */,
+				3AF4E7D51E9F1F8B00A86085 /* HHXXNetworkingURLRequestGenerator.m */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -908,6 +913,7 @@
 				3ACBCA4B1E962F2700640B0C /* HHXXNetworkingService.m in Sources */,
 				3AF4E7A31E9BBD7100A86085 /* HHXXSettingManager.m in Sources */,
 				3A6CE1861E5B1952008059AC /* AppDelegate.m in Sources */,
+				3AF4E7D61E9F1F8B00A86085 /* HHXXNetworkingURLRequestGenerator.m in Sources */,
 				3AEBF47B1E84ABBB00AB9548 /* HHXXSunRaiseLayer.m in Sources */,
 				3AF4E7B71E9BEEA300A86085 /* TableViewCellForPosition.m in Sources */,
 				3ACBCA5B1E967F6E00640B0C /* HHXXYQLApiManager.m in Sources */,

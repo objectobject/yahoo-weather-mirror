@@ -169,7 +169,6 @@
     [self updateConstraintsIfNeeded];
     
     self.typeImage.userInteractionEnabled = YES;
-    self.typeImage.backgroundColor = [UIColor redColor];
     [self.typeImage addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_hhxxTouchCell:)]];
 }
 

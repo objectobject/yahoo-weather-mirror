@@ -46,7 +46,6 @@
 {
     NSString* descriptionString = [NSString stringWithFormat:
                                    @"==========[URL:%@]==========\r\nJSON=%@\r\n\r\nData=%@\r\n\r\nString=%@", [self.request URL], self.rawJSONObject, self.rawResponseData, self.rawResponseString];
-    descriptionString = @"";
     return descriptionString;
 }
 

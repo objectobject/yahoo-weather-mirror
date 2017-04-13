@@ -11,6 +11,7 @@
 #import "HHXXUIKitMacro.h"
 #import "HHXXSunRaiseLayer.h"
 #import "YahooWeatherItemKey.h"
+#import "UITableViewCell+EnableDrag.h"
 
 
 @interface TableViewCellForSunMoon()
@@ -133,8 +134,17 @@
     [self.bodyArea addSubview:self.moonDescribe];
     
     //if view based frame, noted
-    [self updateConstraintsIfNeeded];
+    self.typeImage.userInteractionEnabled = YES;
+    [self.typeImage addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_hhxxTouchCell:)]];
+    
     [self setNeedsUpdateConstraints];
+    [self updateConstraintsIfNeeded];
+}
+
+
+- (void)_hhxxTouchCell:(UILongPressGestureRecognizer*)sender
+{
+    [self hhxxDragView:self.typeImage];
 }
 
 

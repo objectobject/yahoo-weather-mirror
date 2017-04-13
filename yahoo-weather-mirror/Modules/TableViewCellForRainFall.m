@@ -12,6 +12,7 @@
 #import "UIView+Border.h"
 #import "NSAttributedString+Attachment.h"
 #import "YahooWeatherItemKey.h"
+#import "UITableViewCell+EnableDrag.h"
 
 
 @interface TableViewCellForRainFall()
@@ -187,11 +188,18 @@
     
     [self configureWithModel:nil];
     //if view based frame, noted
-    
+    self.typeImage.userInteractionEnabled = YES;
+    [self.typeImage addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_hhxxTouchCell:)]];
+
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
 }
 
+
+- (void)_hhxxTouchCell:(UILongPressGestureRecognizer*)sender
+{
+    [self hhxxDragView:self.typeImage];
+}
 
 
 #pragma mark - init function

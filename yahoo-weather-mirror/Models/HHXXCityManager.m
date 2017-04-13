@@ -89,6 +89,7 @@ NSString* const kHHXXAllCitys = @"kHHXXAllCitys";
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.allCitys] forKey:kHHXXAllCitys];
+    NSLog(@"%@", self.allCitys);
     [userDefaults synchronize];
 }
 
