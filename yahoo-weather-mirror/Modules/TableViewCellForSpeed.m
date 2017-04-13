@@ -201,8 +201,13 @@ const NSString* kHHXXDashedLayer = @"kHHXXDashedLayer";
     self.typeImage.userInteractionEnabled = YES;
     [self.typeImage addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_hhxxTouchCell:)]];
     
+<<<<<<< HEAD
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
+=======
+    //    [self updateConstraintsIfNeeded];
+    //    [self setNeedsUpdateConstraints];
+>>>>>>> b664bb375049bbf077eea790084fdf33847c8bc8
 }
 
 
