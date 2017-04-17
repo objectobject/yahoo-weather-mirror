@@ -33,6 +33,7 @@
 #import "HHXXSliderAnimator.h"
 #import "HHXXViewControllerContainer.h"
 #import "HHXXCity.h"
+#import <UIScrollView+HHXXRefresh.h>
 
 
 const NSUInteger numberOfWeatherInformation = 7;
@@ -203,8 +204,25 @@ const NSUInteger numberOfWeatherInformation = 7;
     [self.nav.leftButton addTarget:self action:@selector(_hhxxShowSliderViewController:) forControlEvents:UIControlEventTouchUpInside];
     [self.nav.rightButton addTarget:self action:@selector(_hhxxAddNewCity:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.yqlApi hhxxFetchData];
-    [self.bingApi hhxxFetchData];
+    [self.mainView setHhxxRefreshView:nil];
+    [self.mainView hhxxRefreshBlock:^{
+        [self.yqlApi hhxxFetchData];
+        [self.bingApi hhxxFetchData];
+    }];
+    [self.mainView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"contentOffset"]) {
+        CGPoint newValue = [change[NSKeyValueChangeNewKey] CGPointValue];
+        [self.yahooWeatherHeadView.nav setTitle:self.nav.titleLabel.text];
+        self.nav.hidden = newValue.y < 0;
+        self.yahooWeatherHeadView.nav.hidden = !self.nav.hidden;
+    }else{
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -243,6 +261,11 @@ const NSUInteger numberOfWeatherInformation = 7;
 }
 */
 
+
+- (void)dealloc
+{
+    [self.mainView removeObserver:self forKeyPath:@"contentOffset"];
+}
 
 #pragma mark - about fetch data from networking
 
@@ -289,6 +312,7 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 - (void)hhxxCallApiFailed:(HHXXAbstractApiManager *)mgr
 {
+    [self.mainView hhxxEndRefresh];
     __weak typeof(self) weakSelf = self;
     if ([mgr isKindOfClass:[HHXXBingImageApiManager class]]) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -302,6 +326,7 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 - (void)hhxxCallApiSuccess:(HHXXAbstractApiManager *)mgr
 {
+    [self.mainView hhxxEndRefresh];
     id requestData = [mgr hhxxFetchDataWithFiltrator:nil];
     
     // 这里设置背景图片

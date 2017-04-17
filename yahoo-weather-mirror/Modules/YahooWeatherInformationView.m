@@ -31,10 +31,11 @@
 // 版权信息
 @property (nonatomic, strong) UILabel* copyrightLabel;
 @property (nonatomic, strong) UIView* rowOne, *rowTwo, *rowThree;
+
+
 @end
 
 @implementation YahooWeatherInformationView
-
 
 - (void)configureWithModel:(id)model
 {
@@ -145,11 +146,16 @@
         make.bottom.right.equalTo(self.rowThree).insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
 //    [self.tempInfo hhxxAddBorderWithColor:[UIColor grayColor] borderWidth:1.0 borderStyle:HHXXBorderStyleRight|HHXXBorderStyleDashed];
+    
+    [self.nav mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self);
+        make.height.equalTo(@64);
+    }];
 }
 
 - (NSArray*)_hhxxSubviews
 {
-    return @[self.rowOne, self.rowTwo, self.rowThree];
+    return @[self.rowOne, self.rowTwo, self.rowThree, self.nav];
 }
 
 
@@ -229,6 +235,16 @@
 
 
 #pragma mark - getter and setter
+- (HHXXCustionNavigationView *)nav
+{
+    if(!_nav)
+    {
+        _nav = [HHXXCustionNavigationView new];
+    }
+    
+    return _nav;
+}
+
 - (UIView*)rowOne
 {
     if (!_rowOne) {

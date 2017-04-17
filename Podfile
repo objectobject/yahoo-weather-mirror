@@ -9,6 +9,7 @@ pod "HHXXScrollViewDecorate", :git => "git@git.coding.net:940215/HHXXScrollViewD
 pod 'AMapLocation', '~> 2.1.0'
 pod 'AFNetworking', '~> 3.1.0'
 pod 'MBProgressHUD', '~> 1.0.0'
+pod 'MJRefresh', '~> 3.1.0'
 end
 
 

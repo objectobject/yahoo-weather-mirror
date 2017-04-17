@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "HHXXAutoLayoutView.h"
+@class HHXXCustionNavigationView;
 
 
 @interface YahooWeatherInformationView : HHXXAutoLayoutView
-
+@property (nonatomic, strong) HHXXCustionNavigationView* nav;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)configureWithModel:(id)model;

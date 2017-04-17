@@ -34,6 +34,7 @@
 		3ACBCA7E1E971B9E00640B0C /* ModelWind.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA741E971B9E00640B0C /* ModelWind.m */; };
 		3ACBCA831E9793F300640B0C /* YahooWeatherItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA821E9793F300640B0C /* YahooWeatherItemKey.m */; };
 		3ACBCA891E98632200640B0C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ACBCA8B1E98632200640B0C /* Localizable.strings */; };
+		3ADF4C7E1EA627F40017976B /* HHXXYahooWeatherRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADF4C7D1EA627F40017976B /* HHXXYahooWeatherRefreshView.m */; };
 		3AE357951E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */; };
 		3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357971E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m */; };
 		3AE357A51E6EE399002D4221 /* NSObject+Enumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357A41E6EE399002D4221 /* NSObject+Enumerate.m */; };
@@ -164,6 +165,8 @@
 		3ACBCA871E98630C00640B0C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		3ACBCA881E98630C00640B0C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		3ACBCA8A1E98632200640B0C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3ADF4C7C1EA627F40017976B /* HHXXYahooWeatherRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXYahooWeatherRefreshView.h; path = Modules/HHXXYahooWeatherRefreshView.h; sourceTree = "<group>"; };
+		3ADF4C7D1EA627F40017976B /* HHXXYahooWeatherRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXYahooWeatherRefreshView.m; path = Modules/HHXXYahooWeatherRefreshView.m; sourceTree = "<group>"; };
 		3AE357931E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXDefaultTransitioningAnimator.h; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.h; sourceTree = "<group>"; };
 		3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXDefaultTransitioningAnimator.m; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.m; sourceTree = "<group>"; };
 		3AE357961E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIPanGestureRecognizer+Addition.h"; path = "Category/UIPanGestureRecognizer+Addition.h"; sourceTree = "<group>"; };
@@ -634,6 +637,8 @@
 				3AEBF47A1E84ABBB00AB9548 /* HHXXSunRaiseLayer.m */,
 				3AF4E7901E9B028300A86085 /* HHXXCustionNavigationView.h */,
 				3AF4E7911E9B028300A86085 /* HHXXCustionNavigationView.m */,
+				3ADF4C7C1EA627F40017976B /* HHXXYahooWeatherRefreshView.h */,
+				3ADF4C7D1EA627F40017976B /* HHXXYahooWeatherRefreshView.m */,
 			);
 			name = WeatherInformation;
 			sourceTree = "<group>";
@@ -899,6 +904,7 @@
 				3AF4E7C61E9CDCAE00A86085 /* HHXXCityManager+Transform.m in Sources */,
 				3AEBF4691E822EC500AB9548 /* HHXXSetting.m in Sources */,
 				3ACBCA7E1E971B9E00640B0C /* ModelWind.m in Sources */,
+				3ADF4C7E1EA627F40017976B /* HHXXYahooWeatherRefreshView.m in Sources */,
 				3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */,
 				3ACBCA7D1E971B9E00640B0C /* ModelWeatherItem.m in Sources */,
 				3AF4E7C11E9C6BF700A86085 /* ModelPlaceManager.m in Sources */,

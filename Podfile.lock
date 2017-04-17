@@ -21,6 +21,7 @@ PODS:
   - LBBlurredImage (0.2.2)
   - Masonry (1.0.2)
   - MBProgressHUD (1.0.0)
+  - MJRefresh (3.1.12)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - LBBlurredImage (= 0.2.2)
   - Masonry (~> 1.0.0)
   - MBProgressHUD (~> 1.0.0)
+  - MJRefresh (~> 3.1.0)
   - SDWebImage (~> 3.8.0)
   - YYModel (~> 1.0.4)
 
@@ -42,7 +44,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   HHXXScrollViewDecorate:
-    :commit: 9d3deb9b242aafe1e42d3401dcc2340a1a836de6
+    :commit: 836814995882b7be025c33cba9e157ac7caa674c
     :git: git@git.coding.net:940215/HHXXScrollViewDecorate.git
 
 SPEC CHECKSUMS:
@@ -53,9 +55,10 @@ SPEC CHECKSUMS:
   LBBlurredImage: 700634c17922bc2d22343118e7deb6a3ca12db43
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: b35f780b2b8cfea058fe70503d2fd8ccab3cab47
+PODFILE CHECKSUM: 041d55377a83c289e290fde5cd382edf05f9e28b
 
 COCOAPODS: 1.0.1
