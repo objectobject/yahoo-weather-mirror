@@ -44,7 +44,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   HHXXScrollViewDecorate:
-    :commit: 836814995882b7be025c33cba9e157ac7caa674c
+    :commit: 2c283344ba81e2916606986efd3454f0a9be7060
     :git: git@git.coding.net:940215/HHXXScrollViewDecorate.git
 
 SPEC CHECKSUMS:
