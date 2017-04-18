@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <HHXXUIScrollViewPredefine.h>
 
-@interface HHXXYahooWeatherRefreshView : UIView
+@interface HHXXYahooWeatherRefreshView : UIView<HHXXRefreshViewProtocol>
 
 @end

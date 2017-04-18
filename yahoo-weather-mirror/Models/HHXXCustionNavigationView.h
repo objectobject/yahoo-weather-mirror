@@ -18,4 +18,5 @@
 
 
 - (void)setTitle:(NSString*)title;
+- (void)hhxxAlpha:(CGFloat)alpha;
 @end

@@ -34,6 +34,8 @@
 #import "HHXXViewControllerContainer.h"
 #import "HHXXCity.h"
 #import <UIScrollView+HHXXRefresh.h>
+#import <UIScrollView+Scroll.h>
+#import "HHXXYahooWeatherRefreshView.h"
 
 
 const NSUInteger numberOfWeatherInformation = 7;
@@ -201,15 +203,37 @@ const NSUInteger numberOfWeatherInformation = 7;
     // Do any additional setup after loading the view.
     
     [self _hhxxInitChildView];
+    // 导航相关
     [self.nav.leftButton addTarget:self action:@selector(_hhxxShowSliderViewController:) forControlEvents:UIControlEventTouchUpInside];
     [self.nav.rightButton addTarget:self action:@selector(_hhxxAddNewCity:) forControlEvents:UIControlEventTouchUpInside];
+    [self.nav setTitle:self.currentCity.cnCityName];
     
-    [self.mainView setHhxxRefreshView:nil];
+    
+    // 下拉相关
+    [self.mainView setHhxxRefreshView:[HHXXYahooWeatherRefreshView new]];
     [self.mainView hhxxRefreshBlock:^{
         [self.yqlApi hhxxFetchData];
         [self.bingApi hhxxFetchData];
     }];
+    [self.mainView hhxxScrollBlock:^(CGFloat value) {
+        self.maskView.backgroundColor = [UIColor colorWithWhite:0 alpha:MIN(value / self.mainView.contentSize.height, 0.75)];
+        [self.nav hhxxAlpha:(value + self.maskView.bounds.size.height) / self.mainView.contentSize.height];
+    }];
     [self.mainView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    
+    {
+        HHXXViewControllerContainer* fatherVC = (HHXXViewControllerContainer*)self.parentViewController;
+        NSUInteger index = [fatherVC.children indexOfObject:self];
+        if (index == NSNotFound) {
+            return;
+        }
+        NSString* backgroundImageURLString = [NSString stringWithFormat:@"http://bing.ioliu.cn/v1?w=%@&h=%@&d=%@", @([UIScreen mainScreen].bounds.size.width), @([UIScreen mainScreen].bounds.size.height), @(index)];
+        
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.backgroundView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString] placeholderImage:[UIImage imageNamed:@"AdContent"]];
+        });
+    }
 }
 
 
@@ -228,21 +252,6 @@ const NSUInteger numberOfWeatherInformation = 7;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.nav setTitle:self.currentCity.cnCityName];
-    {
-        HHXXViewControllerContainer* fatherVC = (HHXXViewControllerContainer*)self.parentViewController;
-        NSUInteger index = [fatherVC.children indexOfObject:self];
-        if (index == NSNotFound) {
-            return;
-        }
-        NSString* backgroundImageURLString = [NSString stringWithFormat:@"http://bing.ioliu.cn/v1?w=%@&h=%@&d=%@", @([UIScreen mainScreen].bounds.size.width), @([UIScreen mainScreen].bounds.size.height), @(index)];
-        
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.maskView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString] placeholderImage:[UIImage imageNamed:@"AdContent"]];
-            [weakSelf.backgroundView sd_setImageWithURL:[NSURL URLWithString:backgroundImageURLString] placeholderImage:[UIImage imageNamed:@"AdContent"]];
-        });
-    }
 }
 
 
@@ -251,21 +260,6 @@ const NSUInteger numberOfWeatherInformation = 7;
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
-- (void)dealloc
-{
-    [self.mainView removeObserver:self forKeyPath:@"contentOffset"];
-}
 
 #pragma mark - about fetch data from networking
 
@@ -312,21 +306,25 @@ const NSUInteger numberOfWeatherInformation = 7;
 
 - (void)hhxxCallApiFailed:(HHXXAbstractApiManager *)mgr
 {
-    [self.mainView hhxxEndRefresh];
-    __weak typeof(self) weakSelf = self;
-    if ([mgr isKindOfClass:[HHXXBingImageApiManager class]]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.maskView setImageToBlur:[UIImage imageNamed:@"adContent"] blurRadius:10.0 completionBlock:nil];
-            [weakSelf.backgroundView setImage:[UIImage imageNamed:@"adContent"]];
-        });
-    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.mainView hhxxEndRefresh];
+    });
+//    __weak typeof(self) weakSelf = self;
+//    if ([mgr isKindOfClass:[HHXXBingImageApiManager class]]) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [weakSelf.maskView setImageToBlur:[UIImage imageNamed:@"adContent"] blurRadius:10.0 completionBlock:nil];
+//            [weakSelf.backgroundView setImage:[UIImage imageNamed:@"adContent"]];
+//        });
+//    }
     NSLog(@"网络请求失败!错误信息:\r\n%@", mgr);
 }
 
 
 - (void)hhxxCallApiSuccess:(HHXXAbstractApiManager *)mgr
 {
-    [self.mainView hhxxEndRefresh];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.mainView hhxxEndRefresh];
+    });
     id requestData = [mgr hhxxFetchDataWithFiltrator:nil];
     
     // 这里设置背景图片
@@ -398,8 +396,6 @@ const NSUInteger numberOfWeatherInformation = 7;
     if (!_maskView) {
         _maskView = [[UIImageView alloc] initWithFrame:HHXX_MAIN_SCREEN];
         [_maskView setContentMode:UIViewContentModeScaleAspectFill];
-        _maskView.alpha = 0.75f;
-        //        [_maskView setImageToBlur:[UIImage imageNamed:@"adContent"] blurRadius:10.0 completionBlock:nil];
     }
     
     return _maskView;
@@ -409,7 +405,6 @@ const NSUInteger numberOfWeatherInformation = 7;
 {
     if (!_backgroundView) {
         _backgroundView = [[UIImageView alloc] initWithFrame:HHXX_MAIN_SCREEN];
-        //        [_backgroundView setImage:[UIImage imageNamed:@"adContent"]];
         [_backgroundView setContentMode:UIViewContentModeScaleAspectFill];
     }
     

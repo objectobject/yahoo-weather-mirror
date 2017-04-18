@@ -41,6 +41,14 @@ const CGFloat kHHXXNavHeight = 64;
     }];
 }
 
+- (void)hhxxAlpha:(CGFloat)alpha
+{
+    _gradientLayer.colors = @[
+                              (__bridge id)[UIColor colorWithRed:0 green:0 blue:0 alpha:0].CGColor,
+                              (__bridge id)[UIColor colorWithRed:0 green:0 blue:0 alpha:alpha].CGColor,
+                              (__bridge id)[UIColor colorWithRed:0 green:0 blue:0 alpha:0].CGColor];
+}
+
 
 - (void)layoutSubviews
 {
@@ -55,10 +63,6 @@ const CGFloat kHHXXNavHeight = 64;
     if (_gradientLayer == nil)
     {
         _gradientLayer = [CAGradientLayer new];
-        _gradientLayer.colors = @[
-                                  (__bridge id)[UIColor colorWithRed:0 green:0 blue:0 alpha:0].CGColor,
-                                  (__bridge id)[UIColor colorWithRed:0 green:0 blue:0 alpha:1].CGColor,
-                                  (__bridge id)[UIColor colorWithRed:0 green:0 blue:0 alpha:0].CGColor];
         _gradientLayer.locations = @[@0.0, @(64/96), @1];
         _gradientLayer.startPoint = CGPointMake(0, 0);
         _gradientLayer.endPoint = CGPointMake(0, 1);
@@ -112,8 +116,6 @@ const CGFloat kHHXXNavHeight = 64;
  */
 - (void)commonInit
 {
-    
-    
     [self.layer addSublayer:self.gradientLayer];
     [@[self.leftButton, self.titleLabel, self.rightButton] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self addSubview:obj];
