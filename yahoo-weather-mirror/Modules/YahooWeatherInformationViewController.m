@@ -203,6 +203,7 @@ const NSUInteger numberOfWeatherInformation = 7;
     // Do any additional setup after loading the view.
     
     [self _hhxxInitChildView];
+    [self.view setBackgroundColor:[UIColor clearColor]];
     // 导航相关
     [self.nav.leftButton addTarget:self action:@selector(_hhxxShowSliderViewController:) forControlEvents:UIControlEventTouchUpInside];
     [self.nav.rightButton addTarget:self action:@selector(_hhxxAddNewCity:) forControlEvents:UIControlEventTouchUpInside];
