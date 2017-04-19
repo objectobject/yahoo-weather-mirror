@@ -256,6 +256,13 @@ const CGFloat kHHXXRadiusValue = 10.0f;
 }
 
 
+- (void)hhxxUpdateTime:(NSDate *)lastTime
+{
+    NSDateFormatter* timeFormatter = [NSDateFormatter new];
+    timeFormatter.dateFormat = @"HH:MM:ss";
+    [self.lastUpdateTime setText:[NSString stringWithFormat:@"最后更新时间:%@", [timeFormatter stringFromDate:lastTime]]];
+}
+
 - (void)configureModel:(id)model
 {
     [self.lastUpdateTime setText:@"这是最后一次更新的时间"];

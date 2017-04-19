@@ -11,4 +11,5 @@
 
 @interface HHXXYahooWeatherRefreshView : UIView<HHXXRefreshViewProtocol>
 
+- (void)configureModel:(id)model;
 @end
