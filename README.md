@@ -73,6 +73,7 @@
 
 ![show1](https://github.com/objectobject/yahoo-weather-mirror/raw/master/preview/an.png)
 
+
 ## 部分图标资源来源说明:
    1. 天气图标来自[MerlinTheRed](http://merlinthered.deviantart.com/art/plain-weather-icons-157162192) 图标版权归原作者所有。
    2. 部分图片资源来自[Yahoo天气](https://www.yahoo.com/news/weather/)iOSapp, 图片版权归原作者所有。
