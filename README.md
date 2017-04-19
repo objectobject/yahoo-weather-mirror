@@ -69,9 +69,9 @@
 
 ## 简单展示
 
-![show1](https://github.com/objectobject/yahoo-weather-mirror/raw/master/preview/xi.png)
+![show1](https://github.com/objectobject/yahoo-weather-mirror/raw/master/Preview/xi.png)
 
-![show1](https://github.com/objectobject/yahoo-weather-mirror/raw/master/preview/an.png)
+![show1](https://github.com/objectobject/yahoo-weather-mirror/raw/master/Preview/an.png)
 
 
 ## 部分图标资源来源说明:
