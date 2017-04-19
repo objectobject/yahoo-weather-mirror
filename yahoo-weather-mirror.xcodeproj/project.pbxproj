@@ -35,6 +35,8 @@
 		3ACBCA831E9793F300640B0C /* YahooWeatherItemKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACBCA821E9793F300640B0C /* YahooWeatherItemKey.m */; };
 		3ACBCA891E98632200640B0C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3ACBCA8B1E98632200640B0C /* Localizable.strings */; };
 		3ADF4C7E1EA627F40017976B /* HHXXYahooWeatherRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADF4C7D1EA627F40017976B /* HHXXYahooWeatherRefreshView.m */; };
+		3ADF4C8A1EA76E760017976B /* an.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADF4C881EA76E760017976B /* an.png */; };
+		3ADF4C8B1EA76E760017976B /* xi.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADF4C891EA76E760017976B /* xi.png */; };
 		3AE357951E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */; };
 		3AE357981E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357971E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.m */; };
 		3AE357A51E6EE399002D4221 /* NSObject+Enumerate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE357A41E6EE399002D4221 /* NSObject+Enumerate.m */; };
@@ -167,6 +169,8 @@
 		3ACBCA8A1E98632200640B0C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3ADF4C7C1EA627F40017976B /* HHXXYahooWeatherRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXYahooWeatherRefreshView.h; path = Modules/HHXXYahooWeatherRefreshView.h; sourceTree = "<group>"; };
 		3ADF4C7D1EA627F40017976B /* HHXXYahooWeatherRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXYahooWeatherRefreshView.m; path = Modules/HHXXYahooWeatherRefreshView.m; sourceTree = "<group>"; };
+		3ADF4C881EA76E760017976B /* an.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = an.png; path = Preview/an.png; sourceTree = "<group>"; };
+		3ADF4C891EA76E760017976B /* xi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = xi.png; path = Preview/xi.png; sourceTree = "<group>"; };
 		3AE357931E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHXXDefaultTransitioningAnimator.h; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.h; sourceTree = "<group>"; };
 		3AE357941E6D7B4D002D4221 /* HHXXDefaultTransitioningAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHXXDefaultTransitioningAnimator.m; path = Tools/ViewControllerContainer/HHXXDefaultTransitioningAnimator.m; sourceTree = "<group>"; };
 		3AE357961E6ED0D9002D4221 /* UIPanGestureRecognizer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIPanGestureRecognizer+Addition.h"; path = "Category/UIPanGestureRecognizer+Addition.h"; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 		3A6CE1751E5B1951008059AC = {
 			isa = PBXGroup;
 			children = (
+				3ADF4C831EA76E1F0017976B /* Preview */,
 				3A6CE1801E5B1952008059AC /* yahoo-weather-mirror */,
 				3A6CE19A1E5B1952008059AC /* yahoo-weather-mirrorTests */,
 				3A6CE1A51E5B1952008059AC /* yahoo-weather-mirrorUITests */,
@@ -431,6 +436,15 @@
 				3ACBCA8B1E98632200640B0C /* Localizable.strings */,
 			);
 			name = LocalFile;
+			sourceTree = "<group>";
+		};
+		3ADF4C831EA76E1F0017976B /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				3ADF4C881EA76E760017976B /* an.png */,
+				3ADF4C891EA76E760017976B /* xi.png */,
+			);
+			name = Preview;
 			sourceTree = "<group>";
 		};
 		3AE357B21E7004B0002D4221 /* AutoLayoutView */ = {
@@ -801,9 +815,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ADF4C8A1EA76E760017976B /* an.png in Resources */,
 				3A6CE1911E5B1952008059AC /* LaunchScreen.storyboard in Resources */,
 				3ACBCA891E98632200640B0C /* Localizable.strings in Resources */,
 				3A6CE18E1E5B1952008059AC /* Assets.xcassets in Resources */,
+				3ADF4C8B1EA76E760017976B /* xi.png in Resources */,
 				3A6CE18C1E5B1952008059AC /* Main.storyboard in Resources */,
 				3AF4E7B81E9BEEA300A86085 /* TableViewCellForPosition.xib in Resources */,
 			);
